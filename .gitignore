@@ -1,0 +1,15 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Entorno
+.env
+
+# Dependencias PHP 
+vendor/
+
+# IDE
+.vscode/
