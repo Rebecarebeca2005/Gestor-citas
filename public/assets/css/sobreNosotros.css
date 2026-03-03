@@ -182,139 +182,107 @@ nav {
     width: 100%;
 }
 
-/* ===== HERO SUPERIOR ===== */
-section > article:first-child {
-    max-width: 1000px;
-    margin: auto;
+/* ===== SOBRE NOSOTROS ===== */
+
+.sobre-main {
+    padding-bottom: 60px;
+}
+
+/* HERO */
+
+.sobre-hero {
+    max-width: 900px;
+    margin: 60px auto 40px;
     text-align: center;
-    padding: 70px 20px 50px;
+    padding: 0 20px;
+    padding-bottom: 60px;
 }
 
-section > article:first-child h2 {
-    font-size: 2.4rem;
-    margin-bottom: 20px;
+.sobre-hero h1 {
+    font-size: 2.6rem;
+    margin-bottom: 16px;
 }
 
-section > article:first-child h3 {
-    margin-top: 18px;
-    color: var(--color-texto-secundario);
-    font-weight: 400;
-}
-
-/* ===== BOTONES ===== */
-button {
-    padding: 12px 24px;
-    margin: 10px 6px;
-    border-radius: 999px;
-    border: 1px solid var(--color-primario);
-    background: var(--color-primario);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-button:nth-of-type(2) {
-    background: transparent;
+.sobre-hero h1 span {
     color: var(--color-primario);
 }
 
-button:hover {
-    background: var(--color-primario-hover);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px var(--color-sombra);
+.sobre-hero p {
+    color: var(--color-texto-secundario);
+    font-size: 1.05rem;
 }
 
-/* ===== HERO SLIDER ===== */
-.hero-slider {
+/* BLOQUE HISTORIA */
+
+.sobre-bloque {
     max-width: 1200px;
-    margin: 40px auto 70px;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-/* contenedor de slides */
-.slides {
-    position: relative;
-}
-
-/* slide */
-.slide {
-    display: none;
-    align-items: center;
-    gap: 40px;
-    animation: fade 0.5s ease;
-}
-
-.slide.active {
+    margin: 40px auto;
+    padding: 0 3%;
     display: flex;
+    gap: 50px;
+    align-items: center;
 }
 
-/* ===== TEXTO ===== */
-.slide-text {
+.sobre-texto {
     flex: 1;
 }
 
-.slide-text h2 {
-    font-size: 2.4rem;
-    margin-bottom: 14px;
-    line-height: 1.2;
+.sobre-texto h2 {
+    margin-bottom: 16px;
+    font-size: 1.8rem;
 }
 
-.slide-text h2 span {
-    color: var(--color-primario);
-}
-
-.slide-text p {
+.sobre-texto p {
     color: var(--color-texto-secundario);
-    margin-bottom: 18px;
-    font-size: 1rem;
+    margin-bottom: 14px;
 }
 
-/* ===== IMAGEN ===== */
-.slide-img {
+.sobre-img {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.slide-img img {
+.sobre-img img {
     width: 100%;
-    max-width: 380px;  
-    height: auto;
-    object-fit: contain;
-    display: block;
-    border-radius: 12px;
+    max-width: 420px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px var(--color-sombra);
 }
 
-/* ===== DOTS ===== */
-.slider-dots {
-    text-align: center;
-    margin-top: 20px;
+/* CARDS */
+
+.sobre-cards {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding: 0 3%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
 }
 
-.dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
-    background: var(--color-borde);
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: 0.3s;
+.card {
+    background: var(--color-tarjeta);
+    padding: 26px;
+    border-radius: 16px;
+    border: 1px solid var(--color-borde);
+    box-shadow: 0 6px 18px var(--color-sombra);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.dot.active {
-    background: var(--color-primario);
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px var(--color-sombra);
 }
 
-/* ===== ANIMACIÓN ===== */
-@keyframes fade {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.card h3 {
+    margin-bottom: 10px;
+    color: var(--color-primario);
+}
+
+.card p {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
 }
 
 /* ===== FOOTER ===== */
@@ -373,33 +341,80 @@ button:hover {
     left: 120%;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
+/* ===== FLIP CARD SOBRE ===== */
 
-    .derech {
-        display: flex;
-        gap: 18px;
-    }
+.flip-card {
+    width: 100%;
+    max-width: 420px;
+    height: 260px;
+    perspective: 1000px;
+    cursor: pointer;
+}
 
-    .derech a {
-        margin: 0;
-    }
+.flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s ease;
+    transform-style: preserve-3d;
+}
 
-    .slide {
+.flip-card.girada .flip-inner {
+    transform: rotateY(180deg);
+}
+
+/* caras */
+
+.flip-front,
+.flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 10px 25px var(--color-sombra);
+}
+
+/* frente */
+
+.flip-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* detrás */
+.flip-back {
+    background: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    padding: 24px;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.flip-back h3 {
+    color: var(--color-primario);
+    margin-bottom: 10px;
+}
+
+.flip-back p {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* ===== RESPONSIVE SOBRE ===== */
+
+@media (max-width: 900px) {
+    .sobre-bloque {
         flex-direction: column;
         text-align: center;
-        gap: 20px;
     }
 
-    .slide-text h2 {
-        font-size: 2rem;
-    }
-
-    .slide-img img {
-        max-width: 300px;
+    .sobre-cards {
+        grid-template-columns: 1fr;
     }
 }
