@@ -1,0 +1,75 @@
+/* ===== VARIABLES ===== */
+:root {
+    --color-fondo: #E8E1D8;
+    --color-texto-principal: #1A1A1A;
+    --color-texto-secundario: #4B4B4B;
+    --color-primario: #C26A4A;
+    --color-primario-hover: #A95539;
+    --color-tarjeta: #FFFFFF;
+    --color-borde: #D6CEC4;
+    --color-sombra: rgba(0, 0, 0, 0.08);
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto-principal);
+}
+
+/* ===== FUENTES ===== */
+@font-face {
+    font-family: 'Nunito';
+    src: url('../fonts/Nunito-Medium.ttf') format('truetype');
+    font-weight: 900; font-style: normal;
+}
+
+
+/* ===== TIPOGRAFÍA GENERAL ===== */
+h1, h2, h3, h4, h5, h6 { font-weight: 600; }
+p, li, a { font-size: 14px; }
+a { text-decoration: none; }
+
+/* ===== NAVBAR ===== */
+header { background: var(--color-fondo); }
+nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.izq img { width: 120px; }
+
+.menu a {
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    margin-left: 20px;
+    font-weight: 600;
+    position: relative;
+}
+
+/* subrayado */
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--color-primario);
+    transition: width 0.25s ease;
+}
+
+.menu a:hover::after {
+    width: 100%;
+}

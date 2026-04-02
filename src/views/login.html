@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestor de Citas | Organiza tus reservas fácilmente</title>
+    <meta name="description" content="Gestiona tus citas, reservas y horarios de forma rápida y sencilla con nuestro gestor online. Organiza todo en un solo lugar.">
+    <meta name="keywords" content="gestor de citas, reservas online, agenda digital, citas online, organizar citas">
+    <meta name="author" content="Rebeca">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="../../public/assets/css/login.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="../../public/assets/js/registro.js"></script>
+</head>
+<body>
+     <header>
+    <nav>
+        <div class="izq">
+           <a href="../../public/index.html">
+             <img src="../../public/assets/img/Logo-Nexo.png" alt="Logo-nexo">
+           </a>
+        </div>
+         <div class="menu">
+            <a href="/src/views/sobreNosotros.html">Sobre nosotros</a> 
+            <a href="/src/views/registro.html">Regístrate</a> 
+            <a href="/views/login.html">Iniciar sesión</a>
+        </div>
+    </nav>
+   </header>
+
+   <main>
+  <section>
+    <div class="contenedor">
+      <div class="envoltorio">
+
+        <form class="formulario" method="post" action="#">
+
+          <fieldset class="seccion activo">
+            <h3>Iniciar sesión</h3>
+
+            <input type="email" name="correo" placeholder="Correo electrónico" required>
+
+            <div class="contenedor-password">
+              <input type="password" id="password" name="password" placeholder="Contraseña" required>
+              <img src="../../public/assets/img/ojo-abierto.png" 
+                   class="mostrar-password" 
+                   data-target="password" 
+                   alt="Mostrar contraseña">
+            </div>
+
+            <p class="hint">
+              Accede a tu cuenta para gestionar tus citas.
+            </p>
+
+            <button class="btn-enviar" type="submit">Entrar</button>
+          </fieldset>
+
+        </form>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+    <footer class="footer">
+    <p>Gestor de Citas © 2026</p>
+    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
+        Ver en GitHub
+    </a>
+</footer>
+</body>
+</html>

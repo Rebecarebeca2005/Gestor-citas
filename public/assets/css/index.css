@@ -1,0 +1,261 @@
+/* ===== VARIABLES ===== */
+:root {
+    --color-fondo: #E8E1D8;
+    --color-texto-principal: #1A1A1A;
+    --color-texto-secundario: #4B4B4B;
+    --color-primario: #C26A4A;
+    --color-primario-hover: #A95539;
+    --color-tarjeta: #FFFFFF;
+    --color-borde: #D6CEC4;
+    --color-sombra: rgba(0, 0, 0, 0.08);
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== FUENTES ===== */
+@font-face {
+    font-family: 'Nunito';
+    src: url('../fonts/Nunito-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* ===== BASE ===== */
+body {
+    background: var(--color-fondo);
+    color: var(--color-texto-principal);
+    line-height: 1.6;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+/* ===== NAVBAR ===== */
+header {
+    background: var(--color-fondo);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    width: 120px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    margin-left: 20px;
+    position: relative;
+}
+
+/* subrayado */
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--color-primario);
+    transition: width 0.25s ease;
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* ===== HERO ===== */
+.hero-contenido {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+    padding: 70px 20px 50px;
+}
+
+.hero-contenido h2 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+}
+
+.hero-contenido h3 {
+    margin-top: 18px;
+    color: var(--color-texto-secundario);
+    font-weight: 400;
+}
+
+.hero-botones {
+    margin-top: 10px;
+}
+
+/* ===== BOTONES ===== */
+button {
+    padding: 12px 24px;
+    margin: 10px 6px;
+    border-radius: 999px;
+    border: 1px solid var(--color-primario);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-principal {
+    background: var(--color-primario);
+    color: white;
+}
+
+.btn-secundario {
+    background: transparent;
+    color: var(--color-primario);
+}
+
+button:hover {
+    background: var(--color-primario-hover);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--color-sombra);
+}
+
+/* ===== SLIDER ===== */
+.slider {
+    max-width: 1200px;
+    margin: 40px auto 70px;
+    padding: 40px 3%;
+}
+
+.slider-contenedor {
+    position: relative;
+}
+
+/* slide */
+.slide {
+    display: none;
+    align-items: center;
+    gap: 40px;
+    animation: fade 0.5s ease;
+}
+
+.slide.activo {
+    display: flex;
+}
+
+/* TEXTO */
+.slide-texto {
+    flex: 1;
+}
+
+.slide-texto h2 {
+    font-size: 2.4rem;
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+
+.slide-texto h2 span {
+    color: var(--color-primario);
+}
+
+.slide-texto p {
+    color: var(--color-texto-secundario);
+    margin-bottom: 18px;
+}
+
+/* IMAGEN */
+.slide-imagen {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.slide-imagen img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 12px;
+}
+
+/* ===== INDICADORES ===== */
+.slider-indicadores {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.indicador {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background: var(--color-borde);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.indicador.activo {
+    background: var(--color-primario);
+}
+
+/* ===== ANIMACIÓN ===== */
+@keyframes fade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #ddd4c8;
+    text-align: center;
+    padding: 28px 16px;
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+}
+
+.footer a {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu {
+        display: flex;
+        gap: 18px;
+    }
+
+    .menu a {
+        margin: 0;
+    }
+
+    .slide {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .slide-texto h2 {
+        font-size: 2rem;
+    }
+
+    .slide-imagen img {
+        max-width: 300px;
+    }
+}

@@ -3,90 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="shortcut icon" href="assets/img/Logo-Nexo.png" type="image/x-icon"> -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/JavaScript.js"></script>
-   
-    <title>Index - Gestor de citas</title>
+
+    <title>Gestor de Citas | Organiza tus reservas fácilmente</title>
+    <meta name="description" content="Gestiona tus citas, reservas y horarios de forma rápida y sencilla con nuestro gestor online. Organiza todo en un solo lugar.">
+    <meta name="keywords" content="gestor de citas, reservas online, agenda digital, citas online, organizar citas">
+    <meta name="author" content="Rebeca">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+
+    <script src="assets/js/index.js"></script>
 </head>
 <body>
-   <header>
+<main>
+     <header>
     <nav>
         <div class="izq">
-            <img src="assets/img/Logo-Nexo.png" alt="Logo-nexo">
+           <a href="../../public/index.html">
+             <img src="../../public/assets/img/Logo-Nexo.png" alt="Logo-nexo">
+           </a>
         </div>
-        <div class="derech">
+         <div class="menu">
             <a href="../src/views/sobreNosotros.html">Sobre nosotros</a> 
-            <a href="#">Registrate</a> 
-            <a href="#">Inicia Sesión</a>
+            <a href="../src/views/registro.html">Regístrate</a> 
+            <a href="#">Iniciar sesión</a>
         </div>
     </nav>
    </header>
-   <main>
-     <section>
-        <article>
+
+    <section class="hero">
+        <article class="hero-contenido">
             <h2>Organiza tus citas sin complicaciones</h2>
-            <button class="btn-efecto">Crear cuenta</button>
-            <button class="btn-efecto">Iniciar sesión</button>
-            <h3>Gestiona reservas, controla horarios y mantén todo bajo control desde un solo lugar</h3>
+
+            <div class="hero-botones">
+                <button class="btn-principal">Crear cuenta</button>
+                <button class="btn-secundario">Iniciar sesión</button>
+            </div>
+
+            <h3>
+                Gestiona reservas, controla horarios y mantén todo bajo control desde un solo lugar
+            </h3>
         </article>
     </section>
 
-       <section class="hero-slider">
-    <div class="slides">
+    <section class="slider">
+        <div class="slider-contenedor">
 
-        <!-- SLIDE 1 -->
-        <div class="slide active">
-            <div class="slide-text">
-                <h2>Organiza tu <span>agenda</span></h2>
-                <p>Controla tus citas de forma rápida y sencilla desde cualquier lugar.</p>
-                <button class="btn-efecto">Empezar ahora</button>
+            <!-- SLIDE 1 -->
+            <div class="slide activo">
+                <div class="slide-texto">
+                    <h2>Organiza tu <span>agenda</span></h2>
+                    <p>Controla tus citas de forma rápida y sencilla desde cualquier lugar.</p>
+                    <button class="btn-principal">Empezar ahora</button>
+                </div>
+
+                <div class="slide-imagen">
+                    <img src="assets/img/Imagen1.png" alt="Gestión de citas">
+                </div>
             </div>
-            <div class="slide-img">
-                <img src="assets/img/Imagen1.png" alt="Gestión de citas">
+
+            <!-- SLIDE 2 -->
+            <div class="slide">
+                <div class="slide-texto">
+                    <h2>Recordatorios <span>automáticos</span></h2>
+                    <p>Recibe avisos y no vuelvas a olvidar una cita importante.</p>
+                    <button class="btn-secundario">Ver más</button>
+                </div>
+
+                <div class="slide-imagen">
+                    <img src="assets/img/Imagen2.png" alt="Recordatorios">
+                </div>
             </div>
+
+            <!-- SLIDE 3 -->
+            <div class="slide">
+                <div class="slide-texto">
+                    <h2>Gestión <span>sencilla</span></h2>
+                    <p>Una interfaz clara pensada para que todo sea rápido.</p>
+                    <button class="btn-secundario">Probar</button>
+                </div>
+
+                <div class="slide-imagen">
+                    <img src="assets/img/Imagen3.png" alt="Gestión">
+                </div>
+            </div>
+
         </div>
 
-        <!-- SLIDE 2 -->
-        <div class="slide">
-            <div class="slide-text">
-                <h2>Recordatorios <span>automáticos</span></h2>
-                <p>Recibe avisos y no vuelvas a olvidar una cita importante.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="slide-img">
-                <img src="assets/img/Imagen2.png" alt="Recordatorios">
-            </div>
+        <div class="slider-indicadores">
+            <span class="indicador activo"></span>
+            <span class="indicador"></span>
+            <span class="indicador"></span>
         </div>
+    </section>
+</main>
 
-        <!-- SLIDE 3 -->
-        <div class="slide">
-            <div class="slide-text">
-                <h2>Gestión <span>sencilla</span></h2>
-                <p>Una interfaz clara pensada para que todo sea rápido.</p>
-                <button>Probar</button>
-            </div>
-            <div class="slide-img">
-                <img src="assets/img/Imagen3.png" alt="Gestión">
-            </div>
-        </div>
-
-    </div>
-
-    <div class="slider-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-    </div>
-
-   </main>
-</section>
-   
-    <footer class="footer">
-    <p>Gestor de Citas © 2026</p>
-    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
-        Ver en GitHub
-    </a>
-</footer>
-</body>
-</html>
+<footer class="footer"> 
+    <p>Gestor de Citas © 2026</p> 
+    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank"> Ver en GitHub </a>
+ </footer>
+    </body>
+         </html>

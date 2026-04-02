@@ -1,0 +1,350 @@
+/* ===== VARIABLES ===== */
+:root {
+    --color-fondo: #E8E1D8;
+    --color-texto-principal: #1A1A1A;
+    --color-texto-secundario: #4B4B4B;
+    --color-primario: #C26A4A;
+    --color-primario-hover: #A95539;
+    --color-tarjeta: #FFFFFF;
+    --color-borde: #D6CEC4;
+    --color-sombra: rgba(0, 0, 0, 0.08);
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto-principal);
+}
+
+/* ===== FUENTES ===== */
+@font-face {
+    font-family: 'Nunito';
+    src: url('../fonts/Nunito-Medium.ttf') format('truetype');
+    font-weight: 900; font-style: normal;
+}
+
+
+/* ===== TIPOGRAFÍA GENERAL ===== */
+h1, h2, h3, h4, h5, h6 { font-weight: 600; }
+p, li, a { font-size: 14px; }
+a { text-decoration: none; }
+
+/* ===== NAVBAR ===== */
+header { background: var(--color-fondo); }
+nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.izq img { width: 120px; }
+
+.menu a {
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    margin-left: 20px;
+    font-weight: 600;
+    position: relative;
+}
+
+/* subrayado */
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--color-primario);
+    transition: width 0.25s ease;
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* ===== FIELDSET ===== */
+fieldset { border: none; margin: 0; padding: 0; }
+
+/* ===== GRID ===== */
+.doce { width: 100%; } .once { width: 91.53%; } .diez { width: 83.06%; }
+.nueve { width: 74.6%; } .ocho { width: 66.13%; } .siete { width: 57.66%; }
+.seis { width: 49.2%; } .cinco { width: 40.73%; } .cuatro { width: 32.26%; }
+.tres { width: 23.8%; } .dos { width: 15.33%; } .uno { width: 6.866%; }
+
+.columna { display: block; float: left; margin-left: 1.6%; }
+.columna:first-of-type { margin-left: 0; }
+
+.contenedor { width: 100%; max-width: 700px; margin: 40px auto; position: relative; }
+.fila { padding: 20px 0; }
+
+.cf:before, .cf:after { content: " "; display: table; }
+.cf:after { clear: both; }
+
+/* ===== WRAPPER ===== */
+.envoltorio {
+    width: 100%;
+    margin: 30px 0;
+    background: var(--color-tarjeta);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px var(--color-sombra);
+    border: 1px solid var(--color-borde);
+    overflow: hidden;
+}
+
+/* ===== STEPS ===== */
+.pasos {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+    background-color: var(--color-tarjeta);
+    text-align: center;
+    border-radius: 16px 16px 0 0;
+}
+.pasos li {
+    display: inline-block;
+    margin: 10px 18px;
+    color: var(--color-texto-secundario);
+    padding-bottom: 5px;
+    font-weight: 600;
+}
+.pasos li.activo {
+    border-bottom: 2px solid var(--color-primario);
+    color: var(--color-primario);
+}
+
+/* ===== FORM ===== */
+.formulario .seccion {
+    display: none;
+    padding: 30px 20px 80px;
+    box-sizing: border-box;
+    background-color: var(--color-tarjeta);
+    text-align: center;
+    width: 100%;
+}
+.formulario .seccion.activo {
+    display: block;
+    animation: fadeSlide 0.35s ease;
+    opacity: 1;
+    transform: scale(1, 1);
+}
+.formulario .seccion h3 { margin-bottom: 25px; }
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== BOTONES ===== */
+.formulario .btn-siguiente,
+.formulario .btn-enviar {
+    background: var(--color-primario);
+    display: inline-block;
+    padding: 10px 28px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px !important;
+    font-family: 'Nunito' !important;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 999px;
+    border: 1px solid var(--color-primario);
+    transition: all 0.25s ease;
+}
+
+.formulario .btn-enviar { border: none; outline: none; appearance: none; }
+.formulario .btn-siguiente:hover,
+.formulario .btn-enviar:hover {
+    background: var(--color-primario-hover);
+    box-shadow: 0 8px 20px var(--color-sombra);
+    transform: translateY(-2px);
+}
+
+/* ===== INPUTS ===== */
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario input[type="tel"],
+.formulario input[type="password"] {
+    display: block;
+    padding: 12px 14px;
+    margin: 10px auto;
+    background-color: #f7f5f2;
+    border: 1px solid var(--color-borde);
+    width: 80%;
+    outline: none;
+    font-size: 14px !important;
+    font-family: 'Nunito' !important;
+    border-radius: 10px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+.formulario input:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(194, 106, 74, 0.15);
+}
+
+/* ===== TEXTO GÉNERO ===== */
+.formulario .etiqueta-radio {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-texto-principal);
+    margin-bottom: 16px;
+    display: block;
+    padding-top: 2rem;
+}
+
+/* ===== ESPACIO SOBRE TARJETAS ===== */
+.formulario .etiqueta-radio {
+    margin-top: 12px;    /* espacio entre título y tarjetas */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;           /* espacio entre cada tarjeta */
+}
+
+/* ===== RADIOS / TARJETAS GÉNERO ===== */
+.formulario input[type="radio"] { display: none; }
+
+.formulario input[type="radio"] + label {
+    display: block;
+    border: 1px solid var(--color-borde);
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    border-radius: 12px;
+    background: #fff;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.formulario input[type="radio"] + label:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 22px var(--color-sombra);
+    border-color: var(--color-primario);
+}
+.formulario input[type="radio"]:checked + label {
+    border: 2px solid var(--color-primario);
+    background: #fffaf7;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 12px 26px rgba(194, 106, 74, 0.25);
+}
+.formulario input[type="radio"] + label h4 {
+    margin: 12px;
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.formulario input[type="radio"]:checked + label h4 {
+    color: var(--color-primario);
+    transform: scale(1.05);
+}
+/* ✔ check animado */
+.formulario input[type="radio"] + label:before {
+    content: "✔";
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 100%;
+    background: var(--color-primario);
+    color: #fff;
+    display: none;
+    font-size: 12px;
+    animation: popCheck 0.25s ease;
+}
+.formulario input[type="radio"]:checked + label:before { display: block; }
+
+@keyframes popCheck {
+    0% { transform: scale(0.3); opacity: 0; }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.contenedor-password {
+    position: relative;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.contenedor-password input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.mostrar-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.mostrar-password:hover {
+    color: var(--color-primario);
+}
+
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #ddd4c8;
+    text-align: center;
+    padding: 28px 16px;
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+}
+.footer a {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 600;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* ===== BOTÓN EFECTO BRILLO ===== */
+.btn-efecto {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--color-primario);
+    background: var(--color-primario);
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-efecto:hover { box-shadow: 0 8px 20px rgba(194, 106, 74, 0.35); }
+.btn-efecto::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -120%;
+    width: 100%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(245, 157, 125, 0.35), transparent);
+    transition: left 0.6s ease;
+}
+.btn-efecto:hover::before { left: 120%; }
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}

@@ -1,4 +1,6 @@
-/* ===== VARIABLES ===== */
+/* =========================
+   VARIABLES
+========================= */
 :root {
     --color-fondo: #E8E1D8;
     --color-texto-principal: #1A1A1A;
@@ -10,192 +12,43 @@
     --color-sombra: rgba(0, 0, 0, 0.08);
 }
 
-/* ===== RESET ===== */
+/* =========================
+   RESET
+========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ===== FUENTES DESCARGADAS ===== */
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-BlackItalic.ttf') format('truetype');
-    font-weight: 900;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-BoldItalic.ttf') format('truetype');
-    font-weight: 700;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-ExtraBoldItalic.ttf') format('truetype');
-    font-weight: 800;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-ExtraLightItalic.ttf') format('truetype');
-    font-weight: 200;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-Italic.ttf') format('truetype');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-LightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-MediumItalic.ttf') format('truetype');
-    font-weight: 500;
-    font-style: italic;
-}
-
+/* =========================
+   TIPOGRAFÍA
+========================= */
 @font-face {
     font-family: 'Nunito';
     src: url('../fonts/Nunito-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('../fonts/Nunito-SemiBoldItalic.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
 }
 
 body {
+    font-family: 'Nunito', sans-serif;
     background: var(--color-fondo);
     color: var(--color-texto-principal);
     line-height: 1.6;
-    font-family: 'Nunito';
 }
 
-/* ===== NAVBAR ===== */
-header {
-    background: var(--color-fondo);
-}
-
-nav {
-    max-width: 1200px;
-    margin: auto;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 18px;
-    padding-bottom: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.izq img {
-    width: 120px;
-}
-
-.derech a {
-    text-decoration: none;
-    color: var(--color-texto-secundario);
-    margin-left: 20px;
-    font-weight: 600;
-    position: relative;
-}
-
-/* subrayado */
-.derech a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 2px;
-    background: var(--color-primario);
-    transition: width 0.25s ease;
-}
-
-.derech a:hover::after {
-    width: 100%;
-}
-
-/* ===== SOBRE NOSOTROS ===== */
-
+/* =========================
+   SOBRE NOSOTROS
+========================= */
 .sobre-main {
     padding-bottom: 60px;
 }
 
 /* HERO */
-
 .sobre-hero {
     max-width: 900px;
     margin: 60px auto 40px;
     text-align: center;
-    padding: 0 20px;
-    padding-bottom: 60px;
+    padding: 0 20px 60px;
 }
 
 .sobre-hero h1 {
@@ -203,17 +56,15 @@ nav {
     margin-bottom: 16px;
 }
 
-.sobre-hero h1 span {
+.sobre-hero span {
     color: var(--color-primario);
 }
 
 .sobre-hero p {
     color: var(--color-texto-secundario);
-    font-size: 1.05rem;
 }
 
-/* BLOQUE HISTORIA */
-
+/* BLOQUE TEXTO + IMAGEN */
 .sobre-bloque {
     max-width: 1200px;
     margin: 40px auto;
@@ -228,8 +79,8 @@ nav {
 }
 
 .sobre-texto h2 {
-    margin-bottom: 16px;
     font-size: 1.8rem;
+    margin-bottom: 16px;
 }
 
 .sobre-texto p {
@@ -250,8 +101,9 @@ nav {
     box-shadow: 0 10px 25px var(--color-sombra);
 }
 
-/* CARDS */
-
+/* =========================
+   TARJETAS INFO
+========================= */
 .sobre-cards {
     max-width: 1200px;
     margin: 60px auto 0;
@@ -267,7 +119,7 @@ nav {
     border-radius: 16px;
     border: 1px solid var(--color-borde);
     box-shadow: 0 6px 18px var(--color-sombra);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: 0.25s;
 }
 
 .card:hover {
@@ -276,8 +128,8 @@ nav {
 }
 
 .card h3 {
-    margin-bottom: 10px;
     color: var(--color-primario);
+    margin-bottom: 10px;
 }
 
 .card p {
@@ -285,64 +137,9 @@ nav {
     font-size: 0.95rem;
 }
 
-/* ===== FOOTER ===== */
-.footer {
-    background: #ddd4c8;
-    text-align: center;
-    padding: 28px 16px;
-    color: var(--color-texto-secundario);
-    font-size: 0.95rem;
-}
-
-.footer a {
-    display: inline-block;
-    margin-top: 6px;
-    color: var(--color-primario);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
-
-/* ===== BOTÓN EFECTO BRILLO ===== */
-.btn-efecto {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--color-primario);
-    background: var(--color-primario);
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-efecto:hover {
-    box-shadow: 0 8px 20px rgba(194, 106, 74, 0.35);
-}
-
-.btn-efecto::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-         rgba(245, 157, 125, 0.35),
-        transparent
-    );
-    transition: left 0.6s ease;
-}
-
-.btn-efecto:hover::before {
-    left: 120%;
-}
-
-/* ===== FLIP CARD SOBRE ===== */
-
+/* =========================
+   FLIP CARD
+========================= */
 .flip-card {
     width: 100%;
     max-width: 420px;
@@ -352,9 +149,9 @@ nav {
 }
 
 .flip-inner {
-    position: relative;
     width: 100%;
     height: 100%;
+    position: relative;
     transition: transform 0.7s ease;
     transform-style: preserve-3d;
 }
@@ -364,7 +161,6 @@ nav {
 }
 
 /* caras */
-
 .flip-front,
 .flip-back {
     position: absolute;
@@ -372,19 +168,17 @@ nav {
     height: 100%;
     border-radius: 14px;
     backface-visibility: hidden;
-    overflow: hidden;
     box-shadow: 0 10px 25px var(--color-sombra);
 }
 
 /* frente */
-
 .flip-front img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* detrás */
+/* trasera */
 .flip-back {
     background: var(--color-tarjeta);
     border: 1px solid var(--color-borde);
@@ -406,8 +200,63 @@ nav {
     font-size: 0.95rem;
 }
 
-/* ===== RESPONSIVE SOBRE ===== */
+/* =========================
+   BOTONES
+========================= */
+.btn-efecto {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 999px;
+    border: 1px solid var(--color-primario);
+    background: var(--color-primario);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: 0.25s;
+}
 
+.btn-efecto:hover {
+    background: var(--color-primario-hover);
+    box-shadow: 0 8px 20px rgba(194, 106, 74, 0.35);
+}
+
+.btn-efecto::before {
+    content: "";
+    position: absolute;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(245,157,125,0.35), transparent);
+    transition: 0.6s;
+}
+
+.btn-efecto:hover::before {
+    left: 120%;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    background: #ddd4c8;
+    text-align: center;
+    padding: 28px 16px;
+    color: var(--color-texto-secundario);
+}
+
+.footer a {
+    color: var(--color-primario);
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 900px) {
     .sobre-bloque {
         flex-direction: column;
