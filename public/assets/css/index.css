@@ -17,6 +17,7 @@
     box-sizing: border-box;
 }
 
+
 /* ===== FUENTES ===== */
 @font-face {
     font-family: 'Nunito';
@@ -48,7 +49,7 @@ header {
     align-items: center;
 }
 
-.logo img {
+.logo {
     width: 120px;
 }
 

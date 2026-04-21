@@ -56,8 +56,8 @@ $(function () {
         // Cambiar icono según estado
         $(this).attr("src",
             esTipoPassword
-                ? "../../public/assets/img/esconder.png"
-                : "../../public/assets/img/ojo-abierto.png"
+                ? "assets/img/esconder.png"
+                : "assets/img/ojo-abierto.png"
         );
 
     });

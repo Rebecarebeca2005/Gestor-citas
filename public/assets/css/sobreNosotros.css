@@ -27,6 +27,7 @@
 @font-face {
     font-family: 'Nunito';
     src: url('../fonts/Nunito-Regular.ttf') format('truetype');
+    font-weight: 500;
 }
 
 body {
@@ -35,6 +36,48 @@ body {
     color: var(--color-texto-principal);
     line-height: 1.6;
 }
+
+/* ===== NAVBAR ===== */
+header {
+    background: var(--color-fondo);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 120px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    margin-left: 20px;
+    position: relative;
+}
+
+/* subrayado */
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--color-primario);
+    transition: width 0.25s ease;
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
 
 /* =========================
    SOBRE NOSOTROS
