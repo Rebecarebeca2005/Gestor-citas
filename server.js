@@ -11,9 +11,13 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "home.html"));
 });
 
-// Puerto Railway
+// fallback (IMPORTANTE en Railway)
+app.use((req, res) => {
+  res.status(404).send("Página no encontrada");
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log("Servidor en puerto " + port);
+  console.log("Servidor funcionando en puerto " + port);
 });
