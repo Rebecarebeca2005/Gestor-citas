@@ -1,5 +1,3 @@
-CREATE DATABASE gestor_citas;
-USE gestor_citas;
 
 -- =========================
 -- TABLA USUARIOS
