@@ -227,7 +227,7 @@ button:hover {
 }
 
 .footer a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* ===== RESPONSIVE ===== */

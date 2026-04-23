@@ -142,6 +142,9 @@
 
 <footer class="footer">
     <p>Gestor de Citas © 2026</p>
+    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
+        Ver en GitHub
+    </a>
 </footer>
 
 </body>

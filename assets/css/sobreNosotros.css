@@ -291,10 +291,12 @@ header {
 .footer a {
     color: var(--color-primario);
     font-weight: 600;
+    text-decoration: none;
 }
 
+
 .footer a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* =========================
