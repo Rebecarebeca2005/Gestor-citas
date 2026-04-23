@@ -4,20 +4,28 @@ require_once __DIR__ . '/src/controllers/AuthController.php';
 
 session_start();
 
-$pagina = $_GET['pagina'] ?? 'centroControl';
+$pagina = $_GET['pagina'] ?? 'home';
 
 $controller = new AuthController();
 
 switch ($pagina) {
+
+    case 'home':
+        require __DIR__ . '/views/home.html';
+        break;
+
     case 'login':
         require __DIR__ . '/views/login.php';
+        break;
+
+        case 'sobreNosotros':
+        require __DIR__ . '/views/sobreNosotros.html';
         break;
 
     case 'register':
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $controller->register($_POST);
-            header("Location: index.php?pagina=login");
             exit;
         }
 
@@ -28,14 +36,17 @@ switch ($pagina) {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $ok = $controller->login($_POST);
+            $usuario = $controller->login($_POST);
 
-            if ($ok) {
-                $_SESSION['usuario'] = $_POST['email'];
+            if ($usuario) {
+
+                $_SESSION['usuario'] = $usuario;
 
                 header("Location: index.php?pagina=centroControl");
                 exit;
+
             } else {
+
                 header("Location: index.php?pagina=login&error=1");
                 exit;
             }
@@ -72,8 +83,8 @@ switch ($pagina) {
 
         require __DIR__ . '/views/misCitas.php';
         break;
-        
+
     default:
-        header("Location: index.php?pagina=centroControl");
-        exit;
+        require __DIR__ . '/views/home.html';
+        break;
 }

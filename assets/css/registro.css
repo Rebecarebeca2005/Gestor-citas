@@ -389,13 +389,14 @@ main {
 }
 
 .popup.hidden {
-    display: none;
+    display: none !important;
 }
 
 #popup-close {
     margin-left: 15px;
     cursor: pointer;
     font-weight: bold;
+    display: none;
 }
 
 @keyframes fadeDown {
