@@ -3,41 +3,64 @@ require_once __DIR__ . '/../models/user.php';
 
 class AuthController {
 
-    public function register($data) {
+   public function register($dato) {
 
-        // Validaciones básicas
-        if (empty($data['nombre']) || empty($data['email']) || empty($data['password'])) {
-            return "Faltan datos";
-        }
+    $nombre = trim($dato['nombre'] ?? '');
+    $apellidos = trim($dato['apellidos'] ?? '');
+    $email = trim($dato['email'] ?? '');
+    $telefono = trim($dato['telefono'] ?? '');
+    $password = $dato['password'] ?? '';
 
-        if ($data['password'] !== $data['password2']) {
-            return "Las contraseñas no coinciden";
-        }
+    $user = new User();
 
-        $user = new User();
+    $ok = $user->registrar(
+        $nombre,
+        $apellidos,
+        $email,
+        $telefono,
+        $password
+    );
+   
 
-        $ok = $user->registrar(
-            $data['nombre'],
-            $data['email'],
-            $data['telefono'],
-            $data['password']
-        );
-
-        return $ok ? "Registrado correctamente" : "Error al registrar";
+    if ($ok) {
+        header("Location: ?pagina=login&success=Registro correcto");
+        exit;
     }
 
-    public function login($data) {
+    header("Location: ?pagina=register&error=Error al registrar");
+    exit;
+}
 
-        $user = new User();
+   public function login($dato) {
 
-        $usuario = $user->login($data['email'], $data['password']);
+    $email = trim($dato['email'] ?? '');
+    $password = $dato['password'] ?? '';
 
-        if ($usuario) {
-            session_start();
-            $_SESSION['usuario'] = $usuario;
-            return "Login correcto";
-        }
-
-        return "Credenciales incorrectas";
+    if ($email === '' || $password === '') {
+        header("Location: ?pagina=login&error=Faltan datos");
+        exit;
     }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: ?pagina=login&error=Email no válido");
+        exit;
+    }
+
+    $user = new User();
+
+    $usuario = $user->login($email, $password);
+
+    if ($usuario) {
+        session_start();
+        $_SESSION['usuario'] = $usuario;
+
+        header("Location: ?pagina=home");
+        exit;
+    }
+
+    header("Location: ?pagina=login&error=Credenciales incorrectas");
+    exit;
+}
+
+
 }

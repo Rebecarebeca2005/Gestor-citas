@@ -3,25 +3,26 @@ require_once __DIR__ . '/../config/database.php';
 
 class User {
 
-    private $conn;
+    private $dato;
 
     public function __construct() {
         $db = new Database();
-        $this->conn = $db->connect();
+        $this->dato = $db->connect();
     }
 
-    public function registrar($nombre, $email, $telefono, $password) {
+    public function registrar($nombre, $apellidos, $email, $telefono, $password) {
 
         // Encriptar contraseña
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO usuarios (nombre, email, telefono, password)
-                VALUES (:nombre, :email, :telefono, :password)";
+        $sql = "INSERT INTO usuarios (nombre, apellidos, email, telefono, password)
+                VALUES (:nombre, :apellidos, :email, :telefono, :password)";
 
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->dato->prepare($sql);
 
         return $stmt->execute([
             ':nombre' => $nombre,
+            ':apellidos' => $apellidos,
             ':email' => $email,
             ':telefono' => $telefono,
             ':password' => $passwordHash
@@ -31,7 +32,7 @@ class User {
     public function login($email, $password) {
 
         $sql = "SELECT * FROM usuarios WHERE email = :email";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->dato->prepare($sql);
         $stmt->execute([':email' => $email]);
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -42,4 +43,7 @@ class User {
 
         return false;
     }
+
+    
 }
+

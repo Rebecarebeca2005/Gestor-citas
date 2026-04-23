@@ -185,3 +185,36 @@ nav {
     text-decoration: underline;
 }
 
+/* ===== POPUP ===== */
+/* .popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primario);
+    color: white;
+    padding: 14px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 280px;
+    z-index: 9999;
+    animation: fadeDown 0.3s ease;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+#popup-close {
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+} */

@@ -127,6 +127,34 @@ fieldset { border: none; margin: 0; padding: 0; }
     text-align: center;
     width: 100%;
 }
+
+/* ===== INPUTS ===== */
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario input[type="tel"],
+.formulario input[type="password"] {
+    display: block;
+    width: 80%;
+    margin: 6px auto;
+    padding: 12px 14px;
+    background: #f7f5f2;
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+}
+
+.fila-doble {
+    display: flex;
+    gap: 12px;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.fila-doble input {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+
 .formulario .seccion.activo {
     display: block;
     animation: fadeSlide 0.35s ease;
@@ -340,4 +368,37 @@ body {
 
 main {
     flex: 1;
+}
+
+.popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #C26A4A;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 280px;
+    z-index: 9999;
+    animation: fadeDown 0.3s ease;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+#popup-close {
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
 }

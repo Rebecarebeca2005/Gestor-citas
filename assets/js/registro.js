@@ -1,65 +1,115 @@
-/* =========================
-   FORMULARIO MULTIPASO
-========================= */
 $(function () {
 
-    $(".formulario .btn-siguiente").on("click", function () {
+    /* POPUP */
+    function showPopup(msg) {
+        $("#popup-text").text(msg);
+        $("#popup").removeClass("hidden");
+
+        setTimeout(() => {
+            $("#popup").addClass("hidden");
+        }, 4000);
+    }
+
+    $("#popup-close").on("click", function () {
+        $("#popup").addClass("hidden");
+    });
+
+    /* VALIDACIONES PASO 1 */
+    function validarPaso1() {
+
+        let nombre = $("input[name='nombre']").val().trim();
+        let apellidos = $("input[name='apellidos']").val().trim();
+        let email = $("input[name='email']").val().trim();
+        let telefono = $("input[name='telefono']").val().trim();
+        let genero = $("input[name='genero']:checked").val();
+
+        if (nombre.length < 2) return "Nombre mínimo 2 caracteres";
+        if (apellidos.length < 2) return "Apellidos mínimo 2 caracteres";
+
+        if (!email.includes("@")) return "Email no válido";
+
+        if (!/^[0-9]{9}$/.test(telefono)) {
+            return "Teléfono debe tener 9 números";
+        }
+
+        if (!genero) return "Debes seleccionar un género";
+
+        return true;
+    }
+
+    /* VALIDACIONES PASO 2 */
+    function validarPaso2() {
+
+        let pass1 = $("#password").val();
+        let pass2 = $("#password2").val();
+
+        if (pass1.length < 8) {
+            return "La contraseña debe tener mínimo 8 caracteres";
+        }
+
+        if (!/[0-9]/.test(pass1)) {
+            return "La contraseña debe tener al menos un número";
+        }
+
+        if (pass1 !== pass2) {
+            return "Las contraseñas no coinciden";
+        }
+
+        return true;
+    }
+
+    /* CONTROL MULTIPASO */
+    $(".btn-siguiente").on("click", function () {
 
         const $seccionActual = $(this).closest(".seccion");
-        const $secciones = $(".formulario .seccion");
+        const $secciones = $(".seccion");
         const $pasos = $(".pasos li");
 
-        const indiceSeccion = $secciones.index($seccionActual);
+        const indice = $secciones.index($seccionActual);
 
-        let esValido = true;
+        let resultado = true;
 
-        // Validar campos obligatorios de la sección actual
-        $seccionActual.find("input[required]").each(function () {
-            if (!this.checkValidity()) {
-                this.reportValidity();
-                esValido = false;
-                return false; // corta el each
-            }
-        });
+        if (indice === 0) {
+            resultado = validarPaso1();
+        }
 
-        if (!esValido) return;
+        if (indice === 1) {
+            resultado = validarPaso2();
+        }
 
-        // Quitar activa a la sección actual
+        if (resultado !== true) {
+            showPopup(resultado);
+            return;
+        }
+
         $seccionActual.removeClass("activo");
-        // Activar la siguiente sección
-        $secciones.eq(indiceSeccion + 1).addClass("activo");
+        $secciones.eq(indice + 1).addClass("activo");
 
-        // Actualizar los pasos (barra superior)
-        $pasos.eq(indiceSeccion).removeClass("activo");
-        $pasos.eq(indiceSeccion + 1).addClass("activo");
-
+        $pasos.eq(indice).removeClass("activo");
+        $pasos.eq(indice + 1).addClass("activo");
     });
 
 });
 
-
-/* =========================
-   MOSTRAR / OCULTAR CONTRASEÑA
-========================= */
-$(function () {
+    /* MOSTRAR / OCULTAR CONTRASEÑA */
+    $(function () {
 
     $(".mostrar-password").on("click", function () {
 
-        const idObjetivo = $(this).data("target");
-        const $campoPassword = $("#" + idObjetivo);
+        const id = $(this).data("target");
+        const $input = $("#" + id);
 
-        const esTipoPassword = $campoPassword.attr("type") === "password";
+        if ($input.length === 0) return;
 
-        // Cambiar tipo de input
-        $campoPassword.attr("type", esTipoPassword ? "text" : "password");
+        const isPassword = $input.attr("type") === "password";
 
-        // Cambiar icono según estado
+        $input.attr("type", isPassword ? "text" : "password");
+
         $(this).attr("src",
-            esTipoPassword
+            isPassword
                 ? "assets/img/esconder.png"
                 : "assets/img/ojo-abierto.png"
         );
-
     });
 
 });

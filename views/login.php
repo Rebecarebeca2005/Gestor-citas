@@ -17,9 +17,15 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="assets/js/registro.js"></script>
+    <script src="assets/js/login.js"></script>
 </head>
 <body>
+<!-- POPUP
+<div id="popup" class="popup hidden">
+    <span id="popup-text"></span>
+    <span id="popup-close">✖</span>
+</div> -->
+
      <header>
     <nav>
         <div class="izq">
@@ -40,30 +46,22 @@
     <div class="contenedor">
       <div class="envoltorio">
 
-        <form class="formulario" method="post" action="#">
+       <form class="formulario" method="post" action="?pagina=login_post">
 
-          <fieldset class="seccion activo">
-            <h3>Iniciar sesión</h3>
+  <fieldset class="seccion activo">
+    <h3>Iniciar sesión</h3>
 
-            <input type="email" name="correo" placeholder="Correo electrónico" required>
+    <input type="email" name="email" placeholder="Correo electrónico" required>
 
-            <div class="contenedor-password">
-              <input type="password" id="password" name="password" placeholder="Contraseña" required>
-              <img src="assets/img/ojo-abierto.png" 
-                   class="mostrar-password" 
-                   data-target="password" 
-                   alt="Mostrar contraseña">
-            </div>
+    <div class="contenedor-password">
+      <input type="password" id="password" name="password" placeholder="Contraseña" required>
+      <img src="assets/img/ojo-abierto.png" class="mostrar-password" data-target="password">
+    </div>
 
-            <p class="hint">
-              Accede a tu cuenta para gestionar tus citas.
-            </p>
+    <button class="btn-enviar" type="submit">Entrar</button>
+  </fieldset>
 
-            <button class="btn-enviar" type="submit">Entrar</button>
-          </fieldset>
-
-        </form>
-
+</form>
       </div>
     </div>
   </section>

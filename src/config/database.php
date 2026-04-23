@@ -7,21 +7,20 @@ private $user = "root";
 private $password = ""; 
 
 public function connect() {
-        try {
-            $conn = new PDO(
-                "mysql:host={$this->host};dbname={$this->dbname};charset=utf8",
-                $this->user,
-                $this->password
-            );
+    try {
+        $conn = new PDO(
+            "mysql:host={$this->host};port=3307;dbname={$this->dbname};charset=utf8",
+            $this->user,
+            $this->password
+        );
 
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            return $conn;
+        return $conn;
 
-        } catch (PDOException $e) {
-            die("Error de conexión: " . $e->getMessage());
-        }
+    } catch (PDOException $e) {
+        die("Error de conexión: " . $e->getMessage());
     }
-
+}
 }
 ?>

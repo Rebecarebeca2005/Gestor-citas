@@ -1,7 +1,7 @@
+CREATE DATABASE gestor_citas;
+USE gestor_citas;
 
--- =========================
 -- TABLA USUARIOS
--- =========================
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -12,9 +12,8 @@ CREATE TABLE usuarios (
     rol ENUM('ADMIN', 'CLIENTE') DEFAULT 'CLIENTE'
 );
 
--- =========================
+
 -- TABLA SERVICIOS
--- =========================
 CREATE TABLE servicios (
     id_servicio INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -24,9 +23,8 @@ CREATE TABLE servicios (
     activo BOOLEAN DEFAULT TRUE
 );
 
--- =========================
+
 -- TABLA DISPONIBILIDAD
--- =========================
 CREATE TABLE disponibilidad (
     id_disponibilidad INT AUTO_INCREMENT PRIMARY KEY,
     fecha DATE NOT NULL,
@@ -35,9 +33,7 @@ CREATE TABLE disponibilidad (
     disponible BOOLEAN DEFAULT TRUE
 );
 
--- =========================
 -- TABLA CITAS
--- =========================
 CREATE TABLE citas (
     id_cita INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NOT NULL,
@@ -53,3 +49,27 @@ CREATE TABLE citas (
     FOREIGN KEY (id_servicio) REFERENCES servicios(id_servicio),
     FOREIGN KEY (id_disponibilidad) REFERENCES disponibilidad(id_disponibilidad)
 );
+
+INSERT INTO usuarios (nombre, apellidos, email, telefono, password, rol) VALUES
+('Rebeca', 'García López', 'rebeca@email.com', '600123123', '$2y$10$ejemplohash1', 'ADMIN'),
+('Carlos', 'Martín Ruiz', 'carlos@email.com', '611234567', '$2y$10$ejemplohash2', 'CLIENTE'),
+('Laura', 'Sánchez Díaz', 'laura@email.com', '622345678', '$2y$10$ejemplohash3', 'CLIENTE'),
+('David', 'Fernández Pérez', 'david@email.com', '633456789', '$2y$10$ejemplohash4', 'CLIENTE');
+
+INSERT INTO servicios (nombre, descripcion, duracion, precio, activo) VALUES
+('Corte de pelo', 'Corte básico de cabello', 30, 12.00, TRUE),
+('Tinte', 'Coloración completa del cabello', 90, 35.00, TRUE),
+('Lavado y peinado', 'Lavado con peinado incluido', 20, 8.00, TRUE),
+('Tratamiento capilar', 'Hidratación y cuidado del cabello', 45, 20.00, TRUE);
+
+INSERT INTO disponibilidad (fecha, hora_inicio, hora_fin, disponible) VALUES
+('2026-04-24', '09:00:00', '09:30:00', TRUE),
+('2026-04-24', '10:00:00', '10:30:00', TRUE),
+('2026-04-24', '11:00:00', '11:30:00', FALSE),
+('2026-04-25', '09:00:00', '09:30:00', TRUE),
+('2026-04-25', '12:00:00', '12:30:00', TRUE);
+
+INSERT INTO citas (id_usuario, id_servicio, id_disponibilidad, fecha, hora, estado) VALUES
+(2, 1, 1, '2026-04-24', '09:00:00', 'CONFIRMADA'),
+(3, 2, 2, '2026-04-24', '10:00:00', 'PENDIENTE'),
+(4, 3, 4, '2026-04-25', '09:00:00', 'CANCELADA');
