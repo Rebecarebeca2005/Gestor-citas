@@ -15,6 +15,8 @@
 
     <link rel="stylesheet" href="assets/css/sobreNosotros.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
    <main class="sobre-main">
@@ -26,9 +28,9 @@
            </a>
         </div>
          <div class="menu">
-            <a href="?pagina=sobreNosotros">Sobre nosotros</a> 
-            <a href="?pagina=register">Regístrate</a> 
-            <a href="?pagina=login">Iniciar sesión</a>
+            <a href="index.php?pagina=sobreNosotros">Sobre nosotros</a> 
+            <a href="index.php?pagina=register">Regístrate</a> 
+            <a href="index.php?pagina=login">Iniciar sesión</a>
         </div>
     </nav>
    </header>
@@ -118,5 +120,12 @@
         Ver en GitHub
     </a>
 </footer>
+
+<div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+</div>
+
+<script src="assets/js/carga.js"></script>
 </body>
 </html>

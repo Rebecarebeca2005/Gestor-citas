@@ -11,7 +11,7 @@ $controller = new AuthController();
 switch ($pagina) {
 
     case 'home':
-        require __DIR__ . '/views/home.html';
+        require __DIR__ . '/views/home.php';
         break;
 
     case 'login':
@@ -19,7 +19,7 @@ switch ($pagina) {
         break;
 
         case 'sobreNosotros':
-        require __DIR__ . '/views/sobreNosotros.html';
+        require __DIR__ . '/views/sobreNosotros.php';
         break;
 
     case 'register':
@@ -85,6 +85,6 @@ switch ($pagina) {
         break;
 
     default:
-        require __DIR__ . '/views/home.html';
+        require __DIR__ . '/views/home.php';
         break;
 }

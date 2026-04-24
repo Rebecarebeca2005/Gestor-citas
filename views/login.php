@@ -17,14 +17,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="assets/js/login.js"></script>
 </head>
 <body>
-<!-- POPUP
+
 <div id="popup" class="popup hidden">
     <span id="popup-text"></span>
     <span id="popup-close">✖</span>
-</div> -->
+</div>
 
      <header>
     <nav>
@@ -73,5 +72,13 @@
         Ver en GitHub
     </a>
 </footer>
+
+ <div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+</div>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/carga.js"></script>
+
 </body>
 </html>

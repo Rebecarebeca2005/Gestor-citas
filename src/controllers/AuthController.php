@@ -22,13 +22,13 @@ class AuthController {
     );
    
 
-    if ($ok) {
-        header("Location: ?pagina=login&success=Registro correcto");
-        exit;
-    }
+     if ($ok) {
+            header("Location: ?pagina=login&success=Registro realizado correctamente");
+            exit;
+        }
 
-    header("Location: ?pagina=register&error=Error al registrar");
-    exit;
+        header("Location: ?pagina=login&error=No se pudo completar el registro");
+        exit;
 }
 
    public function login($dato) {
@@ -51,12 +51,11 @@ class AuthController {
     $usuario = $user->login($email, $password);
 
     if ($usuario) {
-        session_start();
-        $_SESSION['usuario'] = $usuario;
+    session_start();
+    $_SESSION['usuario'] = $usuario;
 
-        header("Location: ?pagina=home");
-        exit;
-    }
+    return $usuario;
+}
 
     header("Location: ?pagina=login&error=Credenciales incorrectas");
     exit;

@@ -147,5 +147,11 @@
     </a>
 </footer>
 
+<div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+</div>
+
+<script src="assets/js/carga.js"></script>
 </body>
 </html>

@@ -15,6 +15,8 @@
 
     <link rel="stylesheet" href="assets/css/index.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="assets/js/index.js"></script>
 </head>
 <body>
@@ -105,5 +107,12 @@
     <p>Gestor de Citas © 2026</p> 
     <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank"> Ver en GitHub </a>
  </footer>
+
+ <div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+</div>
+
+<script src="assets/js/carga.js"></script>
     </body>
          </html>
