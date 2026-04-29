@@ -31,35 +31,57 @@ class AuthController {
         exit;
 }
 
-   public function login($dato) {
 
-    $email = trim($dato['email'] ?? '');
-    $password = $dato['password'] ?? '';
+    public function login($dato) {
 
-    if ($email === '' || $password === '') {
-        header("Location: ?pagina=login&error=Faltan datos");
+    
+
+        $email = trim($dato['email'] ?? '');
+        $password = $dato['password'] ?? '';
+
+        if ($email === '' || $password === '') {
+            header("Location: ?pagina=login&error=Faltan datos");
+            exit;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            header("Location: ?pagina=login&error=Email no válido");
+            exit;
+        }
+
+        $user = new User();
+
+        $usuario = $user->login($email, $password);
+
+        // var_dump($usuario['rol']);
+        // exit
+
+        // var_dump($usuario['rol']);
+        // var_dump(strtolower(trim($usuario['rol'])));
+        // exit;
+
+        if ($usuario) {
+            session_start();
+
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['usuario_nombre'] = $usuario['nombre'];
+            $_SESSION['usuario_email'] = $usuario['email'];
+            $_SESSION['usuario_rol'] = $usuario['rol'];
+
+            $rol = strtolower(trim($usuario['rol']));
+
+            if ($rol === 'admin') {
+                header("Location: ?pagina=centroControlAdmin");
+            } else {
+                header("Location: ?pagina=centroControl");
+            }
+            exit;
+        }
+
+        header("Location: ?pagina=login&error=Credenciales incorrectas");
         exit;
     }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: ?pagina=login&error=Email no válido");
-        exit;
-    }
-
-    $user = new User();
-
-    $usuario = $user->login($email, $password);
-
-    if ($usuario) {
-    session_start();
-    $_SESSION['usuario'] = $usuario;
-
-    return $usuario;
-}
-
-    header("Location: ?pagina=login&error=Credenciales incorrectas");
-    exit;
-}
 
 
 }

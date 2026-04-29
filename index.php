@@ -18,7 +18,7 @@ switch ($pagina) {
         require __DIR__ . '/views/login.php';
         break;
 
-        case 'sobreNosotros':
+    case 'sobreNosotros':
         require __DIR__ . '/views/sobreNosotros.php';
         break;
 
@@ -35,24 +35,18 @@ switch ($pagina) {
     case 'login_post':
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $usuario = $controller->login($_POST);
-
-            if ($usuario) {
-
-                $_SESSION['usuario'] = $usuario;
-
-                header("Location: index.php?pagina=centroControl");
-                exit;
-
-            } else {
-
-                header("Location: index.php?pagina=login&error=1");
-                exit;
-            }
+            $controller->login($_POST);
+            exit;
         }
 
         break;
+
+
+    /*
+    =========================
+    ZONA CLIENTE
+    =========================
+    */
 
     case 'centroControl':
 
@@ -84,7 +78,48 @@ switch ($pagina) {
         require __DIR__ . '/views/misCitas.php';
         break;
 
-    default:
-        require __DIR__ . '/views/home.php';
+
+    /*
+    =========================
+    ZONA ADMIN
+    =========================
+    */
+
+    case 'centroControlAdmin':
+
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php?pagina=login");
+        exit;
+    }
+
+    if (strtolower(trim($_SESSION['usuario_rol'])) !== 'admin') {
+        header("Location: index.php?pagina=centroControl");
+        exit;
+    }
+
+    require __DIR__ . '/views/centroControlAdmin.php';
+    break;
+
+     case 'calendarioAdmin':
+
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: index.php?pagina=login");
+            exit;
+        }
+
+        require __DIR__ . '/views/calendarioAdmin.php';
         break;
+
+    case 'misCitasAdmin':
+
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: index.php?pagina=login");
+            exit;
+        }
+
+        require __DIR__ . '/views/misCitasAdmin.php';
+        break;
+
+
+
 }

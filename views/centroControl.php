@@ -85,7 +85,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                             <div class="content-full">
                                 <h1>Nueva cita</h1>
                                 <p>Reserva una nueva cita de forma rápida y sencilla.</p>
-                                <button class="btn" onclick="location.href='index.php?pagina=nuevaCita'">Ir</button>
+                                <button class="btn" onclick="location.href='index.php?pagina=calendario'">Ir</button>
                             </div>
                         </div>
                     </li>
@@ -98,7 +98,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                             <div class="content-full">
                                 <h1>Mis citas</h1>
                                 <p>Consulta todas tus citas programadas.</p>
-                                <button class="btn" onclick="location.href='index.php?pagina=misCitas'">Ver</button>
+                                <button class="btn" onclick="location.href='index.php?pagina=calendario'">Ver</button>
                             </div>
                         </div>
                     </li>
@@ -111,7 +111,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                             <div class="content-full">
                                 <h1>Modificar cita</h1>
                                 <p>Edita la fecha o detalles de tus citas.</p>
-                                <button class="btn" onclick="location.href='index.php?pagina=misCitas'">Ver</button>
+                                <button class="btn" onclick="location.href='index.php?pagina=calendario'">Ver</button>
                             </div>
                         </div>
                     </li>
@@ -124,7 +124,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                             <div class="content-full">
                                 <h1>Cancelar cita</h1>
                                 <p>Elimina una cita si ya no la necesitas.</p>
-                                <button class="btn" onclick="location.href='index.php?pagina=misCitas'">Ver</button>
+                                <button class="btn" onclick="location.href='index.php?pagina=calendario'">Ver</button>
                             </div>
                         </div>
                     </li>
