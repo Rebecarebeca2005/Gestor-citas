@@ -15,6 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 /* ===== FUENTES ===== */
@@ -185,7 +186,7 @@ body {
 }
 
 .item input:checked ~ .content {
-    opacity: 1;
+    display: flex;
 }
 
 .item label {
@@ -208,14 +209,12 @@ body {
     width: calc(100% - 300px);
     height: 100%;
 
-    display: flex;
-    justify-content: flex-start; 
+    display: none; /* ← importante */
+
+    justify-content: flex-start;
     align-items: center;
 
-    opacity: 0;
-    transition: 0.3s;
-
-    padding-left: 60px; 
+    padding-left: 60px;
 }
 
 .content-full {

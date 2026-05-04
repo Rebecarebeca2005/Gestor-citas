@@ -37,12 +37,13 @@
     </div>
 
     <nav class="sidebar-menu">
-        <a href="#">Inicio</a>
-        <a href="#">Mis citas</a>
-        <a href="#">Nueva cita</a>
-        <a href="#">Editar cita</a>
-        <a href="#">Perfil</a>
-        <a href="#">Cerrar sesión</a>
+        <a href="index.php?pagina=centroControl">Inicio</a>
+        <a href="index.php?pagina=misCitas">Mis citas</a>
+        <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
+        <a href="index.php?pagina=calendarioModificar">Editar cita</a>
+        <a href="index.php?pagina=calendarioEliminar">Eliminar cita</a>
+        <a href="#">Perfil</a> 
+        <a href="index.php?pagina=home">Cerrar sesión</a> 
     </nav>
 
 </aside>

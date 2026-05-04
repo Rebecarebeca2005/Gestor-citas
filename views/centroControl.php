@@ -1,3 +1,7 @@
+<?php
+$stats = $stats ?? [];
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,12 +32,12 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
     </div>
 
     <nav class="sidebar-menu">
-        <a href="#">Inicio</a>
-        <a href="#">Mis citas</a>
-        <a href="#">Nueva cita</a>
-        <a href="#">Editar cita</a>
-        <a href="#">Perfil</a>
-        <a href="#">Cerrar sesión</a>
+        <a href="index.php?pagina=centroControl">Inicio</a>
+        <a href="index.php?pagina=misCitas">Mis citas</a>
+        <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
+        <a href="index.php?pagina=calendarioModificar">Editar cita</a>
+        <a href="#">Perfil</a> 
+        <a href="index.php?pagina=home">Cerrar sesión</a> 
     </nav>
 
 </div>
@@ -53,19 +57,27 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
     <section class="grid-resumen">
 
         <div class="card">
-            <h3>Próxima cita</h3>
-            <p>Viernes 16:30</p>
-        </div>
+    <h3>Próxima cita</h3>
+
+    <p>
+    <?php if ($stats['proxima']): ?>
+        
+        <?= $stats['proxima']['fecha'] ?> <?= substr($stats['proxima']['hora'], 0, 5) ?>
+    <?php else: ?>
+        No tienes citas
+    <?php endif; ?>
+</p>
+</div>
 
         <div class="card">
-            <h3>Esta semana</h3>
-            <p>2 citas programadas</p>
-        </div>
+        <h3>Esta semana</h3>
+        <p><?= $stats['semana'] ?> citas programadas</p>
+    </div>
 
         <div class="card">
-            <h3>Total mes</h3>
-            <p>5 citas</p>
-        </div>
+        <h3>Total mes</h3>
+        <p><?= $stats['mes'] ?> citas</p>
+    </div>
 
     </section>
 
@@ -85,8 +97,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                             <div class="content-full">
                                 <h1>Nueva cita</h1>
                                 <p>Reserva una nueva cita de forma rápida y sencilla.</p>
-                                <button class="btn" onclick="location.href='index.php?pagina=calendario'">Ir</button>
-                            </div>
+                                <a href="index.php?pagina=calendarioAñadir" class="btn">Ir</a>
                         </div>
                     </li>
 
@@ -98,7 +109,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                             <div class="content-full">
                                 <h1>Mis citas</h1>
                                 <p>Consulta todas tus citas programadas.</p>
-                                <button class="btn" onclick="location.href='index.php?pagina=calendario'">Ver</button>
+                                <a href="index.php?pagina=misCitas" class="btn">Ver</a>
                             </div>
                         </div>
                     </li>
@@ -111,7 +122,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                             <div class="content-full">
                                 <h1>Modificar cita</h1>
                                 <p>Edita la fecha o detalles de tus citas.</p>
-                                <button class="btn" onclick="location.href='index.php?pagina=calendario'">Ver</button>
+                                <a href="index.php?pagina=calendarioModificar" class="btn">Ver</a>
                             </div>
                         </div>
                     </li>
@@ -124,7 +135,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                             <div class="content-full">
                                 <h1>Cancelar cita</h1>
                                 <p>Elimina una cita si ya no la necesitas.</p>
-                                <button class="btn" onclick="location.href='index.php?pagina=calendario'">Ver</button>
+                                <a href="index.php?pagina=calendarioEliminar" class="btn">Ver</a>
                             </div>
                         </div>
                     </li>
@@ -134,12 +145,13 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 
         </div>
     </section>
-    
+
+</main>
+
 <footer class="footer"> 
     <p>Gestor de Citas © 2026</p> 
     <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank"> Ver en GitHub </a>
  </footer>
-</main>
 </body>
 </html>
 

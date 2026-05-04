@@ -37,6 +37,9 @@ body {
     color: var(--color-texto-principal);
     line-height: 1.6;
     font-family: 'Nunito';
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 
@@ -79,6 +82,7 @@ nav {
 .contenedor {
     max-width: 500px;
     margin: 60px auto;
+    flex: 1;
 }
 
 /* ===== TARJETA ===== */

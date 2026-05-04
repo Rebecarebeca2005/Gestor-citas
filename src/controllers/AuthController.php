@@ -53,34 +53,29 @@ class AuthController {
 
         $usuario = $user->login($email, $password);
 
-        // var_dump($usuario['rol']);
-        // exit
-
-        // var_dump($usuario['rol']);
-        // var_dump(strtolower(trim($usuario['rol'])));
-        // exit;
-
-        if ($usuario) {
+       if ($usuario) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
-
-            $_SESSION['usuario'] = $usuario;
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['usuario_nombre'] = $usuario['nombre'];
-            $_SESSION['usuario_email'] = $usuario['email'];
-            $_SESSION['usuario_rol'] = $usuario['rol'];
-
-            $rol = strtolower(trim($usuario['rol']));
-
-            if ($rol === 'admin') {
-                header("Location: ?pagina=centroControlAdmin");
-            } else {
-                header("Location: ?pagina=centroControl");
-            }
-            exit;
         }
 
-        header("Location: ?pagina=login&error=Credenciales incorrectas");
+        $_SESSION['usuario'] = $usuario;
+        
+        // CAMBIO CLAVE: Usamos 'id_usuario' que es como se llama en tu BD
+        $_SESSION['usuario_id'] = $usuario['id_usuario']; 
+        
+        $_SESSION['usuario_nombre'] = $usuario['nombre'];
+        $_SESSION['usuario_email'] = $usuario['email']; // O $usuario['correo electrónico'] si prefieres
+        $_SESSION['usuario_rol'] = $usuario['rol'];
+
+        $rol = strtolower(trim($usuario['rol']));
+        if ($rol === 'admin') {
+            header("Location: ?pagina=centroControlAdmin");
+        } else {
+            header("Location: ?pagina=centroControl");
+        }
         exit;
+    }
+
     }
 
 

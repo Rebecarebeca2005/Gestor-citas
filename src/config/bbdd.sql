@@ -41,7 +41,7 @@ CREATE TABLE citas (
     id_disponibilidad INT,
     fecha DATE NOT NULL,
     hora TIME NOT NULL,
-    estado ENUM('PENDIENTE', 'CONFIRMADA', 'CANCELADA') DEFAULT 'PENDIENTE',
+    estado ENUM('ACTIVA','CANCELADA') DEFAULT 'ACTIVA',
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     -- RELACIONES
