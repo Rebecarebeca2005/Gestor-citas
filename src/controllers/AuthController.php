@@ -32,39 +32,33 @@ class AuthController {
 }
 
 
-    public function login($dato) {
+   public function login($dato) {
 
-    
+    $email = trim($dato['email'] ?? '');
+    $password = $dato['password'] ?? '';
 
-        $email = trim($dato['email'] ?? '');
-        $password = $dato['password'] ?? '';
+    if ($email === '' || $password === '') {
+        header("Location: ?pagina=login&error=Faltan datos");
+        exit;
+    }
 
-        if ($email === '' || $password === '') {
-            header("Location: ?pagina=login&error=Faltan datos");
-            exit;
-        }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: ?pagina=login&error=Email no válido");
+        exit;
+    }
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            header("Location: ?pagina=login&error=Email no válido");
-            exit;
-        }
+    $user = new User();
+    $usuario = $user->login($email, $password);
 
-        $user = new User();
-
-        $usuario = $user->login($email, $password);
-
-       if ($usuario) {
+    if ($usuario) {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
         $_SESSION['usuario'] = $usuario;
-        
-        // CAMBIO CLAVE: Usamos 'id_usuario' que es como se llama en tu BD
         $_SESSION['usuario_id'] = $usuario['id_usuario']; 
-        
         $_SESSION['usuario_nombre'] = $usuario['nombre'];
-        $_SESSION['usuario_email'] = $usuario['email']; // O $usuario['correo electrónico'] si prefieres
+        $_SESSION['usuario_email'] = $usuario['email'];
         $_SESSION['usuario_rol'] = $usuario['rol'];
 
         $rol = strtolower(trim($usuario['rol']));
@@ -75,8 +69,10 @@ class AuthController {
         }
         exit;
     }
-
-    }
+    
+    header("Location: ?pagina=login&error=Credenciales incorrectas");
+    exit;
+}
 
 
 }

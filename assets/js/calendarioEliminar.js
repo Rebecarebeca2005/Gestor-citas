@@ -15,7 +15,7 @@ const meses = [
 // ===============================
 //   RENDERIZAR CALENDARIO
 // ===============================
-function renderCalendario() {
+function renderCalendarioEliminar() {
 
     grid.innerHTML = "";
 
@@ -33,12 +33,21 @@ function renderCalendario() {
         numero.textContent = i;
         div.appendChild(numero);
 
+        const fecha = `${anio}-${String(mes+1).padStart(2,"0")}-${String(i).padStart(2,"0")}`;
+
         const fechaCelda = new Date(anio, mes, i);
         fechaCelda.setHours(0,0,0,0);
 
         const esPasado = fechaCelda < fechaHoy;
 
-        // Marcar hoy
+        if (esPasado) {
+            div.classList.add("dia-deshabilitado");
+            div.style.pointerEvents = "none";
+            div.style.opacity = "0.45";
+        } else {
+            div.onclick = () => abrirCitasDelDia(fecha);
+        }
+
         if (
             i === fechaHoy.getDate() &&
             mes === fechaHoy.getMonth() &&
@@ -47,21 +56,11 @@ function renderCalendario() {
             div.classList.add("hoy-marcado");
         }
 
-        // Bloquear días pasados
-        if (esPasado) {
-            div.classList.add("dia-deshabilitado");
-            div.style.pointerEvents = "none";
-            div.style.opacity = "0.45";
-        }
-
-        // Si quieres que al hacer clic abra el modal de añadir cita:
-        div.onclick = () => abrirCita(`${anio}-${String(mes+1).padStart(2,"0")}-${String(i).padStart(2,"0")}`);
-
         grid.appendChild(div);
     }
 
     document.getElementById("mesActual").innerText =
-        meses[mes] + " " + anio;
+        `${meses[mes]} ${anio}`;
 }
 
 // ===============================
@@ -69,22 +68,22 @@ function renderCalendario() {
 // ===============================
 document.getElementById("prevMes").onclick = () => {
     mes = (mes - 1 + 12) % 12;
-    renderCalendario();
+    renderCalendarioEliminar();
 };
 
 document.getElementById("nextMes").onclick = () => {
     mes = (mes + 1) % 12;
-    renderCalendario();
+    renderCalendarioEliminar();
 };
 
 document.getElementById("btnHoy").onclick = () => {
-    const fecha = new Date();
-    mes = fecha.getMonth();
-    anio = fecha.getFullYear();
-    renderCalendario();
+    const f = new Date();
+    mes = f.getMonth();
+    anio = f.getFullYear();
+    renderCalendarioEliminar();
 };
 
 // ===============================
 //   INICIALIZACIÓN
 // ===============================
-renderCalendario();
+renderCalendarioEliminar();

@@ -337,24 +337,62 @@ body {
     to { opacity: 1; transform: translate(-50%, 0); }
 }
 
+/* ============================
+   FIX SCROLL HORIZONTAL GLOBAL
+============================ */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Evita desbordes raros en layouts flex/grid */
+* {
+    box-sizing: border-box;
+}
+
+/* CALENDARIO: evita que el grid se pase */
+.cal-grid {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* DIAS: evita que crezcan raro en móviles */
 .dia {
-    position: relative;
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* SIDEBAR: evita scroll fantasma al abrir/cerrar */
+.sidebar {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* BOTÓN CERRAR SIDEBAR */
+.close-sidebar {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 32px;
+    height: 32px;
+
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
 
-.puntos-citas {
-    position: absolute;
-    bottom: 6px;
-    display: flex;
-    gap: 3px;
-}
-
-.punto-cita {
-    width: 6px;
-    height: 6px;
     border-radius: 50%;
+    cursor: pointer;
+
+    color: var(--color-texto-secundario);
+    background: var(--color-fondo);
+
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.close-sidebar:hover {
     background: var(--color-primario);
+    color: white;
 }

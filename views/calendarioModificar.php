@@ -4,37 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gestor de Citas | Organiza tus reservas fácilmente</title>
-
-    <meta name="description" content="Gestiona tus citas, reservas y horarios de forma rápida y sencilla con nuestro gestor online. Organiza todo en un solo lugar.">
-    <meta name="keywords" content="gestor de citas, reservas online, agenda digital, citas online, organizar citas">
-    <meta name="author" content="Rebeca">
-
-    <meta name="robots" content="index, follow">
+    <title>Mis Citas | Gestor de Citas</title>
 
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/calendario.css">
-    <link rel="stylesheet" href="assets/css/calendarioModificar.css">
+    <link rel="stylesheet" href="assets/css/misCitas.css">
+    <link rel="stylesheet" href="assets/css/editarcita.css">
 </head>
 
 <body>
 
-<!-- =========================
-     TOPBAR (MENU HAMBURGUESA)
-========================= -->
+<!-- TOPBAR -->
 <header class="topbar">
     <img src="assets/img/hamburguesa.png" class="menu-icon" onclick="toggleMenu()">
 </header>
 
-<!-- =========================
-     SIDEBAR (MENU OCULTO)
-========================= -->
-<aside class="sidebar" id="sidebar">
+<!-- SIDEBAR -->
+<?php
+$nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
+?>
 
-    <div class="close-sidebar" onclick="toggleMenu()">✖</div>
-
+<div class="sidebar" id="sidebar">
+<div class="close-sidebar" onclick="toggleMenu()">✖</div>
     <div class="sidebar-header">
-        <h3>Menú</h3>
+        <h3>Hola  <?= htmlspecialchars($nombre) ?></h3>
     </div>
 
     <nav class="sidebar-menu">
@@ -43,22 +36,19 @@
         <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
         <a href="index.php?pagina=calendarioModificar">Editar cita</a>
         <a href="index.php?pagina=calendarioEliminar">Eliminar cita</a>
-        <a href="#">Perfil</a> 
-        <a href="index.php?pagina=home">Cerrar sesión</a> 
+        <a href="index.php?pagina=perfil">Perfil</a> 
+        <a href="index.php?pagina=login">Cerrar sesión</a> 
     </nav>
 
-</aside>
+</div>
 
-<!-- =========================
-        CALENDARIO
-========================= -->
+<!-- CALENDARIO -->
 <section class="calendario">
 
     <div class="cal-header">
-
         <div class="cal-nav">
             <button id="prevMes">‹</button>
-            <h2 id="mesActual">Enero 2026</h2>
+            <h2 id="mesActual"></h2>
             <button id="nextMes">›</button>
         </div>
 
@@ -78,89 +68,51 @@
 
 </section>
 
-<!-- MODAL REGISTRO / CREAR -->
+<!-- MODAL CITAS DEL DÍA -->
 <div id="modalCita" class="modal hidden">
     <div class="modal-content">
         <span class="cerrar-modal" onclick="cerrarCita()">✖</span>
 
-        <!-- PASOS -->
-         <ul class="pasos">
-            <li class="activo">Seleccionar</li>
-            <li>Editar</li>
-            <li>Confirmar</li>
-        </ul>
+        <h2>Selecciona la cita que quieres editar</h2>
 
-        <form id="formCita" class="formulario">
-            <!-- PASO 1: SERVICIO -->
-            <fieldset class="seccion activo">
-                <h3>Selecciona la cita</h3>
-                <select name="id_servicio" required>
-                    <option value="">Selecciona una cita</option>
-                    <option value="1">Lunes 10:00 - Corte de pelo</option>
-                    <option value="2">Miércoles 16:30 - Revisión médica</option>
-                    <option value="3">Viernes 12:00 - Entrenamiento personal</option>
-                </select>
-                <button type="button" class="btn-siguiente">Siguiente</button>
-            </fieldset>
-
-            <!-- PASO 2: INFO CITA -->
-            <fieldset class="seccion">
-                   <input 
-                    type="text" 
-                    name="titulo" 
-                    placeholder="Título de la cita" 
-                    required
-                >
-
-                <textarea 
-                    name="descripcion" 
-                    placeholder="Descripción"
-                ></textarea>
-
-                <input 
-                    type="date" 
-                    name="fecha" 
-                    required
-                >
-
-                <input 
-                    type="time" 
-                    name="hora" 
-                    required
-                >
-
-                 <button type="button" class="btn-atras">
-                    Atrás
-                </button>
-
-                <button type="button" class="btn-siguiente">
-                    Siguiente
-                </button>
-
-            </fieldset>
-
-            <!-- PASO 3: DISPONIBILIDAD -->
-            <fieldset class="seccion">
-                <h3>Confirmar datos</h3>
-                <p>
-                    Revisa los cambios antes de guardar la cita modificada.
-                </p>
-
-                 <button type="button" class="btn-atras">
-                    Atrás
-                </button>
-
-                <button type="submit" class="btn-enviar">
-                    Guardar cambios
-                </button>
-            </fieldset>
-        </form>
+        <ul class="lista-citas"></ul>
     </div>
 </div>
 
-<!-- =========================
-        FOOTER
-========================= -->
+<!-- MODAL EDICIÓN -->
+<div id="modalEditar" class="modal hidden">
+    <div class="modal-content">
+
+        <span class="cerrar-modal" onclick="cerrarEditar()">✖</span>
+
+        <h2>Editar cita</h2>
+
+        <form id="formEditarCita">
+
+            <input type="hidden" name="id_cita">
+
+            <label>Fecha</label>
+            <input type="date" name="fecha">
+
+            <label>Hora inicio</label>
+            <input type="time" name="hora_inicio">
+
+            <label>Hora fin</label>
+            <input type="time" name="hora_fin">
+
+            <label>Descripción</label>
+            <textarea name="descripcion"></textarea>
+
+            <button type="submit" class="btn-guardar">
+                Guardar cambios
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
 <footer class="footer"> 
     <p>Gestor de Citas © 2026</p> 
     <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
@@ -168,10 +120,6 @@
     </a>
 </footer>
 
-
-<!-- =========================
-        JS MENU
-========================= -->
 <script>
 function toggleMenu() {
     document.getElementById("sidebar").classList.toggle("active");
@@ -179,8 +127,8 @@ function toggleMenu() {
 }
 </script>
 
-<script src="assets/js/calendario.js"></script>
-
+<script src="assets/js/calendarioEditar.js"></script>
+<script src="assets/js/editarcita.js"></script>
 
 </body>
 </html>

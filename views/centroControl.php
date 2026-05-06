@@ -36,8 +36,8 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
         <a href="index.php?pagina=misCitas">Mis citas</a>
         <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
         <a href="index.php?pagina=calendarioModificar">Editar cita</a>
-        <a href="#">Perfil</a> 
-        <a href="index.php?pagina=home">Cerrar sesión</a> 
+        <a href="index.php?pagina=perfil">Perfil</a> 
+        <a href="index.php?pagina=login">Cerrar sesión</a> 
     </nav>
 
 </div>

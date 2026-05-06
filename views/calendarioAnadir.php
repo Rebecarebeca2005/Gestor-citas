@@ -25,7 +25,9 @@ $servicios = $datos['servicios'];
 </head>
 
 <body>
-
+<?php
+$nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
+?>
 <!-- =========================
      TOPBAR (MENU HAMBURGUESA)
 ========================= -->
@@ -33,15 +35,14 @@ $servicios = $datos['servicios'];
     <img src="assets/img/hamburguesa.png" class="menu-icon" onclick="toggleMenu()">
 </header>
 
-<!-- =========================
-     SIDEBAR (MENU OCULTO)
-========================= -->
-<aside class="sidebar" id="sidebar">
+<?php
+$nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
+?>
 
-    <div class="close-sidebar" onclick="toggleMenu()">✖</div>
-
+<div class="sidebar" id="sidebar">
+<div class="close-sidebar" onclick="toggleMenu()">✖</div>
     <div class="sidebar-header">
-        <h3>Menú</h3>
+        <h3>Hola  <?= htmlspecialchars($nombre) ?></h3>
     </div>
 
     <nav class="sidebar-menu">
@@ -50,11 +51,12 @@ $servicios = $datos['servicios'];
         <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
         <a href="index.php?pagina=calendarioModificar">Editar cita</a>
         <a href="index.php?pagina=calendarioEliminar">Eliminar cita</a>
-        <a href="#">Perfil</a> 
-        <a href="index.php?pagina=home">Cerrar sesión</a> 
+        <a href="index.php?pagina=perfil">Perfil</a> 
+        <a href="index.php?pagina=login">Cerrar sesión</a> 
     </nav>
 
-</aside>
+</div>
+
 
 <!-- =========================
         CALENDARIO
@@ -171,7 +173,8 @@ function toggleMenu() {
     <span id="popup-close">✖</span>
 </div>
 
-<script src="assets/js/calendario.js"></script>
+<script src="assets/js/calendarioAnadir.js"></script>
+<script src="assets/js/añadirCita.js"></script>
 
 <div id="popup" class="popup hidden">
     <span id="popup-text"></span>

@@ -1,0 +1,133 @@
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 250px;
+    height: 100vh;
+    background: var(--color-tarjeta);
+    box-shadow: 2px 0 10px var(--color-sombra);
+    transition: 0.3s ease;
+    padding: 20px;
+}
+
+p {
+    padding: 0.5rem;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.avatar {
+    width: 70px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: var(--color-fondo);
+    color: var(--color-primario);
+}
+
+
+.perfil-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+.perfil-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.perfil-card {
+    background: var(--color-tarjeta);
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px var(--color-sombra);
+    text-align: center;
+}
+
+/* BOTÓN */
+.btn-eliminar, .btn-cancelar {
+    margin-top: 20px;
+    background: #d9534f;
+    color: white;
+    border: none;
+
+    padding: 12px 20px;
+    border-radius: 10px;
+
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-eliminar:hover, .btn-cancelar:hover {
+    background: #c9302c;
+}
+
+/* ===== POPUP PERFIL ELIMINAR (FIX) ===== */
+
+#popupEliminar {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999999;
+}
+
+/* oculto bien */
+#popupEliminar.hidden {
+    display: none !important;
+}
+
+/* caja modal */
+#popupEliminar .modal-content.confirm {
+    background: var(--color-tarjeta);
+
+    padding: 28px;
+    border-radius: 16px;
+
+    width: 380px;
+    max-width: 90%;
+
+    text-align: center;
+
+    box-shadow: 0 10px 25px var(--color-sombra);
+
+    animation: fadeIn 0.25s ease;
+}
+
+/* animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

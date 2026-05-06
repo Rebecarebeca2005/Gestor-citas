@@ -4,37 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gestor de Citas | Organiza tus reservas fácilmente</title>
-
-    <meta name="description" content="Gestiona tus citas, reservas y horarios de forma rápida y sencilla con nuestro gestor online. Organiza todo en un solo lugar.">
-    <meta name="keywords" content="gestor de citas, reservas online, agenda digital, citas online, organizar citas">
-    <meta name="author" content="Rebeca">
-
-    <meta name="robots" content="index, follow">
+    <title>Mis Citas | Gestor de Citas</title>
 
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/calendario.css">
     <link rel="stylesheet" href="assets/css/misCitas.css">
+    <link rel="stylesheet" href="assets/css/eliminarcita.css">
 </head>
 
 <body>
 
 <!-- =========================
-     TOPBAR (MENU HAMBURGUESA)
+     TOPBAR
 ========================= -->
 <header class="topbar">
     <img src="assets/img/hamburguesa.png" class="menu-icon" onclick="toggleMenu()">
 </header>
 
 <!-- =========================
-     SIDEBAR (MENU OCULTO)
+     SIDEBAR
 ========================= -->
-<aside class="sidebar" id="sidebar">
+<?php
+$nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
+?>
 
-    <div class="close-sidebar" onclick="toggleMenu()">✖</div>
-
+<div class="sidebar" id="sidebar">
+<div class="close-sidebar" onclick="toggleMenu()">✖</div>
     <div class="sidebar-header">
-        <h3>Menú</h3>
+        <h3>Hola  <?= htmlspecialchars($nombre) ?></h3>
     </div>
 
     <nav class="sidebar-menu">
@@ -43,22 +40,21 @@
         <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
         <a href="index.php?pagina=calendarioModificar">Editar cita</a>
         <a href="index.php?pagina=calendarioEliminar">Eliminar cita</a>
-        <a href="#">Perfil</a> 
-        <a href="index.php?pagina=home">Cerrar sesión</a> 
+        <a href="index.php?pagina=perfil">Perfil</a> 
+        <a href="index.php?pagina=login">Cerrar sesión</a> 
     </nav>
 
-</aside>
+</div>
 
 <!-- =========================
-        CALENDARIO
+        CALENDARIO VISUAL
 ========================= -->
 <section class="calendario">
 
     <div class="cal-header">
-
         <div class="cal-nav">
             <button id="prevMes">‹</button>
-            <h2 id="mesActual">Enero 2026</h2>
+            <h2 id="mesActual"></h2>
             <button id="nextMes">›</button>
         </div>
 
@@ -78,50 +74,38 @@
 
 </section>
 
-<!-- MODAL REGISTRO / CREAR -->
+<!-- =========================
+        MODAL CITAS DEL DÍA
+========================= -->
 <div id="modalCita" class="modal hidden">
     <div class="modal-content">
         <span class="cerrar-modal" onclick="cerrarCita()">✖</span>
 
-        <!-- PASOS -->
-        <ul class="pasos">
-            <li class="activo">Servicio</li>
-            <li>Datos</li>
-            <li>Disponibilidad</li>
-        </ul>
+        <h2>Citas del día</h2>
 
-        <form id="formCita" class="formulario">
-            <!-- PASO 1: SERVICIO -->
-            <fieldset class="seccion activo">
-                <h3>Elige servicio</h3>
-                <select name="id_servicio" required>
-                    <option value="">Selecciona un servicio</option>
-                    <option value="1">Corte de pelo</option>
-                </select>
-                <button type="button" class="btn-siguiente">Siguiente</button>
-            </fieldset>
-
-            <!-- PASO 2: INFO CITA -->
-            <fieldset class="seccion">
-                <h3>Datos de la cita</h3>
-                <input type="text" name="titulo" placeholder="Título" required>
-                <textarea name="descripcion" placeholder="Descripción"></textarea>
-                <input type="date" name="fecha" required>
-                <input type="time" name="hora" required>
-                <button type="button" class="btn-siguiente">Siguiente</button>
-            </fieldset>
-
-            <!-- PASO 3: DISPONIBILIDAD -->
-            <fieldset class="seccion">
-                <h3>Disponibilidad</h3>
-                <select name="id_disponibilidad">
-                    <option value="">Selecciona horario disponible</option>
-                </select>
-                <button type="submit" class="btn-enviar">Crear cita</button>
-            </fieldset>
-        </form>
+        <ul class="lista-citas"></ul>
     </div>
 </div>
+
+<!-- POPUP CONFIRMAR ELIMINACIÓN -->
+<div id="popupEliminar" class="modal hidden">
+    <div class="modal-content confirm">
+
+        <h3>¿Eliminar esta cita?</h3>
+
+        <div class="confirm-buttons">
+            <button id="btnConfirmarEliminar" class="btn-eliminar">
+                Sí, eliminar
+            </button>
+
+            <button id="btnCancelarEliminar" class="btn-cancelar">
+                Cancelar
+            </button>
+        </div>
+
+    </div>
+</div>
+
 
 <!-- =========================
         FOOTER
@@ -133,7 +117,6 @@
     </a>
 </footer>
 
-
 <!-- =========================
         JS MENU
 ========================= -->
@@ -143,9 +126,6 @@ function toggleMenu() {
     document.body.classList.toggle("menu-open");
 }
 </script>
-
-<script src="assets/js/calendario.js"></script>
-
-
+<script src="assets/js/calendarioVerCitas.js"></script>
 </body>
 </html>

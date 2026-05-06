@@ -44,6 +44,30 @@ class User {
         return false;
     }
 
+public function eliminarUsuario($id)
+{
+    try {
+        $this->dato->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $this->dato->beginTransaction();
+
+        $stmt1 = $this->dato->prepare("DELETE FROM citas WHERE id_usuario = ?");
+        $stmt1->execute([$id]);
+
+        $stmt2 = $this->dato->prepare("DELETE FROM usuarios WHERE id_usuario = ?");
+        $stmt2->execute([$id]);
+
+        $filas = $stmt2->rowCount();
+
+        $this->dato->commit();
+
+        return $filas;
+
+    } catch (Exception $e) {
+        $this->dato->rollBack();
+        return "ERROR: " . $e->getMessage();
+    }
+}
     
 }
 

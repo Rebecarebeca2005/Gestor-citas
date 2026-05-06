@@ -69,4 +69,48 @@ class CitaController {
     public function obtenerDisponibilidad($fecha) {
     return $this->model->getDisponibilidadPorFecha($fecha);
 }
+
+public function misCitas() {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $id_usuario = $_SESSION['usuario_id'] ?? null;
+
+    if (!$id_usuario) return [];
+
+    return $this->model->getByUsuario($id_usuario);
+}
+
+public function citasPorFecha($fecha) {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $id_usuario = $_SESSION['usuario_id'] ?? null;
+
+    if (!$id_usuario) return [];
+
+    return $this->model->getByUsuarioYFecha($id_usuario, $fecha);
+}
+
+public function getCitaById($id) {
+    return $this->model->getById($id);
+}
+
+public function editarCita($data) {
+
+    return $this->model->editarCita(
+        $data['id_cita'],
+        $data['fecha'],
+        $data['hora_inicio'],
+        $data['hora_fin'],
+        $data['descripcion'] ?? ''
+    );
+}
+
+
+
+
+
 }

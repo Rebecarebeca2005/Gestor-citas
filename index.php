@@ -116,16 +116,16 @@ switch ($pagina) {
         require __DIR__ . '/views/calendarioEliminar.php';
         break;
 
-    case 'misCitas':
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php?pagina=login");
-            exit;
-        }
+   case 'misCitas':
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php?pagina=login");
+        exit;
+    }
 
-        // $citas = $citaController->misCitas();
+    $citas = $citaController->misCitas();
 
-        require __DIR__ . '/views/misCitas.php';
-        break;
+    require __DIR__ . '/views/misCitas.php';
+    break;
 
    case 'citasMesAjax':
 
@@ -164,6 +164,129 @@ switch ($pagina) {
 
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     exit;
+
+    case 'citasPorDiaAjax':
+
+    header('Content-Type: application/json');
+
+    if (!isset($_SESSION['usuario_id'])) {
+        echo json_encode([]);
+        exit;
+    }
+
+    $fecha = $_GET['fecha'] ?? null;
+
+    if (!$fecha) {
+        echo json_encode([]);
+        exit;
+    }
+
+    $citas = $citaController->citasPorFecha($fecha);
+
+    echo json_encode($citas);
+    exit;
+
+    case 'eliminarCitaAjax':
+
+    header('Content-Type: application/json');
+
+    if (!isset($_SESSION['usuario_id'])) {
+        echo json_encode(['ok' => false, 'msg' => 'No autenticado']);
+        exit;
+    }
+
+    $id_cita = $_POST['id_cita'] ?? null;
+
+    if (!$id_cita) {
+        echo json_encode(['ok' => false, 'msg' => 'ID no recibido']);
+        exit;
+    }
+
+    case 'calendarioModificar':
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php?pagina=login");
+        exit;
+    }
+
+    require __DIR__ . '/views/calendarioModificar.php';
+    break;
+
+
+    case 'citaDetalleAjax':
+    header('Content-Type: application/json');
+
+    try {
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            echo json_encode(['error' => 'ID vacío']);
+            exit;
+        }
+
+        $cita = $citaController->getCitaById($id);
+
+        echo json_encode($cita);
+    } catch (Throwable $e) {
+        echo json_encode([
+            'error' => 'Error interno',
+            'msg' => $e->getMessage()
+        ]);
+    }
+
+    exit;
+
+    case 'perfil':
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php?pagina=login");
+        exit;
+    }
+
+    require __DIR__ . '/views/perfil.php';
+    break;
+
+case 'eliminarPerfil':
+    if (!isset($_SESSION['usuario_id'])) {
+        echo json_encode(['ok' => false]);
+        exit;
+    }
+
+    require_once __DIR__ . '/src/models/user.php';
+    $model = new User();
+
+    $ok = $model->eliminarUsuario($_SESSION['usuario_id']);
+
+    if ($ok) {
+        session_destroy();
+    }
+
+    echo json_encode(['ok' => $ok]);
+    exit;
+
+
+   case 'eliminarPerfilAjax':
+
+    header('Content-Type: application/json');
+
+    if (!isset($_SESSION['usuario_id'])) {
+        echo json_encode(['ok' => false, 'msg' => 'No autenticado']);
+        exit;
+    }
+
+    require_once __DIR__ . '/src/models/User.php';
+    $model = new User();
+
+    $id = $_SESSION['usuario_id'];
+
+    $ok = $model->eliminarUsuario($id);
+
+    if ($ok) {
+        session_destroy();
+    }
+
+    echo json_encode(['ok' => $ok]);
+    exit;
+
+
     /*
     =========================
     ZONA ADMIN
@@ -188,4 +311,5 @@ switch ($pagina) {
         require __DIR__ . '/views/home.php';
         break;
 }
+
 

@@ -1,0 +1,100 @@
+/* ===== POPUP ELIMINAR CITA ===== */
+
+#popupEliminar {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+}
+
+#popupEliminar.hidden {
+    display: none;
+}
+
+#popupEliminar .modal-content.confirm {
+    background: var(--color-tarjeta);
+    padding: 28px;
+    border-radius: 16px;
+
+    width: 380px;
+    max-width: 90%;
+
+    text-align: center;
+
+    box-shadow: 0 10px 25px var(--color-sombra);
+
+    animation: fadeIn 0.25s ease;
+}
+
+#popupEliminar h3 {
+    margin-bottom: 10px;
+    color: var(--color-texto-principal);
+}
+
+/* CONTENEDOR DE BOTONES */
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+/* BOTONES — RESETEO TOTAL */
+.confirm-buttons button {
+    all: unset; /* BORRA TODOS LOS ESTILOS HEREDADOS */
+    box-sizing: border-box;
+
+    width: 140px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 16px;
+
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* BOTÓN ELIMINAR */
+.btn-eliminar {
+    background: #d9534f !important;
+    color: white !important;
+}
+
+.btn-eliminar:hover {
+    background: #c9302c !important;
+}
+
+/* BOTÓN CANCELAR */
+.btn-cancelar {
+    background: #e0e0e0 !important;
+    color: #333 !important;
+}
+
+.btn-cancelar:hover {
+    background: #d5d5d5 !important;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
