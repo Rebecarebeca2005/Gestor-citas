@@ -1,5 +1,9 @@
 $(function () {
 
+    /* ===============================
+        LOADER + NAVEGACIÓN
+    =============================== */
+
     function showLoader() {
         $("#loader").removeClass("hidden");
     }
@@ -14,7 +18,6 @@ $(function () {
         }, 700);
     }
 
-    // 1. LINKS normales
     $(document).on("click", "a", function (e) {
 
         const url = $(this).attr("href");
@@ -25,14 +28,11 @@ $(function () {
         }
     });
 
-    // 2. BOTONES con onclick o sin onclick
     $(document).on("click", "button", function (e) {
 
         const onclick = $(this).attr("onclick");
 
         if (onclick) {
-
-            // detecta location.href='...'
             const match = onclick.match(/location\.href\s*=\s*['"](.+?)['"]/);
 
             if (match && match[1]) {
@@ -42,7 +42,6 @@ $(function () {
         }
     });
 
-    // 3. onclick directo en cualquier elemento (div, etc)
     $(document).on("click", "[onclick]", function (e) {
 
         const onclick = $(this).attr("onclick");
@@ -55,7 +54,6 @@ $(function () {
         }
     });
 
-    // 4. FORMULARIOS
     $(document).on("submit", "form", function () {
 
         showLoader();
@@ -65,6 +63,32 @@ $(function () {
         }, 700);
 
         return false;
+    });
+
+    /* ===============================
+                 COOKIES
+    =============================== */
+
+    function setCookie(nombre, valor, dias) {
+        const fecha = new Date();
+        fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+        document.cookie = nombre + "=" + valor + ";expires=" + fecha.toUTCString() + ";path=/";
+    }
+
+    function getCookie(nombre) {
+        return document.cookie.split("; ").find(row => row.startsWith(nombre + "="));
+    }
+
+    const banner = $("#cookieBanner");
+    const btn = $("#acceptCookies");
+
+    if (!getCookie("cookies_aceptadas")) {
+        banner.removeClass("hidden");
+    }
+
+    btn.on("click", function () {
+        setCookie("cookies_aceptadas", "si", 365);
+        banner.addClass("hidden");
     });
 
 });

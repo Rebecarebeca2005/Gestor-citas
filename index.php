@@ -46,6 +46,18 @@ switch ($pagina) {
         }
         break;
 
+   case 'privacidad':
+    require __DIR__ . '/views/politicaPrivacidad.php';
+    break;
+
+    case 'cookies':
+        require __DIR__ . '/views/politicaCookies.php';
+        break;
+
+    case 'legal':
+        require __DIR__ . '/views/avisoLegal.php';
+        break;
+
     /*
     =========================
     ZONA CLIENTE

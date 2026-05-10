@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="assets/css/calendario.css">
     <link rel="stylesheet" href="assets/css/misCitas.css">
     <link rel="stylesheet" href="assets/css/editarcita.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/carga.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    
 </head>
 
 <body>
@@ -118,6 +124,17 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
     <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
         Ver en GitHub
     </a>
+    <a href="index.php?pagina=privacidad">
+    Política de privacidad
+    </a>
+
+    <a href="index.php?pagina=cookies">
+        Política de cookies
+    </a>
+
+    <a href="index.php?pagina=legal">
+        Aviso legal
+    </a>
 </footer>
 
 <script>
@@ -126,7 +143,12 @@ function toggleMenu() {
     document.body.classList.toggle("menu-open");
 }
 </script>
+<div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+</div>
 
+<script src="assets/js/carga.js"></script>
 <script src="assets/js/calendarioEditar.js"></script>
 <script src="assets/js/editarcita.js"></script>
 

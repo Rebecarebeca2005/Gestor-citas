@@ -15,6 +15,12 @@
 
     <link rel="stylesheet" href="assets/css/perfil.css">
     <link rel="stylesheet" href="assets/css/centroControl.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/carga.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    
 </head>
 <body>
 
@@ -68,7 +74,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 
     </div>
 
-</div
+</div>
 
 </main>
 <div id="popupEliminar" class="hidden">
@@ -95,8 +101,27 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 </div>
 <footer class="footer"> 
     <p>Gestor de Citas © 2026</p> 
-    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank"> Ver en GitHub </a>
- </footer>
+    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
+        Ver en GitHub
+    </a>
+    <a href="index.php?pagina=privacidad">
+    Política de privacidad
+    </a>
+
+    <a href="index.php?pagina=cookies">
+        Política de cookies
+    </a>
+
+    <a href="index.php?pagina=legal">
+        Aviso legal
+    </a>
+</footer>
+ <div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+</div>
+
+<script src="assets/js/carga.js"></script>
 </body>
 </html>
 
@@ -115,6 +140,10 @@ function cerrarPopup() {
     popup.classList.add("hidden");
 }
 
+function deleteCookie(nombre) {
+    document.cookie = nombre + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+}
+
 function eliminarPerfil(idUsuario) {
 
     fetch("index.php?pagina=eliminarPerfilAjax", {
@@ -128,8 +157,14 @@ function eliminarPerfil(idUsuario) {
     .then(data => {
 
         if (data.ok) {
+
+            // borrar cookie de cookies
+            deleteCookie("cookies_aceptadas");
+
             alert("Cuenta eliminada");
+
             window.location.href = "index.php?pagina=login";
+
         } else {
             alert("No se pudo eliminar la cuenta");
         }

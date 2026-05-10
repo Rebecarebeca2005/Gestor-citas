@@ -308,27 +308,3 @@ body {
     color: white;
 }
 
-/* ===== FOOTER ===== */
-.footer {
-    background: #ddd4c8;
-    text-align: center;
-    padding: 28px 16px;
-    color: var(--color-texto-secundario);
-    font-size: 0.95rem;
-    margin-top: 60px;
-    width: 100%;
-
-}
-
-.footer a {
-    display: inline-block;
-    margin-top: 6px;
-    color: var(--color-primario);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
-

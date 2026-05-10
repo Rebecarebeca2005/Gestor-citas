@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
 
     <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/carga.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -105,14 +106,34 @@
 
 <footer class="footer"> 
     <p>Gestor de Citas © 2026</p> 
-    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank"> Ver en GitHub </a>
- </footer>
+    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
+        Ver en GitHub
+    </a>
+    <a href="index.php?pagina=privacidad">
+    Política de privacidad
+    </a>
 
+    <a href="index.php?pagina=cookies">
+        Política de cookies
+    </a>
+
+    <a href="index.php?pagina=legal">
+        Aviso legal
+    </a>
+</footer>
+<div id="cookieBanner" class="cookie-banner hidden">
+    <p>
+        Usamos cookies técnicas para que la app funcione correctamente.
+    </p>
+
+    <button id="acceptCookies" class="btn-principal">Aceptar</button>
+</div>
  <div id="loader" class="loader hidden">
     <div class="spinner"></div>
     <p>Cargando...</p>
 </div>
 
 <script src="assets/js/carga.js"></script>
-    </body>
-         </html>
+
+</body>
+</html>

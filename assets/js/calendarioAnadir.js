@@ -37,7 +37,7 @@ function renderCalendarioAñadir() {
             div.style.pointerEvents = "none";
             div.style.opacity = "0.45";
         } else {
-            // 👉 SOLO AÑADIR CITA
+            // SOLO AÑADIR CITA
             div.onclick = () => abrirCita(fecha);
         }
 

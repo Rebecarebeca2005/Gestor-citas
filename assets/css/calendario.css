@@ -386,7 +386,6 @@ html, body {
     cursor: pointer;
 
     color: var(--color-texto-secundario);
-    background: var(--color-fondo);
 
     font-size: 14px;
     transition: 0.2s;
