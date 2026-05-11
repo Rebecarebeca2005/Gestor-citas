@@ -65,6 +65,25 @@ $(function () {
         return false;
     });
 
+    window.addEventListener("pageshow", function () {
+
+    $("#loader").addClass("hidden");
+});
+
+// detectar botones volver atrás
+$(document).on("click", ".volver-atras", function (e) {
+
+    e.preventDefault();
+
+    showLoader();
+
+    setTimeout(() => {
+
+        history.back();
+
+    }, 700);
+});
+
     /* ===============================
                  COOKIES
     =============================== */

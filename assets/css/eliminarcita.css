@@ -3,6 +3,7 @@
 #popupEliminar {
     position: fixed;
     inset: 0;
+
     background: rgba(0,0,0,0.45);
 
     display: flex;
@@ -10,91 +11,130 @@
     align-items: center;
 
     z-index: 99999;
+
+    backdrop-filter: blur(3px);
 }
 
 #popupEliminar.hidden {
     display: none;
 }
 
+/* CONTENIDO */
 #popupEliminar .modal-content.confirm {
-    background: var(--color-tarjeta);
-    padding: 28px;
-    border-radius: 16px;
 
-    width: 380px;
-    max-width: 90%;
+    background: var(--color-tarjeta);
+
+    width: 400px;
+    max-width: 92%;
+
+    padding: 32px 26px;
+
+    border-radius: 22px;
 
     text-align: center;
 
-    box-shadow: 0 10px 25px var(--color-sombra);
+    border: 1px solid var(--color-borde);
 
-    animation: fadeIn 0.25s ease;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+
+    animation: popupFade 0.22s ease;
 }
 
+/* TÍTULO */
 #popupEliminar h3 {
-    margin-bottom: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+
     color: var(--color-texto-principal);
+
+    margin-bottom: 10px;
 }
 
-/* CONTENEDOR DE BOTONES */
+/* TEXTO */
+#popupEliminar p {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+
+    margin-bottom: 8px;
+}
+
+/* BOTONES */
 .confirm-buttons {
+
     display: flex;
     justify-content: center;
-    align-items: center;
+
     gap: 14px;
-    margin-top: 22px;
+
+    margin-top: 24px;
 }
 
-/* BOTONES — RESETEO TOTAL */
+/* RESET */
 .confirm-buttons button {
-    all: unset; /* BORRA TODOS LOS ESTILOS HEREDADOS */
+
+    all: unset;
     box-sizing: border-box;
 
-    width: 140px;
-    height: 44px;
+    min-width: 145px;
+    height: 46px;
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    padding: 0 16px;
+    border-radius: 999px;
 
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
 
     cursor: pointer;
-    transition: 0.2s;
+
+    transition: 0.22s ease;
 }
 
-/* BOTÓN ELIMINAR */
+/* ELIMINAR */
 .btn-eliminar {
-    background: #d9534f !important;
-    color: white !important;
+
+    background: #d8a25c;
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(216,106,92,0.25);
 }
 
 .btn-eliminar:hover {
-    background: #c9302c !important;
+
+    background: #bf594c;
+
+    transform: translateY(-2px);
 }
 
-/* BOTÓN CANCELAR */
+/* CANCELAR */
 .btn-cancelar {
-    background: #e0e0e0 !important;
-    color: #333 !important;
+
+    background: #f3efe9;
+
+    color: var(--color-texto-secundario);
+
+    border: 1px solid var(--color-borde);
 }
 
 .btn-cancelar:hover {
-    background: #d5d5d5 !important;
+
+    background: #ebe5dc;
+
+    transform: translateY(-2px);
 }
 
 /* ANIMACIÓN */
-@keyframes fadeIn {
+@keyframes popupFade {
+
     from {
         opacity: 0;
-        transform: translateY(10px) scale(0.95);
+        transform: scale(0.96) translateY(8px);
     }
+
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: scale(1) translateY(0);
     }
 }

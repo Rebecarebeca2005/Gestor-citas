@@ -243,3 +243,52 @@ textarea {
     cursor: not-allowed;
     background: #eee;
 }
+
+/* ===== BOTONES FORMULARIO ===== */
+
+.botones-formulario {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.botones-formulario button {
+    flex: 1;
+}
+
+/* estilos generales */
+.btn-atras,
+.btn-siguiente,
+.btn-enviar {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+
+    font-family: 'Nunito', sans-serif;
+}
+
+/* atrás */
+.btn-atras {
+    background: #d8d1c7;
+    color: var(--color-texto-principal);
+}
+
+.btn-atras:hover {
+    background: #c7beb3;
+}
+
+/* siguiente y enviar */
+.btn-siguiente,
+.btn-enviar {
+    background: var(--color-primario);
+    color: white;
+}
+
+.btn-siguiente:hover,
+.btn-enviar:hover {
+    background: var(--color-primario-hover);
+}

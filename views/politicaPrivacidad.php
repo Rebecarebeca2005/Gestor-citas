@@ -1,4 +1,4 @@
-S<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -20,90 +20,115 @@ S<!DOCTYPE html>
 
     
 </head>
+<body class="pagina-politicas">
 
-    <div class="contenedor">
-        <header>
-            <span class="subtitulo-pagina">Documento Legal</span>
-            <h1>Política de Privacidad</h1>
-        </header>
+<div class="volver-atras" onclick="history.back()">
+    ← Volver atrás
+</div>
 
-        <section>
-            <h2>Responsable del tratamiento</h2>
-            <p><strong>Responsable:</strong> Rebeca Miguel Sancho</p>
-            <p><strong>Correo electrónico:</strong> contacto@nexoo.wuaze.com</p>
-            <p><strong>Sitio web:</strong> https://nexoo.wuaze.com</p>
-        </section>
+<div class="contenedor">
 
-        <section>
-            <h2>Datos personales recopilados</h2>
-            <p>La aplicación puede recopilar los siguientes datos personales:</p>
-            <ul>
-                <li>Nombre y apellidos</li>
-                <li>Correo electrónico</li>
-                <li>Teléfono</li>
-                <li>Datos relacionados con las citas reservadas</li>
-                <li>Credenciales de acceso cifradas</li>
-            </ul>
-        </section>
+    <header>
+        <span class="subtitulo-pagina">Documento Legal</span>
+        <h1>Política de Privacidad</h1>
+    </header>
 
-        <section>
-            <h2>Finalidad del tratamiento</h2>
-            <p>Los datos personales se utilizan exclusivamente para:</p>
-            <ul>
-                <li>Gestionar el registro y autenticación de usuarios.</li>
-                <li>Administrar citas y reservas.</li>
-                <li>Gestionar la disponibilidad de servicios.</li>
-                <li>Garantizar el correcto funcionamiento de la plataforma.</li>
-            </ul>
-        </section>
+    <section>
+        <h2>Responsable del tratamiento</h2>
 
-        <section>
-            <h2>Conservación de los datos</h2>
-            <p>Los datos se conservarán mientras exista una relación activa con el usuario o hasta que este solicite su eliminación.</p>
-        </section>
+        <p><strong>Responsable:</strong> Rebeca Miguel Sancho</p>
 
-        <section>
-            <h2>Legitimación</h2>
-            <p>La base legal para el tratamiento de los datos es el consentimiento del usuario y la ejecución de los servicios ofrecidos por la plataforma.</p>
-        </section>
+        <p><strong>Correo electrónico:</strong> contacto@nexoo.wuaze.com</p>
 
-        <section>
-            <h2>Derechos del usuario</h2>
-            <p>El usuario podrá ejercer sus derechos de:</p>
-            <ul>
-                <li>Acceso</li>
-                <li>Rectificación</li>
-                <li>Supresión</li>
-                <li>Limitación del tratamiento</li>
-                <li>Oposición</li>
-            </ul>
-            <p>Para ejercer estos derechos podrá contactar mediante el correo electrónico indicado anteriormente.</p>
-        </section>
+        <p><strong>Sitio web:</strong> https://nexoo.wuaze.com</p>
+    </section>
 
-        <section>
-            <h2>Seguridad</h2>
-            <p>La aplicación aplica medidas técnicas y organizativas destinadas a proteger los datos personales frente a accesos no autorizados, pérdida o modificación.</p>
-        </section>
+    <section>
+        <h2>Datos personales recopilados</h2>
 
-        <section>
-            <h2>Cesión de datos</h2>
-            <p>No se realizarán cesiones de datos a terceros salvo obligación legal.</p>
-        </section>
+        <p>La aplicación puede recopilar los siguientes datos personales:</p>
 
-        <section>
-            <h2>Modificaciones</h2>
-            <p>La presente política de privacidad podrá actualizarse para adaptarse a cambios legales o técnicos.</p>
-        </section>
+        <ul>
+            <li>Nombre y apellidos</li>
+            <li>Correo electrónico</li>
+            <li>Teléfono</li>
+            <li>Datos relacionados con las citas reservadas</li>
+            <li>Credenciales de acceso cifradas</li>
+        </ul>
+    </section>
 
-    </div>
+    <section>
+        <h2>Finalidad del tratamiento</h2>
 
-<footer class="footer"> 
-    <p>Gestor de Citas © 2026</p> 
-    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
+        <p>Los datos personales se utilizan exclusivamente para:</p>
+
+        <ul>
+            <li>Gestionar el registro y autenticación de usuarios.</li>
+            <li>Administrar citas y reservas.</li>
+            <li>Gestionar la disponibilidad de servicios.</li>
+            <li>Garantizar el correcto funcionamiento de la plataforma.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Conservación de los datos</h2>
+
+        <p>Los datos se conservarán mientras exista una relación activa con el usuario o hasta que este solicite su eliminación.</p>
+    </section>
+
+    <section>
+        <h2>Legitimación</h2>
+
+        <p>La base legal para el tratamiento de los datos es el consentimiento del usuario y la ejecución de los servicios ofrecidos por la plataforma.</p>
+    </section>
+
+    <section>
+        <h2>Derechos del usuario</h2>
+
+        <p>El usuario podrá ejercer sus derechos de:</p>
+
+        <ul>
+            <li>Acceso</li>
+            <li>Rectificación</li>
+            <li>Supresión</li>
+            <li>Limitación del tratamiento</li>
+            <li>Oposición</li>
+        </ul>
+
+        <p>Para ejercer estos derechos podrá contactar mediante el correo electrónico indicado anteriormente.</p>
+    </section>
+
+    <section>
+        <h2>Seguridad</h2>
+
+        <p>La aplicación aplica medidas técnicas y organizativas destinadas a proteger los datos personales frente a accesos no autorizados, pérdida o modificación.</p>
+    </section>
+
+    <section>
+        <h2>Cesión de datos</h2>
+
+        <p>No se realizarán cesiones de datos a terceros salvo obligación legal.</p>
+    </section>
+
+    <section>
+        <h2>Modificaciones</h2>
+
+        <p>La presente política de privacidad podrá actualizarse para adaptarse a cambios legales o técnicos.</p>
+    </section>
+
+</div>
+
+<footer class="footer">
+
+    <p>Gestor de Citas © 2026</p>
+
+    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git"
+       target="_blank">
         Ver en GitHub
     </a>
+
     <a href="index.php?pagina=privacidad">
-    Política de privacidad
+        Política de privacidad
     </a>
 
     <a href="index.php?pagina=cookies">
@@ -113,12 +138,19 @@ S<!DOCTYPE html>
     <a href="index.php?pagina=legal">
         Aviso legal
     </a>
+
 </footer>
- <div id="loader" class="loader hidden">
+
+<div id="loader" class="loader hidden">
+
     <div class="spinner"></div>
+
     <p>Cargando...</p>
+
 </div>
 
 <script src="assets/js/carga.js"></script>
+
 </body>
 </html>
+

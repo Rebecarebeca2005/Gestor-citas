@@ -20,56 +20,73 @@
 
     
 </head>
+<body class="pagina-politicas">
 
-    <div class="contenedor">
-        <header>
-            <span class="subtitulo-pagina">Documento Legal</span>
-            <h1>Política de Cookies</h1>
-        </header>
+<div class="volver-atras">
+    ← Volver atrás
+</div>
 
-        <section>
-            <h2>¿Qué son las cookies?</h2>
-            <p>Las cookies son pequeños archivos de texto que se almacenan en el dispositivo del usuario cuando visita una página web. Su finalidad es permitir el correcto funcionamiento de la página y mejorar la experiencia de navegación.</p>
-        </section>
+<div class="contenedor">
 
-        <section>
-            <h2>Tipos de cookies utilizadas</h2>
-            <h3>Cookies técnicas</h3>
-            <p>Esta aplicación utiliza exclusivamente cookies técnicas necesarias para el funcionamiento básico del sistema, como la gestión de sesiones de usuario y la autenticación.</p>
-            <h3>Cookies de terceros</h3>
-            <p>La aplicación no utiliza cookies publicitarias ni cookies de seguimiento de terceros.</p>
-        </section>
+    <header>
+        <span class="subtitulo-pagina">Documento Legal</span>
+        <h1>Política de Cookies</h1>
+    </header>
 
-        <section>
-            <h2>Finalidad de las cookies</h2>
-            <p>Las cookies utilizadas permiten:</p>
-            <ul>
-                <li>Mantener la sesión iniciada del usuario.</li>
-                <li>Garantizar el correcto funcionamiento del sistema.</li>
-                <li>Mejorar la seguridad y estabilidad de la aplicación.</li>
-            </ul>
-        </section>
+    <section>
+        <h2>¿Qué son las cookies?</h2>
+        <p>Las cookies son pequeños archivos de texto que se almacenan en el dispositivo del usuario cuando visita una página web. Su finalidad es permitir el correcto funcionamiento de la página y mejorar la experiencia de navegación.</p>
+    </section>
 
-        <section>
-            <h2>Gestión de cookies</h2>
-            <p>El usuario puede configurar su navegador para bloquear o eliminar las cookies instaladas en su dispositivo. No obstante, algunas funcionalidades de la aplicación podrían no funcionar correctamente si se deshabilitan las cookies técnicas.</p>
-        </section>
+    <section>
+        <h2>Tipos de cookies utilizadas</h2>
 
-        <section>
-            <h2>Modificaciones</h2>
-            <p>Esta política de cookies podrá actualizarse en cualquier momento para adaptarse a cambios técnicos o legales.</p>
-        </section>
-    </div>
-<!-- =========================
-        FOOTER
-========================= -->
-<footer class="footer"> 
-    <p>Gestor de Citas © 2026</p> 
-    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
+        <h3>Cookies técnicas</h3>
+
+        <p>Esta aplicación utiliza exclusivamente cookies técnicas necesarias para el funcionamiento básico del sistema, como la gestión de sesiones de usuario y la autenticación.</p>
+
+        <h3>Cookies de terceros</h3>
+
+        <p>La aplicación no utiliza cookies publicitarias ni cookies de seguimiento de terceros.</p>
+    </section>
+
+    <section>
+        <h2>Finalidad de las cookies</h2>
+
+        <p>Las cookies utilizadas permiten:</p>
+
+        <ul>
+            <li>Mantener la sesión iniciada del usuario.</li>
+            <li>Garantizar el correcto funcionamiento del sistema.</li>
+            <li>Mejorar la seguridad y estabilidad de la aplicación.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Gestión de cookies</h2>
+
+        <p>El usuario puede configurar su navegador para bloquear o eliminar las cookies instaladas en su dispositivo. No obstante, algunas funcionalidades de la aplicación podrían no funcionar correctamente si se deshabilitan las cookies técnicas.</p>
+    </section>
+
+    <section>
+        <h2>Modificaciones</h2>
+
+        <p>Esta política de cookies podrá actualizarse en cualquier momento para adaptarse a cambios técnicos o legales.</p>
+    </section>
+
+</div>
+
+<footer class="footer">
+
+    <p>Gestor de Citas © 2026</p>
+
+    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git"
+       target="_blank">
         Ver en GitHub
     </a>
+
     <a href="index.php?pagina=privacidad">
-    Política de privacidad
+        Política de privacidad
     </a>
 
     <a href="index.php?pagina=cookies">
@@ -79,12 +96,18 @@
     <a href="index.php?pagina=legal">
         Aviso legal
     </a>
+
 </footer>
- <div id="loader" class="loader hidden">
+
+<div id="loader" class="loader hidden">
+
     <div class="spinner"></div>
+
     <p>Cargando...</p>
+
 </div>
 
 <script src="assets/js/carga.js"></script>
+
 </body>
 </html>

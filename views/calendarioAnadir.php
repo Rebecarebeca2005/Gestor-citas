@@ -30,6 +30,10 @@ $servicios = $datos['servicios'];
 </head>
 
 <body>
+    <div id="popup" class="popup hidden">
+    <span id="popup-text"></span>
+    <span id="popup-close">✖</span>
+</div>
 <?php
 $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 ?>
@@ -123,12 +127,16 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                 <textarea name="descripcion" placeholder="Descripción opcional de la cita"></textarea>
 
                 <input type="date" name="fecha" required>
-                 <button type="button" class="btn-atras">
-                Atrás
-            </button>
-                <button type="button" class="btn-siguiente">Siguiente</button>
-            </fieldset>
+                <div class="botones-formulario">
+                <button type="button" class="btn-atras">
+                    Atrás
+                </button>
 
+                <button type="button" class="btn-siguiente">
+                    Siguiente
+                </button>
+                </div>
+            </fieldset>
             <!-- PASO 3: DISPONIBILIDAD -->
             <fieldset class="seccion">
                 <h3>Disponibilidad</h3>
@@ -144,10 +152,15 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
                         </option>
                     <?php endforeach; ?>
                 </select>
-                 <button type="button" class="btn-atras">
-                Atrás
-            </button>
-                <button type="submit" class="btn-enviar">Crear cita</button>
+                <div class="botones-formulario">
+                <button type="button" class="btn-atras">
+                    Atrás
+                </button>
+
+                <button type="submit" class="btn-enviar">
+                    Crear cita
+                </button>
+                </div>
             </fieldset>
         </form>
     </div>

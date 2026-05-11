@@ -6,7 +6,10 @@ const grid = document.getElementById("calGrid");
 let hoy = new Date();
 let mes = hoy.getMonth();
 let anio = hoy.getFullYear();
-
+const meses = [
+    "Enero","Febrero","Marzo","Abril","Mayo","Junio",
+    "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
+];
 function renderCalendarioAñadir() {
 
     grid.innerHTML = "";

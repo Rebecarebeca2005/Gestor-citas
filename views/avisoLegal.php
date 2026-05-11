@@ -22,6 +22,9 @@
 </head>
 
 <body>
+    <div class="volver-atras">
+    ← Volver atrás
+</div>
     <div class="contenedor">
         <header>
             <span class="subtitulo-pagina">Documento Legal</span>
@@ -68,9 +71,6 @@
             <p>La relación entre el titular y el usuario se regirá por la legislación española vigente.</p>
         </section>
 </div>
-<!-- =========================
-        FOOTER
-========================= -->
 <!-- =========================
         FOOTER
 ========================= -->

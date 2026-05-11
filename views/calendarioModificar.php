@@ -19,7 +19,10 @@
 </head>
 
 <body>
-
+<div id="popup" class="popup hidden">
+    <span id="popup-text"></span>
+    <span id="popup-close">✖</span>
+</div>
 <!-- TOPBAR -->
 <header class="topbar">
     <img src="assets/img/hamburguesa.png" class="menu-icon" onclick="toggleMenu()">
@@ -87,35 +90,59 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 
 <!-- MODAL EDICIÓN -->
 <div id="modalEditar" class="modal hidden">
+
     <div class="modal-content">
 
-        <span class="cerrar-modal" onclick="cerrarEditar()">✖</span>
+        <span class="cerrar-modal"
+              onclick="cerrarEditar()">✖</span>
 
         <h2>Editar cita</h2>
 
-        <form id="formEditarCita">
+        <form id="formEditarCita" onsubmit="return false;">
 
-            <input type="hidden" name="id_cita">
+            <input type="hidden"
+                   name="id_cita">
 
-            <label>Fecha</label>
-            <input type="date" name="fecha">
+            <label for="fecha">
+                Fecha
+            </label>
 
-            <label>Hora inicio</label>
-            <input type="time" name="hora_inicio">
+            <input type="date"
+                   name="fecha"
+                   id="fecha">
 
-            <label>Hora fin</label>
-            <input type="time" name="hora_fin">
+            <label for="hora">
+                Hora
+            </label>
 
-            <label>Descripción</label>
-            <textarea name="descripcion"></textarea>
+            <select name="id_disponibilidad"
+                    id="hora">
 
-            <button type="submit" class="btn-guardar">
+                <option value="">
+                    Selecciona una hora
+                </option>
+
+            </select>
+
+            <label for="descripcion">
+                Descripción
+            </label>
+
+            <textarea
+                name="descripcion"
+                id="descripcion"></textarea>
+
+            <button type="submit"
+                    class="btn-guardar">
+
                 Guardar cambios
+
             </button>
 
         </form>
 
     </div>
+
 </div>
 
 <!-- FOOTER -->

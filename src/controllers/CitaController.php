@@ -66,8 +66,16 @@ class CitaController {
     exit;
 }
 
-    public function obtenerDisponibilidad($fecha) {
-    return $this->model->getDisponibilidadPorFecha($fecha);
+public function obtenerDisponibilidad(
+    $fecha,
+    $id_cita = null
+) {
+
+    return $this->model
+        ->getDisponibilidadPorFecha(
+            $fecha,
+            $id_cita
+        );
 }
 
 public function misCitas() {
@@ -101,16 +109,18 @@ public function getCitaById($id) {
 public function editarCita($data) {
 
     return $this->model->editarCita(
+
         $data['id_cita'],
         $data['fecha'],
-        $data['hora_inicio'],
-        $data['hora_fin'],
+        $data['id_disponibilidad'],
         $data['descripcion'] ?? ''
     );
 }
 
+public function cancelarCita($id_cita) {
 
-
+    return $this->model->cancelarCita($id_cita);
+}
 
 
 }

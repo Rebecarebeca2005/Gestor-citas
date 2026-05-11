@@ -15,14 +15,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Nunito', sans-serif;
-    background-color: var(--color-fondo);
-    color: var(--color-texto-principal);
-    line-height: 1.7;
-    padding: 40px 20px;
-}
-
 .contenedor {
     max-width: 850px;
     margin: 0 auto;
@@ -86,4 +78,27 @@ li {
     margin-bottom: 8px;
     color: var(--color-texto-secundario);
 }
+
+.volver-atras {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 25px 0 10px 25px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    color: var(--color-primario);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.volver-atras:hover {
+    transform: translateX(-3px);
+    color: var(--color-primario-hover);
+}
+
 

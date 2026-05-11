@@ -23,7 +23,10 @@
     
 </head>
 <body>
-
+<div id="popup" class="popup hidden">
+    <span id="popup-text"></span>
+    <span id="popup-close">✖</span>
+</div>
 <?php
 $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 $correo = $_SESSION['usuario']['email'] ?? 'Email';

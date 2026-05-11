@@ -49,14 +49,6 @@ function renderCalendarioListar() {
             div.onclick = () => abrirCitasDelDiaListar(fecha);
         }
 
-        if (
-            i === fechaHoy.getDate() &&
-            mes === fechaHoy.getMonth() &&
-            anio === fechaHoy.getFullYear()
-        ) {
-            div.classList.add("hoy-marcado");
-        }
-
         grid.appendChild(div);
     }
 

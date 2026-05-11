@@ -56,28 +56,22 @@
 /* ============================
    BOTÓN CERRAR
 ============================ */
+
 .cerrar-modal {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 5px;
+    right: 16px;
+
     font-size: 20px;
     cursor: pointer;
-    color: #555;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    transition: .2s ease;
-    background: #f2f2f2;
+    color: var(--color-texto-secundario);
+    transition: 0.2s ease;
 }
 
 .cerrar-modal:hover {
-    background: #e6e6e6;
-    color: #111;
+    color: var(--color-primario);
+    transform: scale(1.15);
 }
-
 /* =========================
    LISTADO DE CITAS (BONITO)
 ========================= */
@@ -100,11 +94,16 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 
     transition: 0.2s ease;
+    cursor: pointer;
 }
 
 .item-cita:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    transform: translateY(-1px);
+
+    background: #fcfaf8;
+    border-color: #e7ddd5;
+
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
 .item-cita h3 {
@@ -118,6 +117,10 @@
     margin: 4px 0;
     font-size: 0.95rem;
     color: var(--color-texto-secundario);
+}
+
+.item-cita:hover h3 {
+    color: var(--color-primario-hover);
 }
 
 /* ============================
