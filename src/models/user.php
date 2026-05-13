@@ -68,6 +68,96 @@ public function eliminarUsuario($id)
         return "ERROR: " . $e->getMessage();
     }
 }
+
+public function buscarPorCorreo($email) {
+
+    $sql = "SELECT *
+            FROM usuarios
+            WHERE email = :email";
+
+    $stmt = $this->dato->prepare($sql);
+
+    $stmt->execute([
+        ':email' => $email
+    ]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public function crearUsuario(
+    $nombre,
+    $email,
+    $password,
+    $rol
+) {
+
+    $sql = "INSERT INTO usuarios
+            (
+                nombre,
+                email,
+                password,
+                rol
+            )
+            VALUES
+            (
+                :nombre,
+                :email,
+                :password,
+                :rol
+            )";
+
+    $stmt = $this->dato->prepare($sql);
+
+    return $stmt->execute([
+        ':nombre' => $nombre,
+        ':email' => $email,
+        ':password' => $password,
+        ':rol' => $rol
+    ]);
+}
+
+public function crearUsuarioAdmin(
+    $nombre,
+    $apellidos,
+    $email,
+    $telefono,
+    $password,
+    $rol
+) {
+
+    $sql = "
+        INSERT INTO usuarios
+        (
+            nombre,
+            apellidos,
+            email,
+            telefono,
+            password,
+            rol
+        )
+        VALUES
+        (
+            :nombre,
+            :apellidos,
+            :email,
+            :telefono,
+            :password,
+            :rol
+        )
+    ";
+
+    $stmt = $this->dato->prepare($sql);
+
+    return $stmt->execute([
+
+        ':nombre' => $nombre,
+        ':apellidos' => $apellidos,
+        ':email' => $email,
+        ':telefono' => $telefono,
+        ':password' => $password,
+        ':rol' => $rol
+    ]);
+}
     
 }
 

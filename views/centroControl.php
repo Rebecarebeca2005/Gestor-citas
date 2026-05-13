@@ -72,9 +72,9 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
     <?php if ($stats['proxima']): ?>
         
         <?= $stats['proxima']['fecha'] ?> <?= substr($stats['proxima']['hora'], 0, 5) ?>
-    <?php else: ?>
-        No tienes citas
-    <?php endif; ?>
+   <?php else: ?>
+    Ninguna
+<?php endif; ?>
 </p>
 </div>
 

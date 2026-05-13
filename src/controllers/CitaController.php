@@ -43,8 +43,10 @@ class CitaController {
     
 
     if (!$id_usuario || !$id_servicio || !$id_disponibilidad) {
-        die("Faltan datos");
-    }
+
+    header("Location: index.php?pagina=calendarioAñadir&sinHora=1");
+    exit;
+}
 
     
 
@@ -102,6 +104,12 @@ public function citasPorFecha($fecha) {
     return $this->model->getByUsuarioYFecha($id_usuario, $fecha);
 }
 
+public function todasLasCitasPorFecha($fecha) {
+
+    return $this->model
+        ->getTodasLasCitasPorFecha($fecha);
+}
+
 public function getCitaById($id) {
     return $this->model->getById($id);
 }
@@ -112,14 +120,29 @@ public function editarCita($data) {
 
         $data['id_cita'],
         $data['fecha'],
-        $data['id_disponibilidad'],
-        $data['descripcion'] ?? ''
+        $data['id_disponibilidad']
     );
 }
 
 public function cancelarCita($id_cita) {
 
     return $this->model->cancelarCita($id_cita);
+}
+
+public function editarCitaAdmin($data) {
+
+    return $this->model->editarCitaAdmin(
+
+        $data['id_cita'] ?? null,
+        $data['fecha'] ?? null,
+        $data['id_disponibilidad'] ?? null,
+        $data['estado'] ?? 'ACTIVA'
+    );
+}
+
+public function getCitaByIdAdmin($id) {
+
+    return $this->model->getByIdAdmin($id);
 }
 
 

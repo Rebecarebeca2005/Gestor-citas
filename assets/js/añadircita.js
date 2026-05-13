@@ -119,6 +119,9 @@ if (urlParams.has("error")) {
     showPopup("Error al crear la cita");
 }
 
+if (urlParams.has("sinHora")) {
+    showPopup("No se ha seleccionado una hora");
+}
 const botonesSiguiente = document.querySelectorAll(".btn-siguiente");
 const botonesAtras = document.querySelectorAll(".btn-atras");
 const secciones = document.querySelectorAll(".seccion");

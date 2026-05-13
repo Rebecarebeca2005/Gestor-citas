@@ -3,6 +3,8 @@
 // ===============================
 const modalCita = document.getElementById("modalCita");
 const popupEliminar = document.getElementById("popupEliminar");
+const popup = document.getElementById("popup");
+const popupText = document.getElementById("popup-text");
 
 let citaAEliminar = null;
 let fechaAEliminar = null;
@@ -50,7 +52,7 @@ function abrirCitasDelDia(fecha) {
 function mostrarPopupEliminar(id_cita, fecha, estado) {
 
     if (estado === "CANCELADA") {
-        alert("Esta cita ya está cancelada");
+        showPopup("Esta cita ya está cancelada");
         return;
     }
 
@@ -80,13 +82,30 @@ document.getElementById("btnConfirmarEliminar").onclick = () => {
     .then(res => res.json())
     .then(data => {
 
-        if (data.ok) {
-            popupEliminar.classList.add("hidden");
-            abrirCitasDelDia(fechaAEliminar); // refrescar lista
-        } else {
-            alert("Error al eliminar la cita");
-        }
-    });
+    if (data.ok) {
+
+        popupEliminar.classList.add("hidden");
+
+        showPopup("Cita eliminada correctamente");
+
+        setTimeout(() => {
+
+            abrirCitasDelDia(fechaAEliminar);
+
+        }, 800);
+
+    } else {
+
+        showPopup(
+            data.msg ||
+            "Error al eliminar la cita"
+        );
+    }
+})
+.catch(() => {
+
+    showPopup("Error del servidor");
+});
 };
 
 // ===============================
@@ -130,4 +149,23 @@ botonesAtras.forEach((btn) => {
             pasos[actual - 1].classList.add("activo");
         }
     });
+});
+
+function showPopup(msg) {
+
+    if (!popup || !popupText) return;
+
+    popupText.textContent = msg;
+
+    popup.classList.remove("hidden");
+
+    setTimeout(() => {
+        popup.classList.add("hidden");
+    }, 3500);
+}
+
+document.getElementById("popup-close")
+.addEventListener("click", () => {
+
+    popup.classList.add("hidden");
 });

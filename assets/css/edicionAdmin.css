@@ -1,0 +1,201 @@
+/* ============================
+   MODAL EDITAR ADMIN
+============================ */
+
+#modalEditarAdmin {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.55);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+    backdrop-filter: blur(2px);
+
+    overflow-x: hidden;
+}
+
+#modalEditarAdmin.hidden {
+    display: none !important;
+}
+
+/* ============================
+   CONTENIDO
+============================ */
+
+#modalEditarAdmin .modal-content {
+
+    background: #ffffff;
+
+    width: 92%;
+    max-width: 450px;
+
+    padding: 26px;
+
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+    position: relative;
+
+    overflow-x: hidden;
+
+    border: 1px solid rgba(0,0,0,0.06);
+
+    animation: aparecerEditarAdmin .25s ease;
+}
+
+@keyframes aparecerEditarAdmin {
+
+    from {
+        transform: translateY(10px) scale(.96);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* ============================
+   BOTÓN CERRAR
+============================ */
+
+#modalEditarAdmin .cerrar-modal {
+
+    position: absolute;
+
+    top: 8px;
+    right: 16px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    color: var(--color-texto-secundario);
+
+    transition: .2s ease;
+}
+
+#modalEditarAdmin .cerrar-modal:hover {
+
+    color: var(--color-primario);
+
+    transform: scale(1.12);
+}
+
+/* ============================
+   TÍTULO
+============================ */
+
+#modalEditarAdmin h2 {
+
+    margin-bottom: 18px;
+
+    font-size: 1.45rem;
+
+    color: var(--color-texto-principal);
+
+    font-weight: 700;
+}
+
+/* ============================
+   FORMULARIO
+============================ */
+
+#formEditarCitaAdmin label {
+
+    display: block;
+
+    margin-top: 14px;
+
+    font-weight: 600;
+
+    font-size: 13px;
+
+    color: #333;
+}
+
+#formEditarCitaAdmin input,
+#formEditarCitaAdmin textarea,
+#formEditarCitaAdmin select {
+
+    width: 100%;
+
+    padding: 11px 12px;
+
+    margin-top: 6px;
+
+    border-radius: 8px;
+
+    border: 1px solid #d6d6d6;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: .2s ease;
+
+    background: #fafafa;
+
+    box-sizing: border-box;
+}
+
+#formEditarCitaAdmin textarea {
+
+    resize: none;
+
+    min-height: 90px;
+}
+
+#formEditarCitaAdmin input:focus,
+#formEditarCitaAdmin textarea:focus,
+#formEditarCitaAdmin select:focus {
+
+    border-color: #c26a4a;
+
+    background: #fff;
+
+    box-shadow: 0 0 0 3px rgba(194,106,74,0.15);
+}
+
+/* ============================
+   BOTÓN GUARDAR
+============================ */
+
+#formEditarCitaAdmin .btn-guardar {
+
+    margin-top: 22px;
+
+    width: 100%;
+
+    padding: 12px;
+
+    background: #c26a4a;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: .2s ease;
+}
+
+#formEditarCitaAdmin .btn-guardar:hover {
+
+    background: #a95539;
+
+    transform: translateY(-1px);
+}

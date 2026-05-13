@@ -1,0 +1,1 @@
+usuario|a:7:{s:10:"id_usuario";i:33;s:6:"nombre";s:5:"Admin";s:9:"apellidos";s:9:"Principal";s:5:"email";s:17:"admin@empresa.com";s:8:"telefono";s:9:"600123456";s:8:"password";s:60:"$2y$10$KMdo2Cet6ajfqQWK8P3HxuC/Au7Y7pGSiPpO3FgMKMf994Wi7JKoa";s:3:"rol";s:5:"ADMIN";}usuario_id|i:33;usuario_nombre|s:5:"Admin";usuario_email|s:17:"admin@empresa.com";usuario_rol|s:5:"ADMIN";

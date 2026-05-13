@@ -45,7 +45,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 
     <nav class="sidebar-menu">
         <a href="index.php?pagina=centroControl">Inicio</a>
-        <a href="index.php?pagina=misCitas">Mis citas</a>
+        <a href="index.php?pagina=misCitasAdmin">Mis citas</a>
         <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
         <a href="index.php?pagina=calendarioModificar">Editar cita</a>
         <a href="index.php?pagina=calendarioEliminar">Eliminar cita</a>

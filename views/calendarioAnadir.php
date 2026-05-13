@@ -3,7 +3,6 @@
 $datos = $citaController->datosFormulario();
 $servicios = $datos['servicios'];
 
-// ELIMINAMOS la línea de $disponibilidades porque ya no se usa así
 ?>
 <!DOCTYPE html>
 <html lang="es">

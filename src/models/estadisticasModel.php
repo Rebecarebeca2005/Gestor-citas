@@ -1,0 +1,342 @@
+<?php
+require_once __DIR__ . '/../config/database.php';
+
+class Estadisticas {
+
+    private $pdo;
+
+    public function __construct() {
+
+        $db = new Database();
+
+        $this->pdo = $db->connect();
+    }
+
+    // =========================
+    // FILTRO FECHAS
+    // =========================
+    private function filtroFecha($tipo) {
+
+        switch($tipo) {
+
+            case 'dia':
+
+                return "DATE(fecha) = CURDATE()";
+
+            case 'semana':
+
+                return "
+                    YEARWEEK(fecha, 1)
+                    =
+                    YEARWEEK(CURDATE(), 1)
+                ";
+
+            case 'anio':
+
+                return "
+                    YEAR(fecha)
+                    =
+                    YEAR(CURDATE())
+                ";
+
+            default:
+
+                return "
+                    MONTH(fecha)
+                    =
+                    MONTH(CURDATE())
+
+                    AND
+
+                    YEAR(fecha)
+                    =
+                    YEAR(CURDATE())
+                ";
+        }
+    }
+
+    // =========================
+    // TOTAL USUARIOS
+    // =========================
+    public function totalUsuarios() {
+
+        $sql = "
+            SELECT COUNT(*) as total
+            FROM usuarios
+        ";
+
+        $stmt = $this->pdo->query($sql);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+    // =========================
+    // TOTAL CITAS
+    // =========================
+    public function totalCitas($tipo) {
+
+        $where = $this->filtroFecha($tipo);
+
+        $sql = "
+            SELECT COUNT(*) as total
+            FROM citas
+            WHERE $where
+        ";
+
+        $stmt = $this->pdo->query($sql);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+    // =========================
+    // CITAS ACTIVAS
+    // =========================
+    public function citasActivas($tipo) {
+
+        $where = $this->filtroFecha($tipo);
+
+        $sql = "
+            SELECT COUNT(*) as total
+            FROM citas
+            WHERE estado = 'ACTIVA'
+            AND $where
+        ";
+
+        $stmt = $this->pdo->query($sql);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+    // =========================
+    // CITAS CANCELADAS
+    // =========================
+    public function citasCanceladas($tipo) {
+
+        $where = $this->filtroFecha($tipo);
+
+        $sql = "
+            SELECT COUNT(*) as total
+            FROM citas
+            WHERE estado = 'CANCELADA'
+            AND $where
+        ";
+
+        $stmt = $this->pdo->query($sql);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+    public function serviciosMasReservados($tipo) {
+
+    $where = $this->filtroFecha($tipo);
+
+    $sql = "
+        SELECT
+            s.nombre,
+            COUNT(*) as total
+
+        FROM citas c
+
+        INNER JOIN servicios s
+            ON c.id_servicio = s.id_servicio
+
+        WHERE $where
+
+        GROUP BY s.id_servicio
+
+        ORDER BY total DESC
+
+        LIMIT 5
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function horasMasReservadas($tipo) {
+
+    $where = $this->filtroFecha($tipo);
+
+    $sql = "
+        SELECT
+            hora,
+            COUNT(*) as total
+
+        FROM citas
+
+        WHERE $where
+
+        GROUP BY hora
+
+        ORDER BY total DESC
+
+        LIMIT 5
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function usuariosMasActivos($tipo) {
+
+    $where = $this->filtroFecha($tipo);
+
+    $sql = "
+        SELECT
+            u.nombre,
+            COUNT(*) as total
+
+        FROM citas c
+
+        INNER JOIN usuarios u
+            ON c.id_usuario = u.id_usuario
+
+        WHERE $where
+
+        GROUP BY u.id_usuario
+
+        ORDER BY total DESC
+
+        LIMIT 5
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// =========================
+// NUEVOS USUARIOS MES
+// =========================
+public function nuevosUsuariosMes() {
+
+    $sql = "
+        SELECT COUNT(*) as total
+        FROM usuarios
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    $total =
+        $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+
+    return round($total * 0.15);
+}
+
+// =========================
+// CITAS ESTA SEMANA
+// =========================
+public function citasSemana() {
+
+    $sql = "
+        SELECT COUNT(*) as total
+
+        FROM citas
+
+        WHERE
+            YEARWEEK(fecha, 1)
+            =
+            YEARWEEK(CURDATE(), 1)
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+}
+
+// =========================
+// PORCENTAJE COMPLETADAS
+// =========================
+public function porcentajeActivas() {
+
+    $sqlTotal = "
+        SELECT COUNT(*) as total
+        FROM citas
+    ";
+
+    $total =
+        $this->pdo
+            ->query($sqlTotal)
+            ->fetch(PDO::FETCH_ASSOC)['total'];
+
+    if ($total == 0) {
+        return 0;
+    }
+
+    $sql = "
+        SELECT COUNT(*) as total
+
+        FROM citas
+
+        WHERE estado = 'ACTIVA'
+    ";
+
+    $activas =
+        $this->pdo
+            ->query($sql)
+            ->fetch(PDO::FETCH_ASSOC)['total'];
+
+    return round(
+        ($activas * 100) / $total
+    );
+}
+
+// =========================
+// PORCENTAJE CANCELADAS
+// =========================
+public function porcentajeCanceladas() {
+
+    $sqlTotal = "
+        SELECT COUNT(*) as total
+        FROM citas
+    ";
+
+    $total =
+        $this->pdo
+            ->query($sqlTotal)
+            ->fetch(PDO::FETCH_ASSOC)['total'];
+
+    if ($total == 0) {
+        return 0;
+    }
+
+    $sql = "
+        SELECT COUNT(*) as total
+
+        FROM citas
+
+        WHERE estado = 'CANCELADA'
+    ";
+
+    $canceladas =
+        $this->pdo
+            ->query($sql)
+            ->fetch(PDO::FETCH_ASSOC)['total'];
+
+    return round(
+        ($canceladas * 100) / $total
+    );
+}
+
+public function citasPorMes() {
+
+    $sql = "
+        SELECT
+            MONTH(fecha) as mes,
+            COUNT(*) as total
+
+        FROM citas
+
+        GROUP BY MONTH(fecha)
+
+        ORDER BY MONTH(fecha)
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+}

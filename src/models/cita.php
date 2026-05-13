@@ -137,38 +137,55 @@ public function getProximaCita($id_usuario) {
             FROM citas
             WHERE id_usuario = :id_usuario
               AND estado = 'ACTIVA'
+              AND (
+                    fecha > CURDATE()
+                    OR (fecha = CURDATE() AND hora >= CURTIME())
+              )
             ORDER BY fecha ASC, hora ASC
             LIMIT 1";
 
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([':id_usuario' => $id_usuario]);
+
+    $stmt->execute([
+        ':id_usuario' => $id_usuario
+    ]);
 
     return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
 }
 
 public function getCitasSemana($id_usuario) {
+
     $sql = "SELECT COUNT(*) 
             FROM citas 
             WHERE id_usuario = :id
-            AND YEARWEEK(fecha, 1) = YEARWEEK(CURDATE(), 1)
-            AND estado != 'CANCELADA'";
+              AND estado = 'ACTIVA'
+              AND fecha >= CURDATE()
+              AND YEARWEEK(fecha, 1) = YEARWEEK(CURDATE(), 1)";
 
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([':id' => $id_usuario]);
+
+    $stmt->execute([
+        ':id' => $id_usuario
+    ]);
 
     return $stmt->fetchColumn();
 }
 
 public function getCitasMes($id_usuario) {
+
     $sql = "SELECT COUNT(*) 
             FROM citas 
             WHERE id_usuario = :id
-            AND MONTH(fecha) = MONTH(CURDATE())
-            AND YEAR(fecha) = YEAR(CURDATE())
-            AND estado != 'CANCELADA'";
+              AND estado = 'ACTIVA'
+              AND MONTH(fecha) = MONTH(CURDATE())
+              AND YEAR(fecha) = YEAR(CURDATE())
+              AND fecha >= CURDATE()";
 
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([':id' => $id_usuario]);
+
+    $stmt->execute([
+        ':id' => $id_usuario
+    ]);
 
     return $stmt->fetchColumn();
 }
@@ -212,32 +229,50 @@ public function getByUsuarioYFecha($id_usuario, $fecha) {
 
 public function cancelarCita($id_cita) {
 
-    // 1. Obtener el id_disponibilidad de la cita
+    // obtener datos cita
     $stmt = $this->pdo->prepare("
-        SELECT id_disponibilidad 
-        FROM citas 
+        SELECT id_disponibilidad, estado
+        FROM citas
         WHERE id_cita = :id
     ");
-    $stmt->execute([':id' => $id_cita]);
+
+    $stmt->execute([
+        ':id' => $id_cita
+    ]);
+
     $cita = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$cita) return false;
+    if (!$cita) {
+        return false;
+    }
 
-    // 2. Cancelar la cita
+    // YA ESTÁ CANCELADA
+    if ($cita['estado'] === 'CANCELADA') {
+
+        return "ya_cancelada";
+    }
+
+    // cancelar cita
     $stmt = $this->pdo->prepare("
-        UPDATE citas 
-        SET estado = 'CANCELADA' 
+        UPDATE citas
+        SET estado = 'CANCELADA'
         WHERE id_cita = :id
     ");
-    $ok = $stmt->execute([':id' => $id_cita]);
 
+    $ok = $stmt->execute([
+        ':id' => $id_cita
+    ]);
+
+    // liberar disponibilidad
     if ($ok) {
-        // 3. LIBERAR la disponibilidad 
+
         $this->pdo->prepare("
-            UPDATE disponibilidad 
-            SET disponible = 1 
+            UPDATE disponibilidad
+            SET disponible = 1
             WHERE id_disponibilidad = :id_disp
-        ")->execute([':id_disp' => $cita['id_disponibilidad']]);
+        ")->execute([
+            ':id_disp' => $cita['id_disponibilidad']
+        ]);
     }
 
     return $ok;
@@ -269,10 +304,11 @@ public function editarCita(
     $id_cita,
     $fecha,
     $id_disponibilidad
-
 ) {
 
-    // disponibilidad nueva
+    // =========================
+    // OBTENER NUEVA DISPONIBILIDAD
+    // =========================
     $stmt = $this->pdo->prepare("
         SELECT hora_inicio
         FROM disponibilidad
@@ -289,7 +325,9 @@ public function editarCita(
         return false;
     }
 
-    // disponibilidad vieja
+    // =========================
+    // OBTENER DISPONIBILIDAD VIEJA
+    // =========================
     $stmt = $this->pdo->prepare("
         SELECT id_disponibilidad
         FROM citas
@@ -302,7 +340,13 @@ public function editarCita(
 
     $citaVieja = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // liberar vieja
+    if (!$citaVieja) {
+        return false;
+    }
+
+    // =========================
+    // LIBERAR DISPONIBILIDAD VIEJA
+    // =========================
     $this->pdo->prepare("
         UPDATE disponibilidad
         SET disponible = 1
@@ -311,7 +355,9 @@ public function editarCita(
         ':id' => $citaVieja['id_disponibilidad']
     ]);
 
-    // ocupar nueva
+    // =========================
+    // OCUPAR NUEVA DISPONIBILIDAD
+    // =========================
     $this->pdo->prepare("
         UPDATE disponibilidad
         SET disponible = 0
@@ -320,24 +366,192 @@ public function editarCita(
         ':id' => $id_disponibilidad
     ]);
 
-    // actualizar cita
+    // =========================
+    // ACTUALIZAR CITA
+    // =========================
     $sql = "
-    UPDATE citas
-    SET fecha = :fecha,
-        hora = :hora,
-        id_disponibilidad = :id_disp
-    WHERE id_cita = :id
-";
+        UPDATE citas
+        SET fecha = :fecha,
+            hora = :hora,
+            id_disponibilidad = :id_disp
+        WHERE id_cita = :id
+    ";
 
     $stmt = $this->pdo->prepare($sql);
 
-    return $stmt->execute([
+    $stmt->execute([
 
-    ':id' => $id_cita,
-    ':fecha' => $fecha,
-    ':hora' => $dispNueva['hora_inicio'],
-    ':id_disp' => $id_disponibilidad
-]);
+        ':id' => $id_cita,
+        ':fecha' => $fecha,
+        ':hora' => $dispNueva['hora_inicio'],
+        ':id_disp' => $id_disponibilidad
+    ]);
+
+    // =========================
+    // RESPUESTA
+    // =========================
+    if ($stmt->rowCount() > 0) {
+
+        return "actualizada";
+
+    } else {
+
+        return "sin_cambios";
+    }
+}
+
+public function editarCitaAdmin(
+    $id_cita,
+    $fecha,
+    $id_disponibilidad,
+    $estado
+) {
+
+    // obtener cita actual
+    $stmt = $this->pdo->prepare("
+        SELECT id_disponibilidad, estado
+        FROM citas
+        WHERE id_cita = :id
+    ");
+
+    $stmt->execute([
+        ':id' => $id_cita
+    ]);
+
+    $citaActual = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$citaActual) {
+        return false;
+    }
+
+    // NO permitir ACTIVA -> CANCELADA
+    if (
+        $citaActual['estado'] === 'ACTIVA'
+        &&
+        $estado === 'CANCELADA'
+    ) {
+        return "no_permitido";
+    }
+
+    // obtener nueva disponibilidad
+    $stmt = $this->pdo->prepare("
+        SELECT hora_inicio
+        FROM disponibilidad
+        WHERE id_disponibilidad = :id
+    ");
+
+    $stmt->execute([
+        ':id' => $id_disponibilidad
+    ]);
+
+    $dispNueva = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$dispNueva) {
+        return false;
+    }
+
+    // SOLO si cambia disponibilidad
+    if (
+        $citaActual['id_disponibilidad']
+        !=
+        $id_disponibilidad
+    ) {
+
+        // liberar vieja
+        $this->pdo->prepare("
+            UPDATE disponibilidad
+            SET disponible = 1
+            WHERE id_disponibilidad = :id
+        ")->execute([
+            ':id' => $citaActual['id_disponibilidad']
+        ]);
+
+        // ocupar nueva
+        $this->pdo->prepare("
+            UPDATE disponibilidad
+            SET disponible = 0
+            WHERE id_disponibilidad = :id
+        ")->execute([
+            ':id' => $id_disponibilidad
+        ]);
+    }
+
+    // actualizar cita
+    $stmt = $this->pdo->prepare("
+        UPDATE citas
+        SET
+            fecha = :fecha,
+            hora = :hora,
+            id_disponibilidad = :id_disp,
+            estado = :estado
+        WHERE id_cita = :id
+    ");
+
+    $ok = $stmt->execute([
+        ':id' => $id_cita,
+        ':fecha' => $fecha,
+        ':hora' => $dispNueva['hora_inicio'],
+        ':id_disp' => $id_disponibilidad,
+        ':estado' => $estado
+    ]);
+
+    if ($ok) {
+        return "actualizada";
+    }
+
+    return false;
+}
+
+public function getTodasLasCitasPorFecha($fecha) {
+
+    $sql = "SELECT 
+                c.id_cita,
+                c.fecha,
+                c.estado,
+                s.nombre AS servicio,
+                d.hora_inicio,
+                d.hora_fin
+            FROM citas c
+            INNER JOIN servicios s
+                ON c.id_servicio = s.id_servicio
+            INNER JOIN disponibilidad d
+                ON c.id_disponibilidad = d.id_disponibilidad
+            WHERE DATE(c.fecha) = :fecha
+            ORDER BY d.hora_inicio ASC";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    $stmt->execute([
+        ':fecha' => $fecha
+    ]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getByIdAdmin($id) {
+
+    $sql = "SELECT 
+                c.id_cita,
+                c.fecha,
+                c.estado,
+                c.id_disponibilidad,
+                d.hora_inicio,
+                d.hora_fin,
+                s.nombre AS servicio
+            FROM citas c
+            INNER JOIN disponibilidad d 
+                ON c.id_disponibilidad = d.id_disponibilidad
+            INNER JOIN servicios s 
+                ON c.id_servicio = s.id_servicio
+            WHERE c.id_cita = :id";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    $stmt->execute([
+        ':id' => $id
+    ]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 }

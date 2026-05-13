@@ -110,12 +110,12 @@ button {
     transition: all 0.25s ease;
 }
 
-.btn-principal {
+.boton1 {
     background: var(--color-primario);
     color: white;
 }
 
-.btn-secundario {
+.boton2 {
     background: transparent;
     color: var(--color-primario);
 }

@@ -1,140 +1,132 @@
-/* ===== POPUP ELIMINAR CITA ===== */
+/* ===== POPUP ELIMINAR ===== */
 
 #popupEliminar {
-    position: fixed;
-    inset: 0;
+    position: fixed !important;
+    inset: 0 !important;
 
-    background: rgba(0,0,0,0.45);
+    background: rgba(0,0,0,0.55) !important;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 
-    z-index: 99999;
+    z-index: 99999 !important;
 
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px) !important;
 }
 
 #popupEliminar.hidden {
-    display: none;
+    display: none !important;
 }
 
 /* CONTENIDO */
 #popupEliminar .modal-content.confirm {
 
-    background: var(--color-tarjeta);
 
-    width: 400px;
-    max-width: 92%;
+    width: 92% !important;
+    max-width: 420px !important;
 
-    padding: 32px 26px;
+    padding: 28px !important;
 
-    border-radius: 22px;
+    border-radius: 14px !important;
 
-    text-align: center;
+    border: 1px solid rgba(0,0,0,0.06) !important;
 
-    border: 1px solid var(--color-borde);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.20) !important;
 
-    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    text-align: center !important;
 
-    animation: popupFade 0.22s ease;
+    animation: aparecer .25s ease !important;
+}
+
+/* ICONO */
+#popupEliminar .popup-icon {
+
+    width: 58px !important;
+    height: 58px !important;
+
+    margin: 0 auto 16px auto !important;
+
+    border-radius: 50% !important;
+
+    background: rgba(194, 106, 74, 0.10) !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    font-size: 24px !important;
+
+    color: #c26a4a !important;
 }
 
 /* TÍTULO */
 #popupEliminar h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
 
-    color: var(--color-texto-principal);
+    margin: 0 0 10px 0 !important;
 
-    margin-bottom: 10px;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+
+    color: var(--color-texto-principal) !important;
 }
 
 /* TEXTO */
 #popupEliminar p {
-    color: var(--color-texto-secundario);
-    font-size: 0.95rem;
 
-    margin-bottom: 8px;
+    margin: 0 !important;
+
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+
+    color: var(--color-texto-secundario) !important;
 }
 
 /* BOTONES */
-.confirm-buttons {
+#popupEliminar .confirm-buttons {
 
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    justify-content: center !important;
 
-    gap: 14px;
+    gap: 14px !important;
 
-    margin-top: 24px;
+    margin-top: 24px !important;
 }
 
-/* RESET */
-.confirm-buttons button {
+/* BOTONES BASE */
+#popupEliminar .confirm-buttons button {
 
-    all: unset;
-    box-sizing: border-box;
+    all: unset !important;
+    box-sizing: border-box !important;
 
-    min-width: 145px;
-    height: 46px;
+    min-width: 140px !important;
+    height: 46px !important;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 10px !important;
 
-    border-radius: 999px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 14px !important;
+    font-weight: 600 !important;
 
-    cursor: pointer;
+    cursor: pointer !important;
 
-    transition: 0.22s ease;
+    color: aliceblue !important;
+
+    transition: .2s ease !important;
+    background-color: #c26a4a !important;
 }
 
-/* ELIMINAR */
-.btn-eliminar {
+#popupEliminar .btn-eliminar:hover {
 
-    background: #d8a25c;
-    color: white;
-
-    box-shadow: 0 8px 20px rgba(216,106,92,0.25);
+    transform: translateY(-2px) !important;
 }
 
-.btn-eliminar:hover {
 
-    background: #bf594c;
 
-    transform: translateY(-2px);
-}
+#popupEliminar .btn-cancelar:hover {
 
-/* CANCELAR */
-.btn-cancelar {
-
-    background: #f3efe9;
-
-    color: var(--color-texto-secundario);
-
-    border: 1px solid var(--color-borde);
-}
-
-.btn-cancelar:hover {
-
-    background: #ebe5dc;
-
-    transform: translateY(-2px);
-}
-
-/* ANIMACIÓN */
-@keyframes popupFade {
-
-    from {
-        opacity: 0;
-        transform: scale(0.96) translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+    transform: translateY(-2px) !important;
 }

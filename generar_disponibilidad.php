@@ -36,4 +36,4 @@ for ($dia = $inicio; $dia <= $fin; $dia->modify('+1 day')) {
     }
 }
 
-echo "✔ Disponibilidad generada correctamente";
+echo "Disponibilidad generada correctamente";

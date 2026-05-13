@@ -14,8 +14,10 @@
 
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/calendario.css">
+    <link rel="stylesheet" href="assets/css/misCitas.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/carga.css">
+    <link rel="stylesheet" href="assets/css/edicionAdmin.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -23,7 +25,10 @@
 </head>
 
 <body>
-
+<div id="popup" class="popup hidden">
+    <span id="popup-text"></span>
+    <span id="popup-close">✖</span>
+</div>
 <!-- =========================
      TOPBAR (MENU HAMBURGUESA)
 ========================= -->
@@ -43,13 +48,11 @@
     </div>
 
     <nav class="sidebar-menu">
-        <a href="index.php?pagina=centroControl">Inicio</a>
-        <a href="index.php?pagina=misCitas">Mis citas</a>
-        <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
-        <a href="index.php?pagina=calendarioModificar">Editar cita</a>
-        <a href="index.php?pagina=calendarioEliminar">Eliminar cita</a>
-        <a href="#">Perfil</a> 
-        <a href="index.php?pagina=home">Cerrar sesión</a> 
+        <a href="index.php?pagina=centroControlAdmin">Inicio</a>
+        <a href="index.php?pagina=crearUsuarioAdmin">Usuarios</a>
+        <a href="index.php?pagina=misCitasAdmin">Citas</a>
+        <a href="index.php?pagina=estadisticas">Estadísticas</a>
+        <a href="index.php?pagina=logout">Cerrar sesión</a>
     </nav>
 
 </aside>
@@ -60,10 +63,9 @@
 <section class="calendario">
 
     <div class="cal-header">
-
         <div class="cal-nav">
             <button id="prevMes">‹</button>
-            <h2 id="mesActual">Enero 2026</h2>
+            <h2 id="mesActual"></h2>
             <button id="nextMes">›</button>
         </div>
 
@@ -83,48 +85,126 @@
 
 </section>
 
-<!-- MODAL REGISTRO / CREAR -->
+<!-- =========================
+        MODAL CITAS DEL DÍA
+========================= -->
 <div id="modalCita" class="modal hidden">
     <div class="modal-content">
         <span class="cerrar-modal" onclick="cerrarCita()">✖</span>
 
-        <!-- PASOS -->
-        <ul class="pasos">
-            <li class="activo">Servicio</li>
-            <li>Datos</li>
-            <li>Disponibilidad</li>
-        </ul>
+        <h2>Citas del día</h2>
 
-        <form id="formCita" class="formulario">
-            <!-- PASO 1: SERVICIO -->
-            <fieldset class="seccion activo">
-                <h3>Elige servicio</h3>
-                <select name="id_servicio" required>
-                    <option value="">Selecciona un servicio</option>
-                    <option value="1">Corte de pelo</option>
-                </select>
-                <button type="button" class="btn-siguiente">Siguiente</button>
-            </fieldset>
+        <ul class="lista-citas"></ul>
+    </div>
+</div>
 
-            <!-- PASO 2: INFO CITA -->
-            <fieldset class="seccion">
-                <h3>Datos de la cita</h3>
-                <input type="text" name="titulo" placeholder="Título" required>
-                <textarea name="descripcion" placeholder="Descripción"></textarea>
-                <input type="date" name="fecha" required>
-                <input type="time" name="hora" required>
-                <button type="button" class="btn-siguiente">Siguiente</button>
-            </fieldset>
+<!-- MODAL EDICIÓN -->
+<!-- MODAL EDICIÓN ADMIN -->
+<div id="modalEditarAdmin" class="modal hidden">
 
-            <!-- PASO 3: DISPONIBILIDAD -->
-            <fieldset class="seccion">
-                <h3>Disponibilidad</h3>
-                <select name="id_disponibilidad">
-                    <option value="">Selecciona horario disponible</option>
-                </select>
-                <button type="submit" class="btn-enviar">Crear cita</button>
-            </fieldset>
+    <div class="modal-content">
+
+        <span class="cerrar-modal"
+              onclick="cerrarEditarAdmin()">✖</span>
+
+        <h2>Editar cita</h2>
+
+        <form id="formEditarCitaAdmin">
+
+            <input
+                type="hidden"
+                name="id_cita"
+            >
+
+            <label for="fechaAdmin">
+                Fecha
+            </label>
+
+            <input
+                type="date"
+                name="fecha"
+                id="fechaAdmin"
+            >
+
+            <label for="horaAdmin">
+                Hora
+            </label>
+
+            <select
+                name="id_disponibilidad"
+                id="horaAdmin"
+            >
+
+                <option value="">
+                    Selecciona una hora
+                </option>
+
+            </select>
+
+            <label>Estado</label>
+
+        <select name="estado" id="estadoAdmin">
+
+            <option value="ACTIVA">
+                ACTIVA
+            </option>
+
+            <option value="CANCELADA">
+                CANCELADA
+            </option>
+
+        </select>
+
+         <label for="descripcionAdmin">
+                Descripción
+            </label>
+
+            <textarea
+                name="descripcion"
+                id="descripcionAdmin"
+            ></textarea>
+
+            <button
+            type="button"
+            id="btnGuardarEdicion"
+            class="btn-guardar"
+        >
+                Guardar cambios
+            </button>
+
         </form>
+
+    </div>
+
+</div>
+
+
+<!-- POPUP CONFIRMAR ELIMINACIÓN -->
+<div id="popupEliminar" class="modal hidden">
+    <div class="modal-content confirm">
+
+        <h3>¿Eliminar esta cita?</h3>
+
+        <div class="confirm-buttons">
+
+    <button
+        type="button"
+        id="btnConfirmarEliminar"
+        class="btn-eliminar"
+    >
+        Sí, eliminar
+    </button>
+
+    <button
+        type="button"
+        id="btnCancelarEliminar"
+        class="btn-cancelar"
+    >
+        Cancelar
+    </button>
+
+</div>
+
     </div>
 </div>
 
@@ -163,10 +243,8 @@ function toggleMenu() {
     <div class="spinner"></div>
     <p>Cargando...</p>
 </div>
-
+<script src="assets/js/calendarioVerCitasAdmin.js"></script>
 <script src="assets/js/carga.js"></script>
-<script src="assets/js/calendario.js"></script>
-
 
 </body>
 </html>

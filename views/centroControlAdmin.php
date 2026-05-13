@@ -36,9 +36,8 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
 
     <nav class="sidebar-menu">
         <a href="index.php?pagina=centroControlAdmin">Inicio</a>
-        <a href="index.php?pagina=gestionUsuarios">Usuarios</a>
-        <a href="index.php?pagina=gestionCitas">Citas</a>
-        <a href="index.php?pagina=calendarioGlobal">Calendario</a>
+        <a href="index.php?pagina=crearUsuarioAdmin">Usuarios</a>
+        <a href="index.php?pagina=misCitasAdmin">Citas</a>
         <a href="index.php?pagina=estadisticas">Estadísticas</a>
         <a href="index.php?pagina=logout">Cerrar sesión</a>
     </nav>
@@ -99,7 +98,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
                             <div class="content-full">
                                 <h1>Nuevo usuario</h1>
                                 <p>Crear cliente o trabajadora.</p>
-                                <button class="btn">Ir</button>
+                                <a href="index.php?pagina=crearUsuarioAdmin" class="btn">Ir</a>
                             </div>
                         </div>
                     </li>
@@ -112,23 +111,11 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
                             <div class="content-full">
                                 <h1>Gestión de citas</h1>
                                 <p>Ver y editar todas las citas del sistema.</p>
-                                <button class="btn">Ir</button>
+                                <a href="index.php?pagina=misCitasAdmin" class="btn">Ir</a>
                             </div>
                         </div>
                     </li>
 
-                    <li class="item">
-                        <input type="radio" id="a3" name="acciones">
-                        <label for="a3">Calendario</label>
-
-                        <div class="content">
-                            <div class="content-full">
-                                <h1>Calendario global</h1>
-                                <p>Visualiza todas las reservas del sistema.</p>
-                                <button class="btn">Ir</button>
-                            </div>
-                        </div>
-                    </li>
 
                     <li class="item">
                         <input type="radio" id="a4" name="acciones">
@@ -138,7 +125,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
                             <div class="content-full">
                                 <h1>Estadísticas</h1>
                                 <p>Análisis del sistema de citas.</p>
-                                <button class="btn">Ir</button>
+                                <a href="index.php?pagina=estadisticas" class="btn">Ir</a>
                             </div>
                         </div>
                     </li>
@@ -188,5 +175,3 @@ function toggleMenu() {
 
 </body>
 </html>
-
-ç

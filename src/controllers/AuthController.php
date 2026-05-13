@@ -74,5 +74,70 @@ class AuthController {
     exit;
 }
 
+public function crearUsuarioAdmin($data) {
+
+    $nombre = trim($data['nombre'] ?? '');
+    $apellidos = trim($data['apellidos'] ?? '');
+    $correo = trim($data['correo'] ?? '');
+    $telefono = trim($data['telefono'] ?? '');
+    $password = trim($data['password'] ?? '');
+    $rol = trim($data['rol'] ?? 'CLIENTE');
+
+    if (
+        !$nombre ||
+        !$apellidos ||
+        !$correo ||
+        !$telefono ||
+        !$password
+    ) {
+
+        return [
+            'ok' => false,
+            'msg' => 'Completa todos los campos'
+        ];
+    }
+
+    $user = new User();
+
+    $usuarioExistente =
+        $user->buscarPorCorreo($correo);
+
+    if ($usuarioExistente) {
+
+        return [
+            'ok' => false,
+            'msg' => 'El correo ya existe'
+        ];
+    }
+
+    $passwordHash =
+        password_hash(
+            $password,
+            PASSWORD_DEFAULT
+        );
+
+    $ok = $user->crearUsuarioAdmin(
+        $nombre,
+        $apellidos,
+        $correo,
+        $telefono,
+        $passwordHash,
+        $rol
+    );
+
+    if ($ok) {
+
+        return [
+            'ok' => true,
+            'msg' => 'Usuario creado correctamente'
+        ];
+    }
+
+    return [
+        'ok' => false,
+        'msg' => 'Error creando usuario'
+    ];
+}
+
 
 }

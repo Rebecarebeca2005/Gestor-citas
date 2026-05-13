@@ -7,9 +7,9 @@
     <title>Mis Citas | Gestor de Citas</title>
 
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/eliminarcita.css">
     <link rel="stylesheet" href="assets/css/calendario.css">
     <link rel="stylesheet" href="assets/css/misCitas.css">
-    <link rel="stylesheet" href="assets/css/eliminarcita.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/carga.css">
 

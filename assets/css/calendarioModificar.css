@@ -177,7 +177,7 @@ select {
 }
 
 
-/* ===== BOTÓN CERRAR SIDEBAR ===== */
+/* BOTÓN CERRAR SIDEBAR */
 .close-sidebar {
     position: absolute;
     top: 12px;
@@ -194,11 +194,16 @@ select {
     cursor: pointer;
 
     color: var(--color-texto-secundario);
-    background: var(--color-fondo);
 
     font-size: 14px;
     transition: 0.2s;
 }
+
+.close-sidebar:hover {
+    background: var(--color-primario);
+    color: white;
+}
+
 
 button, 
 input, 

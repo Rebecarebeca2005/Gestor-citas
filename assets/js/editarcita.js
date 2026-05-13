@@ -213,34 +213,36 @@ formEditar.addEventListener("submit", async (e) => {
 
         } catch {
 
-            alert(
-                "El servidor devolvió algo inválido"
-            );
+    showPopup(
+        "Respuesta inválida del servidor"
+    );
 
-            return;
-        }
+    return;
+}
 
         if (data.ok) {
 
-            alert("Cita actualizada");
+    showPopup("Cita actualizada correctamente");
 
-            cerrarEditar();
+    cerrarEditar();
 
-            location.reload();
+    setTimeout(() => {
+        location.reload();
+    }, 1500);
 
-        } else {
+} else {
 
-            alert(
-                data.msg ||
-                "No se pudo actualizar"
-            );
-        }
+    showPopup(
+        data.msg ||
+        "No se pudo actualizar la cita"
+    );
+}
 
     } catch(error) {
 
         console.error(error);
 
-        alert("Error del servidor");
+        showPopup("Error del servidor");
     }
 
     return false;
@@ -264,3 +266,27 @@ function cerrarEditar() {
         .classList
         .add("hidden");
 }
+
+function showPopup(msg) {
+
+    const popup = document.getElementById("popup");
+    const text = document.getElementById("popup-text");
+
+    if (!popup || !text) return;
+
+    text.textContent = msg;
+
+    popup.classList.remove("hidden");
+
+    setTimeout(() => {
+        popup.classList.add("hidden");
+    }, 3500);
+}
+
+document.getElementById("popup-close")
+.addEventListener("click", () => {
+
+    document
+        .getElementById("popup")
+        .classList.add("hidden");
+});

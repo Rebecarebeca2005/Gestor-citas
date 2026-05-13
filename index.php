@@ -262,6 +262,28 @@ switch ($pagina) {
 
         exit;
 
+   case 'citaDetalleAdminAjax':
+
+    header('Content-Type: application/json');
+
+    $id = $_GET['id'] ?? null;
+
+    if (!$id) {
+
+        echo json_encode([
+            'error' => 'ID vacío'
+        ]);
+
+        exit;
+    }
+
+    $cita =
+        $citaController->getCitaByIdAdmin($id);
+
+    echo json_encode($cita);
+
+    exit;
+
     /*
     =========================
     AJAX - HORAS DISPONIBLES
@@ -317,11 +339,87 @@ case 'editarCitaAjax':
             exit;
         }
 
-        $ok = $citaController->editarCita($_POST);
+        $resultado = $citaController->editarCita($_POST);
+
+        if ($resultado === "actualizada") {
+
+            echo json_encode([
+                'ok' => true,
+                'msg' => 'Cita actualizada correctamente'
+            ]);
+
+        } else if ($resultado === "sin_cambios") {
+
+            echo json_encode([
+                'ok' => false,
+                'msg' => 'No se han realizado cambios'
+            ]);
+
+        } else {
+
+            echo json_encode([
+                'ok' => false,
+                'msg' => 'Error al actualizar la cita'
+            ]);
+        }
+
+    } catch (Throwable $e) {
 
         echo json_encode([
-            'ok' => $ok
+            'ok' => false,
+            'msg' => $e->getMessage()
         ]);
+    }
+
+    exit;
+
+    /*
+=========================
+AJAX - EDITAR CITA ADMIN
+=========================
+*/
+
+case 'editarCitaAdminAjax':
+
+    header('Content-Type: application/json');
+
+    try {
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+
+            echo json_encode([
+                'ok' => false,
+                'msg' => 'Método inválido'
+            ]);
+
+            exit;
+        }
+
+        $resultado =
+            $citaController
+                ->editarCitaAdmin($_POST);
+
+        if ($resultado === "actualizada") {
+
+            echo json_encode([
+                'ok' => true,
+                'msg' => 'Cita actualizada correctamente'
+            ]);
+
+        } else if ($resultado === "no_permitido") {
+
+            echo json_encode([
+                'ok' => false,
+                'msg' => 'No puedes cancelar una cita activa desde edición'
+            ]);
+
+        } else {
+
+            echo json_encode([
+                'ok' => false,
+                'msg' => 'Error actualizando cita'
+            ]);
+        }
 
     } catch (Throwable $e) {
 
@@ -368,9 +466,19 @@ case 'editarCitaAjax':
         $ok =
             $citaController->cancelarCita($id_cita);
 
-        echo json_encode([
-            'ok' => $ok
-        ]);
+       if ($ok === "ya_cancelada") {
+
+    echo json_encode([
+        'ok' => false,
+        'msg' => 'La cita ya ha sido cancelada'
+    ]);
+
+} else {
+
+    echo json_encode([
+        'ok' => $ok
+    ]);
+}
 
         exit;
 
@@ -405,6 +513,24 @@ case 'citasPorDiaAjax':
 
     exit;
 
+    case 'citasPorDiaAdminAjax':
+
+    header('Content-Type: application/json');
+
+    $fecha = $_GET['fecha'] ?? null;
+
+    if (!$fecha) {
+
+        echo json_encode([]);
+        exit;
+    }
+
+    echo json_encode(
+        $citaController->todasLasCitasPorFecha($fecha)
+    );
+
+    exit;
+
     /*
     =========================
     ZONA ADMIN
@@ -431,6 +557,106 @@ case 'citasPorDiaAjax':
         require __DIR__ . '/views/centroControlAdmin.php';
 
         break;
+
+        case 'misCitasAdmin':
+             if (!isset($_SESSION['usuario'])) {
+
+            header("Location: index.php?pagina=login");
+            exit;
+        }
+
+        $citas = $citaController->misCitas();
+
+        require __DIR__ . '/views/misCitasAdmin.php';
+
+        break;
+
+        case 'crearUsuarioAdmin':
+
+    if (!isset($_SESSION['usuario'])) {
+
+        header("Location: index.php?pagina=login");
+        exit;
+    }
+
+    require __DIR__ . '/views/crearUserDesdeAdmin.php';
+
+    break;
+
+    case 'crearUsuarioAjax':
+
+    header('Content-Type: application/json');
+
+    try {
+
+        $resultado =
+            $authController->crearUsuarioAdmin($_POST);
+
+        echo json_encode($resultado);
+
+    } catch(Throwable $e) {
+
+        echo json_encode([
+            'ok' => false,
+            'msg' => $e->getMessage()
+        ]);
+    }
+
+    exit;
+
+    case 'estadisticas':
+
+    if (!isset($_SESSION['usuario'])) {
+
+        header("Location: index.php?pagina=login");
+        exit;
+    }
+
+    require_once __DIR__ . '/src/controllers/EstadisticasController.php';
+
+    $controller =
+        new EstadisticasController();
+
+    $tipo =
+        $_GET['tipo'] ?? 'mes';
+
+    // =========================
+    // KPIs
+    // =========================
+    $stats =
+        $controller->obtenerEstadisticas($tipo);
+
+    // =========================
+    // TOP SERVICIOS
+    // =========================
+    $serviciosTop =
+        $controller->serviciosMasReservados($tipo);
+
+    // =========================
+    // TOP HORAS
+    // =========================
+    $horasTop =
+        $controller->horasMasReservadas($tipo);
+
+    // =========================
+    // TOP USUARIOS
+    // =========================
+    $usuariosTop =
+        $controller->usuariosMasActivos($tipo);
+
+    // =========================
+    // GRÁFICO CITAS POR MES
+    // =========================
+    $graficoMeses =
+        $controller->citasPorMes();
+
+    // =========================
+    // VIEW
+    // =========================
+    require __DIR__ . '/views/estadisticas.php';
+
+    break;
+
 
     /*
     =========================

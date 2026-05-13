@@ -76,6 +76,7 @@
     background: #ffffff;
     padding: 18px;
     border-radius: 16px;
+    position: relative;
 
     border: 1px solid #ececec;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -193,6 +194,7 @@ textarea:hover {
     background: #f3efe9;
 }
 
+
 /* BOTÓN CERRAR SIDEBAR */
 .close-sidebar {
     position: absolute;
@@ -210,7 +212,6 @@ textarea:hover {
     cursor: pointer;
 
     color: var(--color-texto-secundario);
-    background: var(--color-fondo);
 
     font-size: 14px;
     transition: 0.2s;
@@ -220,6 +221,130 @@ textarea:hover {
     background: var(--color-primario);
     color: white;
 }
+
+/* ACCIONES ADMIN */
+.acciones-cita-admin {
+
+    position: absolute;
+
+    top: 50%;
+    right: 18px;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+/* BOTONES */
+.btn-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #f7f5f2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+
+    padding: 0;
+}
+
+/* HOVER */
+.btn-icon:hover {
+
+    background: #efe9e3;
+
+    transform: translateY(-2px);
+}
+
+/* IMÁGENES */
+.btn-icon img {
+
+    width: 18px;
+    height: 18px;
+
+    object-fit: contain;
+
+    display: block;
+
+    opacity: .85;
+}
+
+#popupEliminar .confirm-buttons {
+
+    display: flex !important;
+    justify-content: center !important;
+
+    gap: 14px !important;
+
+    margin-top: 24px !important;
+}
+
+/* BOTÓN EDITAR TEXTO */
+.btn-icon.editar-texto {
+
+    width: auto;
+    padding: 0 16px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: var(--color-primario);
+
+    letter-spacing: .3px;
+}
+
+/* BOTONES BASE */
+#popupEliminar .confirm-buttons button {
+
+    all: unset !important;
+    box-sizing: border-box !important;
+
+    min-width: 140px !important;
+    height: 46px !important;
+
+    border-radius: 10px !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    font-size: 14px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    color: aliceblue !important;
+
+    transition: .2s ease !important;
+    background-color: #c26a4a !important;
+}
+
+#popupEliminar .btn-eliminar:hover {
+
+    transform: translateY(-2px) !important;
+}
+
+
+
+#popupEliminar .btn-cancelar:hover {
+
+    transform: translateY(-2px) !important;
+}
+
+
+
 
 
 
