@@ -228,3 +228,222 @@ nav {
     from { opacity: 0; transform: translate(-50%, -20px); }
     to { opacity: 1; transform: translate(-50%, 0); }
 }
+
+
+/* =========================
+      PANTALLAS GRANDES
+========================= */
+
+@media (min-width: 1400px) {
+
+    .contenedor {
+
+        max-width: 620px;
+
+        margin: 90px auto;
+    }
+
+    .envoltorio {
+
+        padding: 55px 45px;
+    }
+
+    .envoltorio h3 {
+
+        font-size: 2rem;
+    }
+
+    .formulario input {
+
+        padding: 15px 16px;
+
+        font-size: 1rem;
+    }
+
+    .btn-enviar {
+
+        padding: 14px 40px;
+
+        font-size: 1rem;
+    }
+
+    .mostrar-password {
+
+        width: 24px;
+
+        height: 24px;
+    }
+}
+
+/* =========================
+          TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+    .contenedor {
+
+        max-width: 480px;
+
+        margin: 50px auto;
+
+        padding: 0 20px;
+    }
+
+    .envoltorio {
+
+        padding: 35px 28px;
+    }
+
+    .envoltorio h3 {
+
+        font-size: 1.7rem;
+    }
+
+    .footer {
+
+        padding: 22px 16px;
+    }
+
+    .footer a {
+
+        display: inline-block;
+
+        margin: 6px 10px;
+    }
+}
+
+/* =========================
+        MÓVIL GRANDE
+========================= */
+
+@media (max-width: 768px) {
+
+    .contenedor {
+
+        width: calc(100% - 25px);
+
+        max-width: 480px;
+
+        margin: 35px auto;
+
+        padding: 0;
+    }
+
+    .envoltorio {
+
+        padding: 34px 26px;
+
+        border-radius: 18px;
+ }
+
+    .envoltorio h3 {
+
+        font-size: 1.5rem;
+
+        margin-bottom: 22px;
+    }
+
+    .formulario input {
+
+        padding: 13px 15px;
+
+        font-size: 0.95rem;
+    }
+
+    .btn-enviar {
+
+        width: 100%;
+
+        margin-top: 22px;
+
+        padding: 13px 20px;
+    }
+
+    .mostrar-password {
+
+        width: 20px;
+
+        height: 20px;
+
+        right: 18px;
+    }
+
+    .popup {
+
+        width: calc(100% - 24px);
+
+        min-width: auto;
+
+        padding: 12px 14px;
+    }
+
+    .footer {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 8px;
+
+        padding: 22px 14px;
+    }
+
+    .footer a {
+
+        margin: 0;
+
+        font-size: 0.88rem;
+    }
+}
+
+/* =========================
+        MÓVIL PEQUEÑO
+========================= */
+
+@media (max-width: 480px) {
+
+    .contenedor {
+
+        margin: 25px auto;
+    }
+
+    .envoltorio {
+
+        padding: 24px 18px;
+    }
+
+    .envoltorio h3 {
+
+        font-size: 1.3rem;
+    }
+
+    .formulario input {
+
+        font-size: 0.9rem;
+    }
+
+    .btn-enviar {
+
+        font-size: 0.9rem;
+    }
+
+    .popup {
+
+        top: 14px;
+
+        font-size: 0.88rem;
+    }
+
+    .footer p {
+
+        font-size: 0.85rem;
+    }
+
+    .footer a {
+
+        font-size: 0.82rem;
+    }
+}

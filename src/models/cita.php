@@ -278,6 +278,21 @@ public function cancelarCita($id_cita) {
     return $ok;
 }
 
+public function obtenerTodasLasCitas() {
+
+    $sql = "
+
+        SELECT *
+        FROM citas
+
+        ORDER BY fecha DESC, hora DESC
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 public function getById($id) {
 
     $sql = "SELECT 

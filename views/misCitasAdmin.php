@@ -15,9 +15,9 @@
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/calendario.css">
     <link rel="stylesheet" href="assets/css/misCitas.css">
-    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/carga.css">
     <link rel="stylesheet" href="assets/css/edicionAdmin.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -56,6 +56,31 @@
     </nav>
 
 </aside>
+
+<!-- =========================
+        HERO CALENDARIO
+========================= -->
+
+<section class="hero-calendario">
+
+    <div class="hero-info">
+
+        <span class="hero-tag">
+            Gestión de citas
+        </span>
+
+        <h1>
+            Modificación de citas
+        </h1>
+
+        <p>
+            Selecciona un día del calendario para
+            modificar o eliminar una reserva fácilmente.
+        </p>
+
+    </div>
+
+</section>
 
 <!-- =========================
         CALENDARIO

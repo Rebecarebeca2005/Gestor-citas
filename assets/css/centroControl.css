@@ -121,6 +121,10 @@ body {
     margin-bottom: 8px;
 }
 
+li {
+    list-style: none;
+}
+
 /* ===== CARRUSEL ===== */
 
 /* CONTENIDO CENTRADO */
@@ -142,6 +146,7 @@ body {
     background: white;
     padding: 20px;
     border-radius: 12px;
+    
 }
 
 /* CARRUSEL */
@@ -162,12 +167,14 @@ body {
     overflow: hidden;
     margin-top: 20px;
     position: relative;
+    box-shadow: 0 4px 12px var(--color-sombra);
 }
 
 /* IZQUIERDA */
 .left-zone {
     width: 300px;
     border-right: 1px solid #eee;
+    box-shadow: 0 4px 12px var(--color-sombra);
 }
 
 .list {
@@ -297,7 +304,6 @@ body {
     cursor: pointer;
 
     color: var(--color-texto-secundario);
-    background: var(--color-fondo);
 
     font-size: 14px;
     transition: 0.2s;
@@ -308,3 +314,574 @@ body {
     color: white;
 }
 
+/* =========================
+   FIX FOOTER ABAJO DESKTOP
+========================= */
+
+@media (min-width: 992px) {
+
+    .contenido {
+        min-height: calc(100vh - 140px);
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* =========================
+        ACTIVIDAD
+========================= */
+
+.actividad-card {
+
+    margin-top: 40px;
+
+    padding: 30px;
+}
+
+.actividad-header {
+
+    margin-bottom: 25px;
+}
+
+.actividad-header h3 {
+
+    margin: 0;
+
+    font-size: 1.5rem;
+}
+
+.actividad-header span {
+
+    color: var(--color-texto-secundario);
+
+    font-size: 0.95rem;
+}
+
+/* LISTA */
+
+.actividad-lista {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+/* ITEM */
+
+.actividad-item {
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 16px;
+
+    background: #faf8f5;
+
+    border: 1px solid rgba(0,0,0,0.05);
+
+    border-radius: 18px;
+
+    padding: 18px 20px;
+
+    transition: 0.25s ease;
+}
+
+.actividad-item:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.06);
+
+    background: white;
+}
+
+/* PUNTO */
+
+.actividad-dot {
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    margin-top: 7px;
+
+    flex-shrink: 0;
+}
+
+.actividad-dot.activa {
+
+    background: #67c587;
+
+    box-shadow:
+        0 0 10px rgba(103,197,135,0.4);
+}
+
+.actividad-dot.cancelada {
+
+    background: #ef7676;
+
+    box-shadow:
+        0 0 10px rgba(239,118,118,0.4);
+}
+
+/* TEXTO */
+
+.actividad-content {
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.actividad-content p {
+
+    margin: 0;
+
+    font-size: 1rem;
+
+    line-height: 1.5;
+}
+
+.actividad-content strong {
+
+    color: var(--color-primario);
+}
+
+.actividad-content small {
+
+    color: var(--color-texto-secundario);
+
+    font-size: 0.82rem;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .actividad-item {
+
+        padding: 16px;
+    }
+}
+
+/* =========================
+      PANTALLAS GRANDES
+========================= */
+
+@media (min-width: 1400px) {
+
+    .contenido {
+
+        max-width: 1250px;
+
+        padding: 40px 24px;
+    }
+
+    .saludo h1 {
+
+        font-size: 2.1rem;
+    }
+
+    .saludo p {
+
+        font-size: 1rem;
+    }
+
+    .grid-resumen {
+
+        gap: 20px;
+    }
+
+    .card {
+
+        padding: 20px;
+    }
+
+    .scene {
+
+        max-width: 1050px;
+
+        height: 280px;
+    }
+
+    .left-zone {
+
+        width: 300px;
+    }
+
+    .content {
+
+        left: 300px;
+
+        width: calc(100% - 300px);
+
+        padding-left: 55px;
+    }
+
+    .content-full h1 {
+
+        font-size: 2rem;
+    }
+
+    .content-full p {
+
+        font-size: 1rem;
+    }
+
+    .btn {
+
+        font-size: 0.95rem;
+
+        padding: 10px 22px;
+    }
+}
+
+/* =========================
+          TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+    .contenido {
+
+        padding: 30px 20px;
+    }
+
+    .topbar {
+
+        padding: 16px 18px;
+    }
+
+    .topbar h2 {
+
+        font-size: 1.4rem;
+    }
+
+    .saludo h1 {
+
+        font-size: 1.9rem;
+    }
+
+    .scene {
+
+        height: 260px;
+    }
+
+    .left-zone {
+
+        width: 240px;
+    }
+
+    .content {
+
+        left: 240px;
+
+        width: calc(100% - 240px);
+
+        padding-left: 35px;
+    }
+
+    .content-full h1 {
+
+        font-size: 1.8rem;
+    }
+
+    .content-full p {
+
+        font-size: 0.95rem;
+    }
+
+    .sidebar {
+
+        width: 230px;
+    }
+}
+
+/* =========================
+        MÓVIL GRANDE
+========================= */
+
+@media (max-width: 768px) {
+
+    body {
+
+        overflow-x: hidden;
+    }
+
+    .topbar {
+
+        padding: 14px 16px;
+
+        gap: 10px;
+    }
+
+    .topbar h2 {
+
+        font-size: 1.2rem;
+    }
+
+    .menu-icon {
+
+        width: 24px;
+    }
+
+    .sidebar {
+
+        width: 240px;
+
+        padding: 18px;
+    }
+
+    .sidebar-menu a {
+
+        padding: 16px;
+    }
+
+    .contenido {
+
+        padding: 24px 16px 40px;
+    }
+
+    .saludo {
+
+        text-align: center;
+    }
+
+    .saludo h1 {
+
+        font-size: 1.7rem;
+    }
+
+    .saludo p {
+
+        font-size: 0.95rem;
+    }
+
+    .grid-resumen {
+
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .card {
+
+        padding: 18px;
+    }
+
+    .acciones-carousel {
+
+        margin-top: 30px;
+    }
+
+    .acciones-carousel h2 {
+
+        text-align: center;
+
+        font-size: 1.5rem;
+    }
+
+    .scene {
+
+        flex-direction: column;
+
+        height: auto;
+
+        overflow: visible;
+    }
+
+    .left-zone {
+
+        width: 100%;
+
+        border-right: none;
+
+        border-bottom: 1px solid #eee;
+
+        box-shadow: none;
+    }
+
+    .list {
+
+        display: flex;
+
+        flex-direction: column;
+    }
+
+    .item {
+
+        position: relative;
+    }
+
+    .item label {
+
+        padding: 18px;
+    }
+
+    .content {
+
+        position: relative;
+
+        left: 0;
+
+        width: 100%;
+
+        height: auto;
+
+        padding: 24px 20px;
+
+        justify-content: center;
+    }
+
+    /* FIX NUEVA CITA MÓVIL */
+.content {
+
+    border-radius: 0 0 14px 14px;
+
+    background: white;
+}
+
+/* mantiene redondeado todo el bloque */
+.scene {
+
+    border-radius: 14px;
+
+    overflow: hidden;
+}
+
+    .content-full {
+
+        max-width: 100%;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .content-full h1 {
+
+        font-size: 1.6rem;
+    }
+
+    .content-full p {
+
+        font-size: 0.92rem;
+    }
+
+    .btn {
+
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .actividad-card {
+
+        padding: 22px 18px;
+    }
+
+    .actividad-header h3 {
+
+        font-size: 1.3rem;
+    }
+
+    .actividad-item {
+
+        padding: 16px;
+    }
+
+    .actividad-content p {
+
+        font-size: 0.92rem;
+    }
+}
+
+/* =========================
+        MÓVIL PEQUEÑO
+========================= */
+
+@media (max-width: 480px) {
+
+    .topbar h2 {
+
+        font-size: 1rem;
+    }
+
+    .saludo h1 {
+
+        font-size: 1.45rem;
+    }
+
+    .saludo p {
+
+        font-size: 0.88rem;
+    }
+
+    .card h3 {
+
+        font-size: 1rem;
+    }
+
+    .card p {
+
+        font-size: 0.88rem;
+    }
+
+    .acciones-carousel h2 {
+
+        font-size: 1.3rem;
+    }
+
+    .content {
+
+        padding: 20px 16px;
+    }
+
+    .content-full h1 {
+
+        font-size: 1.35rem;
+    }
+
+    .content-full p {
+
+        font-size: 0.88rem;
+    }
+
+    .btn {
+
+        font-size: 0.88rem;
+
+        padding: 10px 18px;
+    }
+
+    .sidebar {
+
+        width: 220px;
+    }
+
+    .sidebar-header h3 {
+
+        font-size: 1rem;
+    }
+
+    .sidebar-menu a {
+
+        font-size: 0.9rem;
+    }
+
+    .actividad-header span {
+
+        font-size: 0.82rem;
+    }
+
+    .actividad-content small {
+
+        font-size: 0.75rem;
+    }
+}

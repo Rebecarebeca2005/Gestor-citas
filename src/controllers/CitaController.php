@@ -110,6 +110,11 @@ public function todasLasCitasPorFecha($fecha) {
         ->getTodasLasCitasPorFecha($fecha);
 }
 
+public function todasLasCitas() {
+
+    return $this->model->obtenerTodasLasCitas();
+}
+
 public function getCitaById($id) {
     return $this->model->getById($id);
 }

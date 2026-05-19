@@ -339,4 +339,29 @@ public function citasPorMes() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+public function actividadReciente() {
+
+    $sql = "
+
+        SELECT
+            u.nombre,
+            c.estado,
+            c.fecha_creacion
+
+        FROM citas c
+
+        INNER JOIN usuarios u
+            ON c.id_usuario = u.id_usuario
+
+        ORDER BY c.fecha_creacion DESC
+
+        LIMIT 4
+
+    ";
+
+    $stmt = $this->pdo->query($sql);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }

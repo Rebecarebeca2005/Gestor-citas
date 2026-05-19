@@ -300,15 +300,314 @@ header {
 }
 
 /* =========================
-   RESPONSIVE
+      PANTALLAS GRANDES
 ========================= */
-@media (max-width: 900px) {
+
+@media (min-width: 1400px) {
+
+    .sobre-hero {
+
+        max-width: 1100px;
+
+        margin: 80px auto 60px;
+    }
+
+    .sobre-hero h1 {
+
+        font-size: 3.3rem;
+    }
+
+    .sobre-hero p {
+
+        font-size: 1.1rem;
+
+        max-width: 850px;
+
+        margin: auto;
+    }
+
     .sobre-bloque {
-        flex-direction: column;
-        text-align: center;
+
+        max-width: 1400px;
+
+        gap: 80px;
+    }
+
+    .sobre-texto h2 {
+
+        font-size: 2.3rem;
+    }
+
+    .sobre-texto p {
+
+        font-size: 1.05rem;
+    }
+
+    .flip-card {
+
+        max-width: 500px;
+
+        height: 320px;
     }
 
     .sobre-cards {
-        grid-template-columns: 1fr;
+
+        max-width: 1400px;
+
+        gap: 30px;
+    }
+
+    .card {
+
+        padding: 34px;
+    }
+
+    .card h3 {
+
+        font-size: 1.4rem;
+    }
+
+    .card p {
+
+        font-size: 1rem;
     }
 }
+
+/* =========================
+          TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+    .sobre-hero {
+
+        margin: 50px auto 30px;
+
+        padding: 0 24px 40px;
+    }
+
+    .sobre-hero h1 {
+
+        font-size: 2.2rem;
+    }
+
+    .sobre-bloque {
+
+        gap: 35px;
+
+        padding: 0 24px;
+    }
+
+    .sobre-texto h2 {
+
+        font-size: 1.6rem;
+    }
+
+    .sobre-cards {
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 20px;
+
+        padding: 0 24px;
+    }
+
+    .flip-card {
+
+        max-width: 360px;
+
+        height: 240px;
+    }
+
+    .footer {
+
+        padding: 22px 16px;
+    }
+
+    .footer a {
+
+        display: inline-block;
+
+        margin: 6px 10px;
+    }
+}
+
+/* =========================
+        MÓVIL GRANDE
+========================= */
+
+@media (max-width: 768px) {
+
+    .sobre-main {
+
+        overflow: hidden;
+    }
+
+    .sobre-hero {
+
+        margin: 40px auto 20px;
+
+        padding: 0 18px 30px;
+    }
+
+    .sobre-hero h1 {
+
+        font-size: 1.9rem;
+    }
+
+    .sobre-hero p {
+
+        font-size: 0.95rem;
+    }
+
+    .sobre-bloque {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 28px;
+
+        margin: 20px auto;
+
+        padding: 0 18px;
+    }
+
+    .sobre-texto h2 {
+
+        font-size: 1.5rem;
+    }
+
+    .sobre-texto p {
+
+        font-size: 0.95rem;
+    }
+
+    .flip-card {
+
+        max-width: 100%;
+
+        height: 240px;
+    }
+
+    .sobre-cards {
+
+        grid-template-columns: 1fr;
+
+        margin-top: 40px;
+
+        padding: 0 18px;
+
+        gap: 18px;
+    }
+
+    .card {
+
+        padding: 22px;
+    }
+
+    .card h3 {
+
+        font-size: 1.2rem;
+    }
+
+    .card p {
+
+        font-size: 0.92rem;
+    }
+
+    .footer {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 8px;
+
+        padding: 22px 14px;
+    }
+
+    .footer a {
+
+        margin: 0;
+
+        font-size: 0.88rem;
+    }
+}
+
+/* =========================
+        MÓVIL PEQUEÑO
+========================= */
+
+@media (max-width: 480px) {
+
+    .sobre-hero h1 {
+
+        font-size: 1.6rem;
+    }
+
+    .sobre-hero p {
+
+        font-size: 0.9rem;
+    }
+
+    .sobre-texto h2 {
+
+        font-size: 1.3rem;
+    }
+
+    .sobre-texto p {
+
+        font-size: 0.9rem;
+    }
+
+    .flip-card {
+
+        height: 210px;
+    }
+
+    .flip-back {
+
+        padding: 18px;
+    }
+
+    .flip-back h3 {
+
+        font-size: 1.05rem;
+    }
+
+    .flip-back p {
+
+        font-size: 0.85rem;
+    }
+
+    .card {
+
+        padding: 18px;
+    }
+
+    .card p {
+
+        font-size: 0.88rem;
+    }
+
+    .btn-efecto {
+
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .footer p {
+
+        font-size: 0.85rem;
+    }
+
+    .footer a {
+
+        font-size: 0.82rem;
+    }
+}
+

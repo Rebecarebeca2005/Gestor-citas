@@ -18,9 +18,24 @@ body {
 
 /* ===== CALENDARIO ===== */
 .calendario {
-    max-width: 1000px;
+    width: 100%;
+    max-width: 1400px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 20px 40px 60px;
+}
+
+/* ===== HERO ===== */
+.hero-calendario {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 40px auto 20px;
+
+    padding: 0 40px;
+}
+
+.hero-info {
+    width: 100%;
 }
 
 /* HEADER */
@@ -199,29 +214,6 @@ body {
     }
 }
 
-/* ===== FOOTER ===== */
-.footer {
-    background: #ddd4c8;
-    text-align: center;
-    padding: 28px 16px;
-    color: var(--color-texto-secundario);
-    font-size: 0.95rem;
-    margin-top: 60px;
-    width: 100%;
-
-}
-
-.footer a {
-    display: inline-block;
-    margin-top: 6px;
-    color: var(--color-primario);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
 
 
 /* INDICADOR DE CITA */
@@ -394,5 +386,81 @@ html, body {
 .close-sidebar:hover {
     background: var(--color-primario);
     color: white;
+}
+
+/* =========================
+        HERO
+========================= */
+
+.hero-calendario {
+
+    max-width: 1200px;
+
+    margin:
+        40px auto 20px;
+
+    padding: 0 20px;
+}
+
+.hero-info {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8f5f2
+        );
+
+    border-radius: 28px;
+
+    padding: 34px;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.05);
+
+    border:
+        1px solid rgba(0,0,0,0.04);
+}
+
+.hero-tag {
+
+    display: inline-block;
+
+    background:
+        rgba(238,141,77,0.12);
+
+    color: var(--color-primario);
+
+    padding: 8px 16px;
+
+    border-radius: 999px;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+.hero-info h1 {
+
+    margin: 0;
+
+    font-size: 2.4rem;
+
+    line-height: 1.1;
+}
+
+.hero-info p {
+
+    margin-top: 14px;
+
+    color: var(--color-texto-secundario);
+
+    font-size: 1rem;
+
+    max-width: 650px;
+
+    line-height: 1.7;
 }
 

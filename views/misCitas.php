@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/calendario.css">
     <link rel="stylesheet" href="assets/css/misCitas.css">
     <link rel="stylesheet" href="assets/css/eliminarcita.css">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/carga.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -45,7 +45,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 
     <nav class="sidebar-menu">
         <a href="index.php?pagina=centroControl">Inicio</a>
-        <a href="index.php?pagina=misCitasAdmin">Mis citas</a>
+        <a href="index.php?pagina=misCitas">Mis citas</a>
         <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
         <a href="index.php?pagina=calendarioModificar">Editar cita</a>
         <a href="index.php?pagina=calendarioEliminar">Eliminar cita</a>
@@ -54,6 +54,32 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
     </nav>
 
 </div>
+
+<!-- =========================
+        HERO CALENDARIO
+========================= -->
+
+<section class="hero-calendario">
+
+    <div class="hero-info">
+
+        <span class="hero-tag">
+            Gestión de citas
+        </span>
+
+        <h1>
+            Visualización de citas
+        </h1>
+
+        <p>
+            Selecciona un día del calendario para
+            visualizar las reserva fácilmente.
+        </p>
+
+    </div>
+
+</section>
+
 
 <!-- =========================
         CALENDARIO VISUAL
@@ -153,5 +179,6 @@ function toggleMenu() {
 
 <script src="assets/js/carga.js"></script>
 <script src="assets/js/calendarioVerCitas.js"></script>
+
 </body>
 </html>

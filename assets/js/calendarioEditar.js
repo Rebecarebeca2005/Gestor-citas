@@ -22,6 +22,7 @@ function renderCalendarioEditar() {
     const fechaHoy = new Date();
     fechaHoy.setHours(0,0,0,0);
 
+    
     const diasMes = new Date(anio, mes + 1, 0).getDate();
 
     for (let i = 1; i <= diasMes; i++) {
@@ -57,6 +58,14 @@ function renderCalendarioEditar() {
                 abrirCitasDelDia(fecha);
             });
         }
+
+        if (
+    i === fechaHoy.getDate() &&
+    mes === fechaHoy.getMonth() &&
+    anio === fechaHoy.getFullYear()
+) {
+    div.classList.add("hoy-marcado");
+}
 
         grid.appendChild(div);
     }

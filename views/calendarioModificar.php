@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="assets/css/calendario.css">
     <link rel="stylesheet" href="assets/css/misCitas.css">
     <link rel="stylesheet" href="assets/css/editarcita.css">
-    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/carga.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -50,6 +50,31 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
     </nav>
 
 </div>
+
+<!-- =========================
+        HERO CALENDARIO
+========================= -->
+
+<section class="hero-calendario">
+
+    <div class="hero-info">
+
+        <span class="hero-tag">
+            Gestión de citas
+        </span>
+
+        <h1>
+            Modificar cita
+        </h1>
+
+        <p>
+            Selecciona un día del calendario para
+            modificar una reserva fácilmente.
+        </p>
+
+    </div>
+
+</section>
 
 <!-- CALENDARIO -->
 <section class="calendario">

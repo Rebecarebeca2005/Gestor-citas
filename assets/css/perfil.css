@@ -166,3 +166,26 @@ button,
         transform: translateY(0) scale(1);
     }
 }
+
+.footer {
+
+    position: relative;
+
+    width: 100%;
+
+    margin-top: auto;
+
+    padding: 18px 14px;
+
+    background: #ddd4c8;
+
+    border-top: 1px solid var(--color-borde);
+
+    text-align: center;
+
+    color: var(--color-texto-secundario);
+
+    z-index: 1;
+
+    flex-shrink: 0;
+}

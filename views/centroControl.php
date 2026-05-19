@@ -18,7 +18,7 @@ $stats = $stats ?? [];
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
 
     <link rel="stylesheet" href="assets/css/centroControl.css">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/carga.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

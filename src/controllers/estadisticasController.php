@@ -77,4 +77,10 @@ class EstadisticasController {
         ->citasPorMes();
 }
 
+public function actividadReciente() {
+
+    return $this->model
+        ->actividadReciente();
+}
+
 }

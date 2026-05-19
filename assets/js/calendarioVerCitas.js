@@ -24,6 +24,7 @@ function renderCalendarioListar() {
     fechaHoy.setHours(0,0,0,0);
 
     const diasMes = new Date(anio, mes + 1, 0).getDate();
+    
 
     for (let i = 1; i <= diasMes; i++) {
 
@@ -37,7 +38,19 @@ function renderCalendarioListar() {
         const fecha = `${anio}-${String(mes+1).padStart(2,"0")}-${String(i).padStart(2,"0")}`;
 
         const fechaCelda = new Date(anio, mes, i);
-        fechaCelda.setHours(0,0,0,0);
+fechaCelda.setHours(0,0,0,0);
+
+if (
+    fechaCelda.getTime()
+    ===
+    fechaHoy.getTime()
+) {
+
+    div.classList.add(
+        "hoy-marcado"
+    );
+}
+
 
         const esPasado = fechaCelda < fechaHoy;
 

@@ -14,8 +14,8 @@
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
 
     <link rel="stylesheet" href="assets/css/centroControl.css">
-    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/carga.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -61,22 +61,22 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
 
         <div class="card">
             <h3>Usuarios</h3>
-            <p>-- total registrados</p>
+            <p><?= $statsMes['usuarios'] ?? 0 ?></p>
         </div>
 
         <div class="card">
             <h3>Citas hoy</h3>
-            <p>-- citas activas</p>
+            <p><?= $statsHoy['activas'] ?? 0 ?></p>
         </div>
 
         <div class="card">
             <h3>Citas mes</h3>
-            <p>-- este mes</p>
+            <p><?= $statsMes['citas'] ?? 0 ?></p>
         </div>
 
         <div class="card">
             <h3>Canceladas</h3>
-            <p>-- cancelaciones</p>
+            <p><?= $statsMes['canceladas'] ?? 0 ?></p>
         </div>
 
     </section>
@@ -136,12 +136,78 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
     </section>
 
     <!-- ACTIVIDAD RECIENTE -->
-    <section class="card" style="margin-top:40px;">
+    <section class="card actividad-card" style="margin-top:40px">
+
+    <div class="actividad-header">
+
         <h3>Actividad reciente</h3>
-        <p>• Usuario X creó una cita</p>
-        <p>• Usuario Y canceló una cita</p>
-        <p>• Nuevo usuario registrado</p>
-    </section>
+
+        <span>
+            Últimos movimientos del sistema:
+        </span>
+
+    </div>
+
+    <div class="actividad-lista">
+
+        <?php foreach(($actividadReciente ?? []) as $item): ?>
+
+            <?php
+                $cancelada =
+                    ($item['estado'] === 'CANCELADA');
+            ?>
+
+            <div class="actividad-item">
+
+                <div class="
+                    actividad-dot
+                    <?= $cancelada ? 'cancelada' : 'activa' ?>
+                "></div>
+
+                <div class="actividad-content">
+
+                    <p>
+
+                        <?php if($cancelada): ?>
+
+                            <strong>
+                                <?= $item['nombre'] ?>
+                            </strong>
+
+                            canceló una cita
+
+                        <?php else: ?>
+
+                            <strong>
+                                <?= $item['nombre'] ?>
+                            </strong>
+
+                            creó una cita
+
+                        <?php endif; ?>
+
+                    </p>
+
+                    <small>
+
+                        <?= date(
+                            'd/m/Y • H:i',
+                            strtotime(
+                                $item['fecha_creacion']
+                            )
+                        ) ?>
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    </div>
+
+</section>
 
 </main>
 <footer class="footer"> 

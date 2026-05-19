@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/sobreNosotros.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/carga.css">
+    <link rel="stylesheet" href="assets/css/header.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

@@ -21,8 +21,8 @@ $servicios = $datos['servicios'];
     <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/calendario.css">
     <link rel="stylesheet" href="assets/css/calendarioAnadir.css">
-    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/carga.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
@@ -65,6 +65,30 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 
 </div>
 
+<!-- =========================
+        HERO CALENDARIO
+========================= -->
+
+<section class="hero-calendario">
+
+    <div class="hero-info">
+
+        <span class="hero-tag">
+            Gestión de citas
+        </span>
+
+        <h1>
+            Nueva cita
+        </h1>
+
+        <p>
+            Selecciona un día del calendario para
+            crear una nueva reserva fácilmente.
+        </p>
+
+    </div>
+
+</section>
 
 <!-- =========================
         CALENDARIO

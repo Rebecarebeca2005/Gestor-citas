@@ -554,22 +554,53 @@ case 'citasPorDiaAjax':
             exit;
         }
 
+
+        require_once __DIR__ . '/src/controllers/EstadisticasController.php';
+
+$statsController =
+    new EstadisticasController();
+
+    // hoy
+    $statsHoy =
+        $statsController
+            ->obtenerEstadisticas('dia');
+
+    // mes
+    $statsMes =
+        $statsController
+            ->obtenerEstadisticas('mes');
+
+       $actividadReciente =
+    $statsController
+        ->actividadReciente(); 
+
         require __DIR__ . '/views/centroControlAdmin.php';
 
         break;
 
         case 'misCitasAdmin':
-             if (!isset($_SESSION['usuario'])) {
 
-            header("Location: index.php?pagina=login");
-            exit;
-        }
+    if (!isset($_SESSION['usuario'])) {
 
-        $citas = $citaController->misCitas();
+        header("Location: index.php?pagina=login");
+        exit;
+    }
 
-        require __DIR__ . '/views/misCitasAdmin.php';
+    if (
+        strtolower(trim($_SESSION['usuario_rol']))
+        !== 'admin'
+    ) {
 
-        break;
+        header("Location: index.php?pagina=centroControl");
+        exit;
+    }
+
+    $citas =
+        $citaController->todasLasCitas();
+
+    require __DIR__ . '/views/misCitasAdmin.php';
+
+    break;
 
         case 'crearUsuarioAdmin':
 
