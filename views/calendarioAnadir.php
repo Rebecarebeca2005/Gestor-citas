@@ -163,7 +163,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
             <!-- PASO 3: DISPONIBILIDAD -->
             <fieldset class="seccion">
                 <h3>Disponibilidad</h3>
-                <select name="id_disponibilidad">
+                <select name="id_disponibilidad" required>
                     <option value="">Selecciona horario disponible</option>
                     <?php 
                     $fechaSeleccionada = $_POST['fecha'] ?? date('Y-m-d');
@@ -229,11 +229,19 @@ function toggleMenu() {
     <div class="spinner"></div>
     <p>Cargando...</p>
 </div>
+<script>
 
+const diasConCitas =
+<?= json_encode($diasConCitas ?? []) ?>;
+
+const diasCanceladas =
+<?= json_encode($diasCanceladas ?? []) ?>;
+
+</script>
 <script src="assets/js/carga.js"></script>
 
 <script src="assets/js/calendarioAnadir.js"></script>
-<script src="assets/js/añadirCita.js"></script>
+<script src="assets/js/anadircita.js"></script>
 
 </body>
 </html>

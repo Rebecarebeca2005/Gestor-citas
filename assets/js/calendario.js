@@ -24,6 +24,27 @@ function renderCalendario() {
 
     const diasMes = new Date(anio, mes + 1, 0).getDate();
 
+    // Día de la semana del día 1
+    // getDay(): 0 = domingo, 1 = lunes...
+    let primerDia = new Date(anio, mes, 1).getDay();
+
+    // Convertir domingo (0) a 7
+    primerDia = primerDia === 0 ? 7 : primerDia;
+
+    // ===============================
+    //   HUECOS VACÍOS ANTES DEL DÍA 1
+    // ===============================
+    for (let i = 1; i < primerDia; i++) {
+
+        const empty = document.createElement("div");
+        empty.classList.add("dia-vacio");
+
+        grid.appendChild(empty);
+    }
+
+    // ===============================
+    //   DÍAS DEL MES
+    // ===============================
     for (let i = 1; i <= diasMes; i++) {
 
         const div = document.createElement("div");
@@ -54,8 +75,10 @@ function renderCalendario() {
             div.style.opacity = "0.45";
         }
 
-        // Si quieres que al hacer clic abra el modal de añadir cita:
-        div.onclick = () => abrirCita(`${anio}-${String(mes+1).padStart(2,"0")}-${String(i).padStart(2,"0")}`);
+        div.onclick = () =>
+            abrirCita(
+                `${anio}-${String(mes+1).padStart(2,"0")}-${String(i).padStart(2,"0")}`
+            );
 
         grid.appendChild(div);
     }

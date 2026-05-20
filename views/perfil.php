@@ -89,7 +89,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
 
         <div class="confirm-buttons">
 
-            <button class="btn-eliminar" onclick="eliminarPerfil()">
+            <button class="btn-eliminar" onclick="eliminarPerfil(<?= $_SESSION['usuario']['id_usuario'] ?>)">
                 Sí, eliminar
             </button>
 
@@ -147,31 +147,76 @@ function deleteCookie(nombre) {
     document.cookie = nombre + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
 }
 
+function showPopup(msg) {
+
+    const popup =
+        document.getElementById("popup");
+
+    const text =
+        document.getElementById("popup-text");
+
+    text.textContent = msg;
+
+    popup.classList.remove("hidden");
+
+    setTimeout(() => {
+
+        popup.classList.add("hidden");
+
+    }, 2000);
+}
+
 function eliminarPerfil(idUsuario) {
 
     fetch("index.php?pagina=eliminarPerfilAjax", {
+
         method: "POST",
+
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type":
+                "application/x-www-form-urlencoded"
         },
+
         body: "id=" + idUsuario
     })
+
     .then(res => res.json())
+
     .then(data => {
 
         if (data.ok) {
 
-            // borrar cookie de cookies
-            deleteCookie("cookies_aceptadas");
+            // borrar cookie
+            deleteCookie(
+                "cookies_aceptadas"
+            );
 
-            alert("Cuenta eliminada");
+            showPopup(
+                "Cuenta eliminada correctamente"
+            );
 
-            window.location.href = "index.php?pagina=login";
+            setTimeout(() => {
+
+                window.location.href =
+                    "index.php?pagina=login";
+
+            }, 2000);
 
         } else {
-            alert("No se pudo eliminar la cuenta");
+
+            showPopup(
+                "No se ha podido eliminar la cuenta"
+            );
         }
     })
-    .catch(err => console.error(err));
+
+    .catch(err => {
+
+        console.error(err);
+
+        showPopup(
+            "Error eliminando cuenta"
+        );
+    });
 }
 </script>

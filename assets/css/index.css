@@ -287,6 +287,38 @@ button:hover {
     color: var(--color-texto-secundario);
 }
 
+.cookie-banner .cookie-btn-accept {
+    all: unset !important;
+
+    background: #A66C3D !important;
+    color: #fff !important;
+
+    padding: 12px 22px !important;
+
+    border-radius: 10px !important;
+    border: 1px solid #8B572A !important;
+
+    font-size: 14px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    transition: all 0.3s ease !important;
+}
+
+.cookie-banner .cookie-btn-accept:hover {
+    background: #8B572A !important;
+    transform: translateY(-2px);
+}
+
+.cookie-btn-accept:hover {
+    opacity: 0.9;
+}
+
 .popup {
     position: fixed;
     top: 20px;

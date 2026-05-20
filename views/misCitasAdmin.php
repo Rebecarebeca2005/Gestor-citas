@@ -123,7 +123,6 @@
     </div>
 </div>
 
-<!-- MODAL EDICIÓN -->
 <!-- MODAL EDICIÓN ADMIN -->
 <div id="modalEditarAdmin" class="modal hidden">
 
@@ -268,6 +267,15 @@ function toggleMenu() {
     <div class="spinner"></div>
     <p>Cargando...</p>
 </div>
+<script>
+
+const diasConCitas =
+<?= json_encode($diasConCitas ?? []) ?>;
+
+const diasCanceladas =
+<?= json_encode($diasCanceladas ?? []) ?>;
+
+</script>
 <script src="assets/js/calendarioVerCitasAdmin.js"></script>
 <script src="assets/js/carga.js"></script>
 

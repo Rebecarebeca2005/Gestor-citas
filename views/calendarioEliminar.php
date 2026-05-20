@@ -173,7 +173,15 @@ function toggleMenu() {
     <div class="spinner"></div>
     <p>Cargando...</p>
 </div>
+<script>
 
+const diasConCitas =
+<?= json_encode($diasConCitas ?? []) ?>;
+
+const diasCanceladas =
+<?= json_encode($diasCanceladas ?? []) ?>;
+
+</script>
 <script src="assets/js/carga.js"></script>
 <script src="assets/js/calendarioEliminar.js"></script>
 <script src="assets/js/eliminarcita.js"></script>

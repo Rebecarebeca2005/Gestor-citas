@@ -127,7 +127,7 @@
         Usamos cookies técnicas para que la app funcione correctamente.
     </p>
 
-    <button id="acceptCookies" class="btn-principal">Aceptar</button>
+    <button id="acceptCookies" class="cookie-btn-accept">Aceptar</button>
 </div>
  <div id="loader" class="loader hidden">
     <div class="spinner"></div>

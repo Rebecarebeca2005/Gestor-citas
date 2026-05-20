@@ -10,6 +10,7 @@ $pdo = $db->connect();
 $sql = "
     SELECT *
     FROM disponibilidad
+    WHERE disponible = 1
 ";
 
 $disponibilidades =
@@ -53,7 +54,7 @@ $estados = [
 ];
 
 // =========================
-// INSERT
+// INSERT CITA
 // =========================
 $stmt = $pdo->prepare("
     INSERT INTO citas
@@ -77,6 +78,15 @@ $stmt = $pdo->prepare("
 ");
 
 // =========================
+// UPDATE DISPONIBILIDAD
+// =========================
+$update = $pdo->prepare("
+    UPDATE disponibilidad
+    SET disponible = 0
+    WHERE id_disponibilidad = :id
+");
+
+// =========================
 // GENERAR CITAS
 // =========================
 foreach ($disponibilidades as $d) {
@@ -88,69 +98,61 @@ foreach ($disponibilidades as $d) {
         );
 
     // =========================
-    // CANTIDAD SEGÚN MES
+    // PROBABILIDAD POR MES
     // =========================
-
     switch ($mes) {
 
-    // casi vacío
-    case 1:
-        $probabilidad = 2;
-        break;
+        case 1:
+            $probabilidad = 2;
+            break;
 
-    case 2:
-        $probabilidad = 5;
-        break;
+        case 2:
+            $probabilidad = 5;
+            break;
 
-    // bajo
-    case 3:
-        $probabilidad = 15;
-        break;
+        case 3:
+            $probabilidad = 15;
+            break;
 
-    case 4:
-        $probabilidad = 30;
-        break;
+        case 4:
+            $probabilidad = 30;
+            break;
 
-    // empieza fuerte
-    case 5:
-        $probabilidad = 60;
-        break;
+        case 5:
+            $probabilidad = 60;
+            break;
 
-    // MUY fuerte
-    case 6:
-        $probabilidad = 85;
-        break;
+        case 6:
+            $probabilidad = 85;
+            break;
 
-    // verano explotado
-    case 7:
-        $probabilidad = 100;
-        break;
+        case 7:
+            $probabilidad = 100;
+            break;
 
-    case 8:
-        $probabilidad = 95;
-        break;
+        case 8:
+            $probabilidad = 95;
+            break;
 
-    // baja
-    case 9:
-        $probabilidad = 50;
-        break;
+        case 9:
+            $probabilidad = 50;
+            break;
 
-    case 10:
-        $probabilidad = 25;
-        break;
+        case 10:
+            $probabilidad = 25;
+            break;
 
-    // muy bajo
-    case 11:
-        $probabilidad = 8;
-        break;
+        case 11:
+            $probabilidad = 8;
+            break;
 
-    case 12:
-        $probabilidad = 3;
-        break;
+        case 12:
+            $probabilidad = 3;
+            break;
 
-    default:
-        $probabilidad = 20;
-}
+        default:
+            $probabilidad = 20;
+    }
 
     // =========================
     // RANDOM
@@ -159,6 +161,9 @@ foreach ($disponibilidades as $d) {
         continue;
     }
 
+    // =========================
+    // CREAR CITA
+    // =========================
     $stmt->execute([
 
         ':usuario' =>
@@ -179,7 +184,14 @@ foreach ($disponibilidades as $d) {
         ':estado' =>
             $estados[array_rand($estados)]
     ]);
+
+    // =========================
+    // BLOQUEAR DISPONIBILIDAD
+    // =========================
+    $update->execute([
+        ':id' => $d['id_disponibilidad']
+    ]);
 }
 
-echo "Citas generadas automáticamente 🚀";
+echo "Citas generadas automáticamente";
 ?>

@@ -119,6 +119,10 @@ button:hover {
     box-shadow: 0 8px 20px var(--color-sombra);
 }
 
+.dia-vacio{
+    visibility: hidden;
+}
+
 /* ===== SLIDER ===== */
 .slider {
     max-width: 1200px;

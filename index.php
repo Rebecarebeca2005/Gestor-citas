@@ -1,24 +1,16 @@
 <?php
-
-$sessionPath = __DIR__ . '/sesiones';
-
-if (!is_dir($sessionPath)) {
-    mkdir($sessionPath, 0777, true);
-}
-
-session_save_path($sessionPath);
-
+date_default_timezone_set('Europe/Madrid');
+setlocale(LC_TIME, 'es_ES.UTF-8');
 session_start();
 
 require_once __DIR__ . '/src/controllers/AuthController.php';
 require_once __DIR__ . '/src/controllers/CitaController.php';
-require_once __DIR__ . '/src/controllers/CentroControlController.php';
-
-$pagina = $_GET['pagina'] ?? 'home';
+require_once __DIR__ . '/src/controllers/centroControlController.php';
+require_once __DIR__ . '/src/controllers/estadisticasController.php';
 
 $authController = new AuthController();
 $citaController = new CitaController();
-
+$pagina = $_GET['pagina'] ?? 'home';
 switch ($pagina) {
 
     /*
@@ -123,6 +115,26 @@ switch ($pagina) {
             header("Location: index.php?pagina=login");
             exit;
         }
+        
+        $citas = $citaController->misCitas();
+
+$diasConCitas = [];
+$diasCanceladas = [];
+
+foreach ($citas as $cita) {
+
+    if ($cita['estado'] === 'CANCELADA') {
+
+        $diasCanceladas[] =
+            $cita['fecha'];
+
+    } else {
+
+        $diasConCitas[] =
+            $cita['fecha'];
+    }
+}
+
 
         // AJAX disponibilidad
         if (
@@ -172,6 +184,25 @@ switch ($pagina) {
             header("Location: index.php?pagina=login");
             exit;
         }
+        
+        $citas = $citaController->misCitas();
+
+$diasConCitas = [];
+$diasCanceladas = [];
+
+foreach ($citas as $cita) {
+
+    if ($cita['estado'] === 'CANCELADA') {
+
+        $diasCanceladas[] =
+            $cita['fecha'];
+
+    } else {
+
+        $diasConCitas[] =
+            $cita['fecha'];
+    }
+}
 
         require __DIR__ . '/views/calendarioEliminar.php';
 
@@ -190,6 +221,26 @@ switch ($pagina) {
             header("Location: index.php?pagina=login");
             exit;
         }
+        
+        $citas = $citaController->misCitas();
+
+$diasConCitas = [];
+$diasCanceladas = [];
+
+foreach ($citas as $cita) {
+
+    if ($cita['estado'] === 'CANCELADA') {
+
+        $diasCanceladas[] =
+            $cita['fecha'];
+
+    } else {
+
+        $diasConCitas[] =
+            $cita['fecha'];
+    }
+}
+
 
         require __DIR__ . '/views/calendarioModificar.php';
 
@@ -210,6 +261,24 @@ switch ($pagina) {
         }
 
         $citas = $citaController->misCitas();
+        
+       $diasConCitas = [];
+$diasCanceladas = [];
+
+foreach ($citas as $cita) {
+
+    if ($cita['estado'] === 'CANCELADA') {
+
+        $diasCanceladas[] =
+            $cita['fecha'];
+
+    } else {
+
+        $diasConCitas[] =
+            $cita['fecha'];
+    }
+}
+
 
         require __DIR__ . '/views/misCitas.php';
 
@@ -538,7 +607,6 @@ case 'citasPorDiaAjax':
     */
 
     case 'centroControlAdmin':
-
         if (!isset($_SESSION['usuario'])) {
 
             header("Location: index.php?pagina=login");
@@ -555,7 +623,7 @@ case 'citasPorDiaAjax':
         }
 
 
-        require_once __DIR__ . '/src/controllers/EstadisticasController.php';
+        require_once __DIR__ . '/src/controllers/estadisticasController.php';
 
 $statsController =
     new EstadisticasController();
@@ -578,7 +646,7 @@ $statsController =
 
         break;
 
-        case 'misCitasAdmin':
+       case 'misCitasAdmin':
 
     if (!isset($_SESSION['usuario'])) {
 
@@ -595,9 +663,27 @@ $statsController =
         exit;
     }
 
+    // TODAS LAS CITAS
     $citas =
         $citaController->todasLasCitas();
 
+    // FECHAS PARA LOS PUNTOS
+   $diasConCitas = [];
+$diasCanceladas = [];
+
+foreach ($citas as $cita) {
+
+    if ($cita['estado'] === 'CANCELADA') {
+
+        $diasCanceladas[] =
+            $cita['fecha'];
+
+    } else {
+
+        $diasConCitas[] =
+            $cita['fecha'];
+    }
+}
     require __DIR__ . '/views/misCitasAdmin.php';
 
     break;
@@ -643,7 +729,7 @@ $statsController =
         exit;
     }
 
-    require_once __DIR__ . '/src/controllers/EstadisticasController.php';
+    require_once __DIR__ . '/src/controllers/estadisticasController.php';
 
     $controller =
         new EstadisticasController();
@@ -687,6 +773,61 @@ $statsController =
     require __DIR__ . '/views/estadisticas.php';
 
     break;
+
+    /*
+=========================
+AJAX - ELIMINAR PERFIL
+=========================
+*/
+
+case 'eliminarPerfilAjax':
+
+    header('Content-Type: application/json');
+
+    if (!isset($_SESSION['usuario'])) {
+
+        echo json_encode([
+            'ok' => false
+        ]);
+
+        exit;
+    }
+
+    require_once __DIR__ . '/src/models/user.php';
+
+    $usuarioModel = new user();
+
+    $id =
+        $_POST['id'] ?? null;
+
+    if (!$id) {
+
+        echo json_encode([
+            'ok' => false
+        ]);
+
+        exit;
+    }
+
+    $ok =
+        $usuarioModel->eliminarUsuario($id);
+
+    if ($ok) {
+
+        session_destroy();
+
+        echo json_encode([
+            'ok' => true
+        ]);
+
+    } else {
+
+        echo json_encode([
+            'ok' => false
+        ]);
+    }
+
+    exit;
 
 
     /*

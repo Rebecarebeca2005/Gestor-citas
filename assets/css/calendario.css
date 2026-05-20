@@ -100,6 +100,12 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top:25px;
 }
 
 .dia:hover {
@@ -464,3 +470,99 @@ html, body {
     line-height: 1.7;
 }
 
+.dia-vacio{
+    visibility: hidden;
+}
+
+.contenedor-puntos {
+
+    position: absolute;
+
+    bottom: 10px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 4px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    max-width: 80%;
+}
+
+.punto-cita {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #C8A97E;
+
+    box-shadow:
+        0 0 5px rgba(212,175,55,0.5);
+}
+
+.contenedor-puntos-cancelados {
+
+    position: absolute;
+
+    bottom: 22px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 4px;
+}
+
+.punto-cancelado {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #d9534f;
+}
+
+@media (max-width: 768px) {
+
+    .contenedor-puntos {
+
+        bottom: 4px;
+
+        gap: 4px;
+    }
+
+    .contenedor-puntos-cancelados {
+
+        bottom: 4px;
+
+        gap: 1px;
+    }
+
+    .punto-cita,
+    .punto-cancelado {
+
+        width: 4px;
+		gap: 1px;
+        height: 4px;
+    }
+    
+    .contenedor-puntos,
+.contenedor-puntos-cancelados {
+
+    gap: 1px;
+}
+    
+}

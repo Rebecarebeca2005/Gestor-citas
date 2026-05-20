@@ -24,7 +24,77 @@ function renderCalendarioListar() {
     fechaHoy.setHours(0,0,0,0);
 
     const diasMes = new Date(anio, mes + 1, 0).getDate();
+    
+    // ===============================
+//   CONTAR CITAS DEL DÍA
+// ===============================
+if (
+    typeof diasConCitas !== "undefined"
+    &&
+    Array.isArray(diasConCitas)
+) {
 
+    const totalCitas =
+        diasConCitas.filter(
+            d => d === fecha
+        ).length;
+
+    if (totalCitas > 0) {
+
+        const contenedorPuntos =
+            document.createElement("div");
+
+        contenedorPuntos.classList.add(
+            "contenedor-puntos"
+        );
+
+        for (
+            let p = 0;
+            p < totalCitas;
+            p++
+        ) {
+
+            const punto =
+                document.createElement("div");
+
+            punto.classList.add(
+                "punto-cita"
+            );
+
+            contenedorPuntos.appendChild(
+                punto
+            );
+        }
+
+        div.appendChild(
+            contenedorPuntos
+        );
+    }
+}
+
+    // ===============================
+    //   PRIMER DÍA DEL MES
+    // ===============================
+    let primerDia = new Date(anio, mes, 1).getDay();
+
+    // Convertir domingo (0) en 7
+    primerDia = primerDia === 0 ? 7 : primerDia;
+
+    // ===============================
+    //   HUECOS VACÍOS
+    // ===============================
+    for (let i = 1; i < primerDia; i++) {
+
+        const empty = document.createElement("div");
+
+        empty.classList.add("dia-vacio");
+
+        grid.appendChild(empty);
+    }
+
+    // ===============================
+    //   DÍAS DEL MES
+    // ===============================
     for (let i = 1; i <= diasMes; i++) {
 
         const div = document.createElement("div");
@@ -38,6 +108,17 @@ function renderCalendarioListar() {
 
         const fechaCelda = new Date(anio, mes, i);
         fechaCelda.setHours(0,0,0,0);
+
+        if (
+            fechaCelda.getTime()
+            ===
+            fechaHoy.getTime()
+        ) {
+
+            div.classList.add(
+                "hoy-marcado"
+            );
+        }
 
         const esPasado = fechaCelda < fechaHoy;
 
@@ -55,7 +136,6 @@ function renderCalendarioListar() {
     document.getElementById("mesActual").innerText =
         `${meses[mes]} ${anio}`;
 }
-
 // ===============================
 //   ABRIR MODAL CON CITAS DEL DÍA
 // ===============================

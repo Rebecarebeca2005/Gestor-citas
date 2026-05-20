@@ -20,7 +20,7 @@ class AuthController {
         $telefono,
         $password
     );
-   
+  
 
      if ($ok) {
             header("Location: ?pagina=login&success=Registro realizado correctamente");
@@ -29,6 +29,8 @@ class AuthController {
 
         header("Location: ?pagina=login&error=No se pudo completar el registro");
         exit;
+       
+  
 }
 
 

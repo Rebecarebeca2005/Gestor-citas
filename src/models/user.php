@@ -44,29 +44,27 @@ class User {
         return false;
     }
 
-public function eliminarUsuario($id)
-{
-    try {
-        $this->dato->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+public function eliminarUsuario($id) {
 
-        $this->dato->beginTransaction();
+    // borrar citas primero
+    $stmt = $this->dato->prepare("
+        DELETE FROM citas
+        WHERE id_usuario = :id
+    ");
 
-        $stmt1 = $this->dato->prepare("DELETE FROM citas WHERE id_usuario = ?");
-        $stmt1->execute([$id]);
+    $stmt->execute([
+        ':id' => $id
+    ]);
 
-        $stmt2 = $this->dato->prepare("DELETE FROM usuarios WHERE id_usuario = ?");
-        $stmt2->execute([$id]);
+    // borrar usuario
+    $stmt = $this->dato->prepare("
+        DELETE FROM usuarios
+        WHERE id_usuario = :id
+    ");
 
-        $filas = $stmt2->rowCount();
-
-        $this->dato->commit();
-
-        return $filas;
-
-    } catch (Exception $e) {
-        $this->dato->rollBack();
-        return "ERROR: " . $e->getMessage();
-    }
+    return $stmt->execute([
+        ':id' => $id
+    ]);
 }
 
 public function buscarPorCorreo($email) {

@@ -213,7 +213,7 @@ public function getByUsuarioYFecha($id_usuario, $fecha) {
             INNER JOIN disponibilidad d 
                 ON c.id_disponibilidad = d.id_disponibilidad
             WHERE c.id_usuario = :id_usuario
-            AND DATE(c.fecha) = :fecha
+            AND c.fecha = :fecha
             AND c.estado != 'CANCELADA'
             ORDER BY c.hora ASC";
 
@@ -523,15 +523,29 @@ public function getTodasLasCitasPorFecha($fecha) {
                 c.id_cita,
                 c.fecha,
                 c.estado,
+
                 s.nombre AS servicio,
+
                 d.hora_inicio,
-                d.hora_fin
+                d.hora_fin,
+
+                u.nombre,
+                u.apellidos,
+                u.telefono
+
             FROM citas c
+
+            INNER JOIN usuarios u
+                ON c.id_usuario = u.id_usuario
+
             INNER JOIN servicios s
                 ON c.id_servicio = s.id_servicio
+
             INNER JOIN disponibilidad d
                 ON c.id_disponibilidad = d.id_disponibilidad
-            WHERE DATE(c.fecha) = :fecha
+
+            WHERE c.fecha = :fecha
+
             ORDER BY d.hora_inicio ASC";
 
     $stmt = $this->pdo->prepare($sql);
@@ -568,5 +582,7 @@ public function getByIdAdmin($id) {
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+    
+    
 
 }
