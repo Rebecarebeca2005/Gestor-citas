@@ -1,4 +1,4 @@
-CREATE DATABASE gestor_citas;
+
 USE gestor_citas;
 
 -- TABLA USUARIOS
@@ -61,15 +61,3 @@ INSERT INTO servicios (nombre, descripcion, duracion, precio, activo) VALUES
 ('Tinte', 'Coloración completa del cabello', 90, 35.00, TRUE),
 ('Lavado y peinado', 'Lavado con peinado incluido', 20, 8.00, TRUE),
 ('Tratamiento capilar', 'Hidratación y cuidado del cabello', 45, 20.00, TRUE);
-
-INSERT INTO disponibilidad (fecha, hora_inicio, hora_fin, disponible) VALUES
-('2026-04-24', '09:00:00', '09:30:00', TRUE),
-('2026-04-24', '10:00:00', '10:30:00', TRUE),
-('2026-04-24', '11:00:00', '11:30:00', FALSE),
-('2026-04-25', '09:00:00', '09:30:00', TRUE),
-('2026-04-25', '12:00:00', '12:30:00', TRUE);
-
-INSERT INTO citas (id_usuario, id_servicio, id_disponibilidad, fecha, hora, estado) VALUES
-(2, 1, 1, '2026-04-24', '09:00:00', 'ACTIVA'),
-(3, 2, 2, '2026-04-24', '10:00:00', 'ACTIVA'),
-(4, 3, 4, '2026-04-25', '09:00:00', 'CANCELADA');
