@@ -1,4 +1,4 @@
-/* SLIDER */
+/* ===== EL SLIDER ===== */
 document.addEventListener("DOMContentLoaded", () => {
 
     const slides = document.querySelectorAll(".slide");
@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let actual = 0;
 
+    /* ===== MOSTRAR EL SLIDER ===== */
     function mostrarSlide(index) {
         slides.forEach(s => s.classList.remove("activo"));
         indicadores.forEach(i => i.classList.remove("activo"));

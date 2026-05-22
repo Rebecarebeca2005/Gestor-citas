@@ -1,3 +1,4 @@
+/* ===== AJUSTES VARIOS ===== */
 html, body {
     height: 100%;
 }
@@ -80,7 +81,7 @@ p {
     text-align: center;
 }
 
-/* BOTÓN BASE (igual que tu home) */
+/* ===== BOTONES ===== */
 button,
 .btn-eliminar,
 .btn-cancelar {
@@ -96,7 +97,6 @@ button,
     transition: all 0.25s ease;
 }
 
-/* eliminar (danger pero integrado) */
 .btn-eliminar {
     background: var(--color-primario);
     color: white;
@@ -107,7 +107,7 @@ button,
     transform: translateY(-2px);
 }
 
-/* cancelar estilo secundario */
+
 .btn-cancelar {
     background: transparent;
     color: var(--color-primario);
@@ -118,8 +118,8 @@ button,
     color: white;
     transform: translateY(-2px);
 }
-/* ===== POPUP PERFIL ELIMINAR (FIX) ===== */
 
+/* ===== POPUP PERFIL ELIMINAR  ===== */
 #popupEliminar {
     position: fixed;
     inset: 0;
@@ -133,12 +133,10 @@ button,
     z-index: 999999;
 }
 
-/* oculto bien */
 #popupEliminar.hidden {
     display: none !important;
 }
 
-/* caja modal */
 #popupEliminar .modal-content.confirm {
     background: var(--color-tarjeta);
 
@@ -155,7 +153,6 @@ button,
     animation: fadeIn 0.25s ease;
 }
 
-/* animación */
 @keyframes fadeIn {
     from {
         opacity: 0;

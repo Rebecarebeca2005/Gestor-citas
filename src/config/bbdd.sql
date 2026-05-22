@@ -51,7 +51,7 @@ CREATE TABLE citas (
 );
 
 INSERT INTO usuarios (nombre, apellidos, email, telefono, password, rol) VALUES
-('Admin', 'Principal', 'admin@empresa.com', '600123456', 'AdminEmpresa12.', 'admin'),
+('Admin', 'Principal', 'admin@empresa.com', '600123456', '$2y$10$ejemplohash1', 'ADMIN'),
 ('Carlos', 'Martín Ruiz', 'carlos@email.com', '611234567', '$2y$10$ejemplohash2', 'CLIENTE'),
 ('Laura', 'Sánchez Díaz', 'laura@email.com', '622345678', '$2y$10$ejemplohash3', 'CLIENTE'),
 ('David', 'Fernández Pérez', 'david@email.com', '633456789', '$2y$10$ejemplohash4', 'CLIENTE');

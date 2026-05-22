@@ -1,5 +1,4 @@
 /* ===== POPUP ELIMINAR ===== */
-
 #popupEliminar {
     position: fixed !important;
     inset: 0 !important;
@@ -19,10 +18,8 @@
     display: none !important;
 }
 
-/* CONTENIDO */
+/* ===== CONTENIDO ===== */
 #popupEliminar .modal-content.confirm {
-
-
     width: 92% !important;
     max-width: 420px !important;
 
@@ -39,7 +36,7 @@
     animation: aparecer .25s ease !important;
 }
 
-/* ICONO */
+/* ===== ICONO ===== */
 #popupEliminar .popup-icon {
 
     width: 58px !important;
@@ -60,7 +57,7 @@
     color: #c26a4a !important;
 }
 
-/* TÍTULO */
+/* ===== TITULO ===== */
 #popupEliminar h3 {
 
     margin: 0 0 10px 0 !important;
@@ -71,7 +68,7 @@
     color: var(--color-texto-principal) !important;
 }
 
-/* TEXTO */
+/* ===== TEXTO ===== */
 #popupEliminar p {
 
     margin: 0 !important;
@@ -82,7 +79,7 @@
     color: var(--color-texto-secundario) !important;
 }
 
-/* BOTONES */
+/* ===== BOTONES ===== */
 #popupEliminar .confirm-buttons {
 
     display: flex !important;
@@ -93,7 +90,7 @@
     margin-top: 24px !important;
 }
 
-/* BOTONES BASE */
+/* ===== BOTONES BASE ===== */
 #popupEliminar .confirm-buttons button {
 
     all: unset !important;
@@ -123,8 +120,6 @@
 
     transform: translateY(-2px) !important;
 }
-
-
 
 #popupEliminar .btn-cancelar:hover {
 

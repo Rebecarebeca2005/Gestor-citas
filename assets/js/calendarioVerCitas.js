@@ -1,9 +1,8 @@
-// ===============================
-//   VARIABLES
-// ===============================
+/* ===== VARIABLES ===== */
 const modalCita = document.getElementById("modalCita");
 const grid = document.getElementById("calGrid");
 
+/* ===== VARIABLES DE FECHA ===== */
 let hoy = new Date();
 let mes = hoy.getMonth();
 let anio = hoy.getFullYear();
@@ -13,75 +12,72 @@ const meses = [
     "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
 ];
 
-// ===============================
-//   RENDERIZAR CALENDARIO
-// ===============================
+/* ===== RENDERIZACIÓN DEL CALENDARIO ===== */
+
+/*
+    Función principal del script, genera
+    dinámicamente todos los días del mes
+    para consultar las citas existentes.
+*/
 function renderCalendarioListar() {
 
-    grid.innerHTML = "";
+    grid.innerHTML = ""; //Limpia cualquier contenido previo
 
-    // ===============================
-    //   FECHA HOY SEGURA
-    // ===============================
-    const ahora = new Date();
+    /* ===== FECHA ACTUAL SEGURA ===== */
+
+    const ahora = new Date(); //Obtenemos la fecha actual del sistema
 
     const fechaHoy = new Date(
         ahora.getFullYear(),
         ahora.getMonth(),
         ahora.getDate()
-    );
+    ); //Creamos una fecha sin horas ni minutos
 
-    fechaHoy.setHours(12,0,0,0);
+    fechaHoy.setHours(12,0,0,0); //Establecemos una hora fija para evitar errores de comparación
 
-    // ===============================
-    //   DÍAS DEL MES
-    // ===============================
+    /* ===== DÍAS DEL MES ===== */
+
     const diasMes =
-        new Date(anio, mes + 1, 0).getDate();
+        new Date(anio, mes + 1, 0).getDate(); //Calculamos cuantos días tiene el mes seleccionado
 
-    // ===============================
-    //   PRIMER DÍA DEL MES
-    // ===============================
+    /* ===== PRIMER DIA DEL MES ===== */
+
     let primerDia =
-        new Date(anio, mes, 1).getDay();
+        new Date(anio, mes, 1).getDay(); //Se obtiene qué día de la semana corresponde al día 1
 
-    // Domingo = 7
     primerDia =
-        primerDia === 0 ? 7 : primerDia;
+        primerDia === 0 ? 7 : primerDia; //Convertimos domingo (0) a 7
 
-    // ===============================
-    //   HUECOS VACÍOS
-    // ===============================
-    for (let i = 1; i < primerDia; i++) {
+    /* ===== HUECOS VACÍOS ===== */
+
+    for (let i = 1; i < primerDia; i++) { //Generamos espacios vacíos antes del primer día del mes
 
         const empty =
-            document.createElement("div");
+            document.createElement("div"); //Creamos la celda vacía
 
         empty.classList.add("dia-vacio");
 
         grid.appendChild(empty);
     }
 
-    // ===============================
-    //   DÍAS
-    // ===============================
-    for (let i = 1; i <= diasMes; i++) {
+    /* ===== DÍAS DEL MES ===== */
+
+    for (let i = 1; i <= diasMes; i++) { //Recorremos todos los días del mes
 
         const div =
-            document.createElement("div");
+            document.createElement("div"); //Creamos el contenedor del día
 
         div.classList.add("dia");
 
         const numero =
-            document.createElement("span");
+            document.createElement("span"); //Insertamos el número correspondiente al día
 
         numero.textContent = i;
 
         div.appendChild(numero);
 
-        // ===============================
-        //   FECHA SEGURA
-        // ===============================
+        /* ===== GENERAR FECHA SEGURA ===== */
+
         const year = anio;
 
         const month =
@@ -91,106 +87,102 @@ function renderCalendarioListar() {
             String(i).padStart(2, "0");
 
         const fecha =
-            `${year}-${month}-${day}`;
+            `${year}-${month}-${day}`; //Construimos la fecha en formato YYYY-MM-DD
 
-       // ===============================
-//   CONTAR CITAS DEL DÍA
-// ===============================
-if (typeof diasConCitas !== "undefined") {
+        /* ===== CONTADOR DE CITAS POR DÍA ===== */
 
-    const totalCitas =
-        diasConCitas.filter(
-            d => d === fecha
-        ).length;
+        if (typeof diasConCitas !== "undefined") { //Comprobamos que exista el array de citas
 
-    // crear contenedor puntos
-    if (totalCitas > 0) {
+            const totalCitas = //Contamos cuántas citas existen para esa fecha
+                diasConCitas.filter(
+                    d => d === fecha
+                ).length;
 
-        const contenedorPuntos =
-            document.createElement("div");
+            if (totalCitas > 0) { //Si existen citas...
 
-        contenedorPuntos.classList.add(
-            "contenedor-puntos"
-        );
+                const contenedorPuntos =
+                    document.createElement("div"); //Creamos el contenedor de puntos
 
-        // crear un punto por cita
-        for (let p = 0; p < totalCitas; p++) {
+                contenedorPuntos.classList.add(
+                    "contenedor-puntos"
+                );
 
-            const punto =
-                document.createElement("div");
+                for (let p = 0; p < totalCitas; p++) { //Creamos un indicador por cada cita
 
-            punto.classList.add(
-                "punto-cita"
-            );
+                    const punto =
+                        document.createElement("div"); //Creamos el punto
 
-            contenedorPuntos.appendChild(
-                punto
-            );
+                    punto.classList.add(
+                        "punto-cita"
+                    );
+
+                    contenedorPuntos.appendChild(
+                        punto
+                    );
+                }
+
+                div.appendChild(contenedorPuntos);
+            }
         }
 
-        div.appendChild(contenedorPuntos);
-    }
-}
-// ===============================
-//   PUNTOS CANCELADAS
-// ===============================
-if (
-    typeof diasCanceladas !== "undefined"
-    &&
-    Array.isArray(diasCanceladas)
-) {
+        /* ===== PUNTOS DE CITAS CANCELADAS ===== */
 
-    const totalCanceladas =
-        diasCanceladas.filter(
-            d => d === fecha
-        ).length;
-
-    if (totalCanceladas > 0) {
-
-        const contenedorCanceladas =
-            document.createElement("div");
-
-        contenedorCanceladas.classList.add(
-            "contenedor-puntos-cancelados"
-        );
-
-        const maxPuntos =
-            Math.min(totalCanceladas, 4);
-
-        for (
-            let p = 0;
-            p < maxPuntos;
-            p++
+        if (
+            typeof diasCanceladas !== "undefined"
+            &&
+            Array.isArray(diasCanceladas) //Comprobamos que exista un array con citas canceladas
         ) {
 
-            const punto =
-                document.createElement("div");
+            const totalCanceladas = //Contamos las cancelaciones de la fecha
+                diasCanceladas.filter(
+                    d => d === fecha
+                ).length;
 
-            punto.classList.add(
-                "punto-cancelado"
-            );
+            if (totalCanceladas > 0) { //Si existen cancelaciones...
 
-            contenedorCanceladas.appendChild(
-                punto
-            );
+                const contenedorCanceladas =
+                    document.createElement("div"); //Creamos el contenedor de puntos cancelados
+
+                contenedorCanceladas.classList.add(
+                    "contenedor-puntos-cancelados"
+                );
+
+                const maxPuntos =
+                    Math.min(totalCanceladas, 4); //Limitamos a un máximo de 4 indicadores
+
+                for (
+                    let p = 0;
+                    p < maxPuntos;
+                    p++
+                ) {
+
+                    const punto =
+                        document.createElement("div"); //Creamos cada punto de cancelación
+
+                    punto.classList.add(
+                        "punto-cancelado"
+                    );
+
+                    contenedorCanceladas.appendChild(
+                        punto
+                    );
+                }
+
+                div.appendChild(
+                    contenedorCanceladas
+                );
+            }
         }
 
-        div.appendChild(
-            contenedorCanceladas
-        );
-    }
-}
-        // ===============================
-        //   FECHA LOCAL
-        // ===============================
+        /* ===== FECHA LOCAL ===== */
+
         const fechaCelda =
-            new Date(year, mes, i);
+            new Date(year, mes, i); //Creamos la fecha correspondiente a la celda
 
-        fechaCelda.setHours(12,0,0,0);
+        fechaCelda.setHours(12,0,0,0); //Asignamos una hora fija para comparaciones exactas
 
-        // ===============================
-        //   MARCAR HOY
-        // ===============================
+        /* ===== MARCAR DÍA ACTUAL ===== */
+
         if (
             fechaCelda.getTime()
             ===
@@ -199,69 +191,68 @@ if (
 
             div.classList.add(
                 "hoy-marcado"
-            );
+            ); //Resaltamos visualmente el día actual
         }
 
-        // ===============================
-        //   DÍAS PASADOS
-        // ===============================
+        /* ===== DESHABILITAR FECHAS PASADAS ===== */
+
         const esPasado =
             fechaCelda.getTime()
             <
-            fechaHoy.getTime();
+            fechaHoy.getTime(); //Determina si el día pertenece al pasado
 
-        if (esPasado) {
+        if (esPasado) { //Si pertenece al pasado...
 
             div.classList.add(
                 "dia-deshabilitado"
             );
 
-            div.style.pointerEvents = "none";
+            div.style.pointerEvents = "none"; //No se puede clicar
 
-            div.style.opacity = "0.45";
+            div.style.opacity = "0.45"; //Añadimos opacidad
 
         } else {
 
             div.onclick = () =>
-                abrirCitasDelDiaListar(fecha);
+                abrirCitasDelDiaListar(fecha); //Si es válido, permite consultar las citas del día
         }
 
         grid.appendChild(div);
     }
 
-    // ===============================
-    //   TÍTULO MES
-    // ===============================
-    document.getElementById("mesActual").innerText =
+    document.getElementById("mesActual").innerText = //Actualizamos el encabezado con el mes y año mostrados
         `${meses[mes]} ${anio}`;
 }
 
-// ===============================
-//   ABRIR MODAL
-// ===============================
+/* ===== ABRIR MODAL CON LAS CITAS DEL DÍA ===== */
+
+/*
+    Esta función obtiene las citas del día seleccionado
+    y las muestra dentro de una ventana modal.
+*/
 function abrirCitasDelDiaListar(fecha) {
 
     fetch(
         "index.php?pagina=citasPorDiaAjax&fecha=" + fecha
-    )
+    ) //Ajax, envía la solicitud al servidor indicando la fecha seleccionada
 
     .then(res => res.json())
 
-    .then(citas => {
+    .then(citas => { //Convertimos la respuesta en objeto JavaScript
 
         const contenedor =
             modalCita.querySelector(".lista-citas");
 
         contenedor.innerHTML = "";
 
-        if (citas.length === 0) {
+        if (citas.length === 0) { //Si no existen citas...
 
             contenedor.innerHTML =
                 "<p class='sin-citas'>No tienes citas este día.</p>";
 
         } else {
 
-            citas.forEach(c => {
+            citas.forEach(c => { //Si existen, recorremos todas las citas y mostramos sus datos
 
                 contenedor.innerHTML += `
                     <li class="item-cita">
@@ -283,10 +274,10 @@ function abrirCitasDelDiaListar(fecha) {
             });
         }
 
-        modalCita.classList.remove("hidden");
+        modalCita.classList.remove("hidden"); //Mostramos la ventana modal
     })
 
-    .catch(error => {
+    .catch(error => { //Capturamos posibles errores de conexión o carga
 
         console.error(
             "Error cargando citas:",
@@ -295,32 +286,29 @@ function abrirCitasDelDiaListar(fecha) {
     });
 }
 
-// ===============================
-//   CERRAR MODAL
-// ===============================
+/* ===== CERRAMOS MODAL ===== */
 function cerrarCita() {
 
     modalCita.classList.add("hidden");
 }
 
-// ===============================
-//   NAVEGACIÓN
-// ===============================
-document.getElementById("prevMes").onclick = () => {
+/* ===== NAVEGACIÓN ENTRE MESES ===== */
+
+document.getElementById("prevMes").onclick = () => { //Mes anterior
 
     mes = (mes - 1 + 12) % 12;
 
     renderCalendarioListar();
 };
 
-document.getElementById("nextMes").onclick = () => {
+document.getElementById("nextMes").onclick = () => { //Mes siguiente
 
     mes = (mes + 1) % 12;
 
     renderCalendarioListar();
 };
 
-document.getElementById("btnHoy").onclick = () => {
+document.getElementById("btnHoy").onclick = () => { //Mes actual, restablece el calendario a mes y año actual
 
     const f = new Date();
 
@@ -331,7 +319,11 @@ document.getElementById("btnHoy").onclick = () => {
     renderCalendarioListar();
 };
 
-// ===============================
-//   INIT
-// ===============================
+/* ===== INIT ===== */
+/*
+    Su función es generar automáticamente
+    el calendario del mes actual para que
+    el usuario pueda consultar las citas
+    asociadas a cada día.
+*/
 renderCalendarioListar();

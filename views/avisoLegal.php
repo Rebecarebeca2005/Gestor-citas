@@ -1,101 +1,228 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
+    <!-- ===== METADATOS SEO ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Gestor de Citas | Organiza tus reservas fácilmente</title>
-    <meta name="description" content="Gestiona tus citas, reservas y horarios de forma rápida y sencilla con nuestro gestor online. Organiza todo en un solo lugar.">
-    <meta name="keywords" content="gestor de citas, reservas online, agenda digital, citas online, organizar citas">
+
+    <meta name="description"
+        content="Gestiona tus citas, reservas y horarios de forma rápida y sencilla con nuestro gestor online. Organiza todo en un solo lugar.">
+
+    <meta name="keywords"
+        content="gestor de citas, reservas online, agenda digital, citas online, organizar citas">
+
     <meta name="author" content="Rebeca">
 
     <meta name="robots" content="index, follow">
 
-    <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
+    <meta name="theme-color" content="#C26A4A">
 
+    <!-- ===== FAVICON ===== -->
+    <link rel="shortcut icon"
+        href="assets/img/30-dias.png"
+        type="image/x-icon">
+
+    <!-- ===== HOJAS DE ESTILO ===== -->
     <link rel="stylesheet" href="assets/css/politicas.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/carga.css">
 
+    <!-- ===== JQUERY ===== -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
 </head>
 
 <body>
-    <div class="volver-atras">
-    ← Volver atrás
-</div>
-    <div class="contenedor">
-        <header>
-            <span class="subtitulo-pagina">Documento Legal</span>
-            <h1>Aviso Legal</h1>
-        </header>
 
-        <section>
-            <h2>Información general</h2>
-            <p>En cumplimiento de lo dispuesto en la Ley 34/2002, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE), se informa de los siguientes datos:</p>
-            <ul>
-                <li><strong>Titular:</strong> Rebeca Miguel Sancho</li>
-                <li><strong>Sitio web:</strong> https://nexoo.wuaze.com</li>
-                <li><strong>Correo electrónico:</strong> contacto@nexoo.wuaze.com</li>
-            </ul>
-        </section>
+    <!-- ===== NAVEGACIÓN ===== -->
+    <nav class="volver-atras">
+        ← Volver atrás
+    </nav>
 
-        <section>
-            <h2>Objeto</h2>
-            <p>El presente sitio web tiene como finalidad ofrecer un sistema de gestión de citas online para pequeños negocios.</p>
-        </section>
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main>
 
-        <section>
-            <h2>Condiciones de uso</h2>
-            <p>El usuario se compromete a utilizar la página web de forma adecuada, respetando la legislación vigente y evitando actividades que puedan perjudicar el funcionamiento del sistema.</p>
-        </section>
+        <div class="contenedor">
 
-        <section>
-            <h2>Responsabilidad</h2>
-            <p>El titular no se responsabiliza de posibles interrupciones del servicio, errores técnicos o problemas derivados del uso incorrecto de la plataforma.</p>
-        </section>
+            <!-- ===== CABECERA ===== -->
+            <header>
 
-        <section>
-            <h2>Propiedad intelectual</h2>
-            <p>Todos los contenidos, diseños, código fuente, imágenes y elementos presentes en la página web pertenecen a su titular o se utilizan con autorización correspondiente.</p>
-        </section>
+                <span class="subtitulo-pagina">
+                    Documento Legal
+                </span>
 
-        <section>
-            <h2>Protección de datos</h2>
-            <p>El tratamiento de los datos personales se realiza conforme a la normativa vigente en materia de protección de datos y según lo establecido en la Política de Privacidad.</p>
-        </section>
+                <h1>
+                    Aviso Legal
+                </h1>
 
-        <section>
-            <h2>Legislación aplicable</h2>
-            <p>La relación entre el titular y el usuario se regirá por la legislación española vigente.</p>
-        </section>
-</div>
-<!-- =========================
-        FOOTER
-========================= -->
-<footer class="footer"> 
-    <p>Gestor de Citas © 2026</p> 
-    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
-        Ver en GitHub
-    </a>
-    <a href="index.php?pagina=privacidad">
-    Política de privacidad
-    </a>
+            </header>
 
-    <a href="index.php?pagina=cookies">
-        Política de cookies
-    </a>
+            <!-- ===== INFORMACIÓN GENERAL ===== -->
+            <section>
 
-    <a href="index.php?pagina=legal">
-        Aviso legal
-    </a>
-</footer>
-<div id="loader" class="loader hidden">
-    <div class="spinner"></div>
-    <p>Cargando...</p>
-</div>
+                <h2>Información general</h2>
 
-<script src="assets/js/carga.js"></script>
+                <p>
+                    En cumplimiento de lo dispuesto en la Ley 34/2002,
+                    de Servicios de la Sociedad de la Información y
+                    Comercio Electrónico (LSSI-CE), se informa de los
+                    siguientes datos:
+                </p>
+
+                <ul>
+
+                    <li>
+                        <strong>Titular:</strong>
+                        Rebeca Miguel Sancho
+                    </li>
+
+                    <li>
+                        <strong>Sitio web:</strong>
+                        https://gestordecitasnexo.xo.je
+                    </li>
+
+                    <li>
+                        <strong>Correo electrónico:</strong>
+                        rebeca.migsan@educa.jcyl.es
+                    </li>
+
+                </ul>
+
+            </section>
+
+            <!-- ===== OBJETO ===== -->
+            <section>
+
+                <h2>Objeto</h2>
+
+                <p>
+                    El presente sitio web tiene como finalidad ofrecer
+                    un sistema de gestión de citas online para pequeños
+                    negocios.
+                </p>
+
+            </section>
+
+            <!-- ===== CONDICIONES DE USO ===== -->
+            <section>
+
+                <h2>Condiciones de uso</h2>
+
+                <p>
+                    El usuario se compromete a utilizar la página web
+                    de forma adecuada, respetando la legislación vigente
+                    y evitando actividades que puedan perjudicar el
+                    funcionamiento del sistema.
+                </p>
+
+            </section>
+
+            <!-- ===== RESPONSABILIDAD ===== -->
+            <section>
+
+                <h2>Responsabilidad</h2>
+
+                <p>
+                    El titular no se responsabiliza de posibles
+                    interrupciones del servicio, errores técnicos o
+                    problemas derivados del uso incorrecto de la
+                    plataforma.
+                </p>
+
+            </section>
+
+            <!-- ===== PROPIEDAD INTELECTUAL ===== -->
+            <section>
+
+                <h2>Propiedad intelectual</h2>
+
+                <p>
+                    Todos los contenidos, diseños, código fuente,
+                    imágenes y elementos presentes en la página web
+                    pertenecen a su titular o se utilizan con autorización
+                    correspondiente.
+                </p>
+
+            </section>
+
+            <!-- ===== PROTECCIÓN DE DATOS ===== -->
+            <section>
+
+                <h2>Protección de datos</h2>
+
+                <p>
+                    El tratamiento de los datos personales se realiza
+                    conforme a la normativa vigente en materia de
+                    protección de datos y según lo establecido en la
+                    Política de Privacidad.
+                </p>
+
+            </section>
+
+            <!-- ===== LEGISLACIÓN APLICABLE ===== -->
+            <section>
+
+                <h2>Legislación aplicable</h2>
+
+                <p>
+                    La relación entre el titular y el usuario se regirá
+                    por la legislación española vigente.
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+
+        <p>
+            Gestor de Citas © 2026
+        </p>
+
+        <a
+            href="https://github.com/Rebecarebeca2005/Gestor-citas.git"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Ver en GitHub
+
+        </a>
+
+        <a href="index.php?pagina=privacidad">
+            Política de privacidad
+        </a>
+
+        <a href="index.php?pagina=cookies">
+            Política de cookies
+        </a>
+
+        <a href="index.php?pagina=legal">
+            Aviso legal
+        </a>
+
+    </footer>
+
+    <!-- ===== LOADER ===== -->
+    <div id="loader" class="loader hidden">
+
+        <div class="spinner"></div>
+
+        <p>
+            Cargando...
+        </p>
+
+    </div>
+
+    <!-- ===== SCRIPT DE CARGA ===== -->
+    <script src="assets/js/carga.js"></script>
+
 </body>
+
 </html>

@@ -1,7 +1,4 @@
-/* ============================
-   MODAL EDITAR ADMIN
-============================ */
-
+/* ===== MODAL DE EDICIÓN DEL ADMIN ===== */
 #modalEditarAdmin {
     position: fixed;
     inset: 0;
@@ -23,10 +20,8 @@
     display: none !important;
 }
 
-/* ============================
-   CONTENIDO
-============================ */
 
+/* ===== CONTENIDO ===== */
 #modalEditarAdmin .modal-content {
 
     background: #ffffff;
@@ -62,10 +57,8 @@
     }
 }
 
-/* ============================
-   BOTÓN CERRAR
-============================ */
 
+/* ===== BOTÓN DE CERRAR EL MODAL ===== */
 #modalEditarAdmin .cerrar-modal {
 
     position: absolute;
@@ -89,10 +82,7 @@
     transform: scale(1.12);
 }
 
-/* ============================
-   TÍTULO
-============================ */
-
+/* ===== EL TÍTULO ===== */
 #modalEditarAdmin h2 {
 
     margin-bottom: 18px;
@@ -104,10 +94,7 @@
     font-weight: 700;
 }
 
-/* ============================
-   FORMULARIO
-============================ */
-
+/* ===== FORMULARIO ===== */
 #formEditarCitaAdmin label {
 
     display: block;
@@ -164,10 +151,7 @@
     box-shadow: 0 0 0 3px rgba(194,106,74,0.15);
 }
 
-/* ============================
-   BOTÓN GUARDAR
-============================ */
-
+/* ===== BOTÓN DE GUARDAR ===== */
 #formEditarCitaAdmin .btn-guardar {
 
     margin-top: 22px;

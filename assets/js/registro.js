@@ -1,6 +1,6 @@
 $(function () {
 
-    /* POPUP */
+    /* ===== PUPUP ===== */
     function showPopup(msg) {
         $("#popup-text").text(msg);
         $("#popup").removeClass("hidden");
@@ -14,7 +14,7 @@ $(function () {
         $("#popup").addClass("hidden");
     });
 
-    /* VALIDACIONES PASO 1 */
+    /* ===== VALIDACION PASO 1 ===== */
     function validarPaso1() {
 
         let nombre = $("input[name='nombre']").val().trim();
@@ -37,7 +37,7 @@ $(function () {
         return true;
     }
 
-    /* VALIDACIONES PASO 2 */
+    /* ===== VALIDACION PASO 2 ===== */
     function validarPaso2() {
 
         let pass1 = $("#password").val();
@@ -58,7 +58,7 @@ $(function () {
         return true;
     }
 
-    /* CONTROL MULTIPASO */
+    /* ===== CONTROL MULTIPASO ===== */
     $(".btn-siguiente").on("click", function () {
 
         const $seccionActual = $(this).closest(".seccion");
@@ -91,7 +91,7 @@ $(function () {
 
 });
 
-    /* MOSTRAR / OCULTAR CONTRASEÑA */
+    /* ===== MOSTRAR CONTREÑA O OCULTAR ===== */
     $(function () {
 
     $(".mostrar-password").on("click", function () {

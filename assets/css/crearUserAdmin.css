@@ -1,7 +1,4 @@
-/* =========================================
-   CONTENEDOR PRINCIPAL
-========================================= */
-
+/* ===== CONTENEDOR PRINCIPAL ===== */
 .crear-user-page {
     min-height: 100vh;
     padding: 40px 20px;
@@ -11,10 +8,7 @@
     align-items: flex-start;
 }
 
-/* =========================================
-   CARD
-========================================= */
-
+/* ===== CARD DE CREACIÓN DE CLIENTE/ADMIN ===== */
 .crear-user-card {
 
     width: 100%;
@@ -32,10 +26,7 @@
     border: 1px solid rgba(0,0,0,0.04);
 }
 
-/* =========================================
-   HEADER
-========================================= */
-
+/* ===== HEADER ===== */
 .crear-user-header {
     margin-bottom: 35px;
 }
@@ -59,10 +50,7 @@
     font-size: 1rem;
 }
 
-/* =========================================
-   FORM
-========================================= */
-
+/* ===== FORMULARIO ===== */
 .crear-user-form {
 
     display: flex;
@@ -71,10 +59,7 @@
     gap: 22px;
 }
 
-/* =========================================
-   CAMPOS
-========================================= */
-
+/* ===== CAMPOS DEL FORMULARIO ===== */
 .crear-user-field {
 
     display: flex;
@@ -92,8 +77,7 @@
     color: var(--color-texto-principal);
 }
 
-/* INPUTS */
-
+/* ===== INPUTS DEL FORMULARIO ===== */
 .crear-user-field input,
 .crear-user-field select {
 
@@ -117,8 +101,6 @@
     outline: none;
 }
 
-/* FOCUS */
-
 .crear-user-field input:focus,
 .crear-user-field select:focus {
 
@@ -130,19 +112,13 @@
     transform: translateY(-1px);
 }
 
-/* =========================================
-   SELECT
-========================================= */
-
+/* ===== SELECTS ===== */
 .crear-user-field select {
 
     cursor: pointer;
 }
 
-/* =========================================
-   BOTÓN
-========================================= */
-
+/* ===== BOTONES ===== */
 .crear-user-btn {
 
     margin-top: 10px;
@@ -183,10 +159,7 @@
         0 12px 24px rgba(194,106,74,0.30);
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
-
+/* ===== RESPONSIVE GENERAL ===== */
 @media (max-width: 700px) {
 
     .crear-user-page {

@@ -1,4 +1,12 @@
 /* ===== MODAL ===== */
+
+/*
+   Ventana modal utilizada para mostrar contenido o solicitar
+   confirmaciones sin abandonar la página actual.
+   Ocupa toda la pantalla y oscurece el fondo para centrar
+   la atención del usuario en el contenido mostrado.
+*/
+
 .modal {
     position: fixed;
     inset: 0;
@@ -12,7 +20,7 @@
     display: none !important;
 }
 
-/* BOTÓN CERRAR SIDEBAR */
+/* ===== BOTÓN CERRAR SIDEBAR ===== */
 .close-sidebar {
     position: absolute;
     top: 12px;
@@ -40,11 +48,7 @@
     color: white;
 }
 
-
-/* =========================
-   MODAL REGISTRO
-========================= */
-
+/* ===== MODAL DE REGISTRO ===== */
 .modal {
     position: fixed;
     inset: 0;
@@ -60,12 +64,12 @@
     z-index: 99999;
 }
 
-/* mostrar modal */
+/* ===== MOSTRAR MODAL ===== */
 .modal:not(.hidden) {
     display: flex;
 }
 
-/* CONTENEDOR */
+/* ===== CONTENEDOR DEL MODAL ===== */
 .modal-content {
     background: var(--color-tarjeta);
     padding: 24px;
@@ -78,17 +82,16 @@
     flex-direction: column;
     gap: 16px;
 
-    /* Quitamos alturas fijas si las tuvieras y añadimos esto: */
     height: auto; 
-    max-height: 90vh; /* Evita que se salga de la pantalla hacia abajo */
-    overflow-y: auto; /* Si el contenido es ENORME, permite scroll interno */
+    max-height: 90vh; /* Evitamos que se salga de la pantalla hacia abajo */
+    overflow-y: auto; /* Si hay contenido, permitimos scroll interno */
     
     box-shadow: 0 10px 25px var(--color-sombra);
     position: relative;
     z-index: 100000;
 }
 
-/* CERRAR */
+/* ===== CERRAR MODAL ===== */
 .cerrar-modal {
     position: absolute;
     top: 12px;
@@ -103,7 +106,7 @@
     color: var(--color-primario);
 }
 
-/* PASOS */
+/* ===== PASOS DEL MODAL ===== */
 .pasos {
     list-style: none;
     display: flex;
@@ -125,7 +128,7 @@
     border-bottom: 2px solid var(--color-primario);
 }
 
-/* FORM */
+/* ===== FORMULARIO ===== */
 .formulario {
     width: 100%;
 }
@@ -140,7 +143,7 @@
     display: flex;
 }
 
-/* INPUTS */
+/* ===== INPUTS DEL FORMULARIO ===== */
 .formulario input {
     width: 100%;
     padding: 12px 14px;
@@ -158,35 +161,36 @@
     padding: 0;       
 }
 
-/* Ajusta el textarea para que no sea gigante por defecto */
+/* ===== TEXTAREA ===== */
 .formulario textarea {
     width: 100%;
-    min-height: 80px; /* Altura inicial pequeña */
-    max-height: 150px; /* Que no crezca infinito */
+    min-height: 80px; 
+    max-height: 150px; 
     padding: 12px 14px;
     border: 1px solid var(--color-borde);
     border-radius: 10px;
     background: #f7f5f2;
     font-family: 'Nunito', sans-serif;
     resize: vertical; /* Solo permite agrandarlo hacia abajo */
-    box-sizing: border-box; /* IMPORTANTÍSIMO: evita que el padding sume ancho */
+    box-sizing: border-box; 
 }
 
-/* Asegura que los inputs no rompan el diseño */
+/* ===== INPUTS ===== */
+
 .formulario input {
-    box-sizing: border-box; /* Asegura que el ancho sea exactamente 100% */
+    box-sizing: border-box; 
 }
 
-/* cuando se selecciona */
 .formulario textarea:focus {
     border-color: var(--color-primario);
     box-shadow: 0 0 0 3px rgba(194,106,74,0.15);
 }
 
-/* hover suave */
 .formulario textarea:hover {
     background: #f3efe9;
 }
+
+/* ===== SELECT ===== */
 
 select {
     width: 100%;
@@ -199,14 +203,12 @@ select {
     font-family: 'Nunito';
 }
 
-/* FILA DOBLE */
 .fila-doble {
     display: flex;
     gap: 12px;
 }
 
-
-/* BOTÓN CERRAR SIDEBAR */
+/* ===== CERRAR SIDEBAR ===== */
 .close-sidebar {
     position: absolute;
     top: 12px;
@@ -233,7 +235,7 @@ select {
     color: white;
 }
 
-
+/* ===== AÑADIR TIPOGRAFÍA ===== */
 button, 
 input, 
 select, 
@@ -242,6 +244,7 @@ textarea {
     font-size: inherit; 
 }
 
+/* ===== DISEÑO DE LOS DÍAS DESHABILITADOS ===== */
 .dia-deshabilitado {
     opacity: 0.4;
     pointer-events: none;
@@ -249,8 +252,7 @@ textarea {
     background: #eee;
 }
 
-/* ===== BOTONES FORMULARIO ===== */
-
+/* ===== BOTONES DEL FORMULARIO ===== */
 .botones-formulario {
     display: flex;
     gap: 10px;
@@ -261,7 +263,7 @@ textarea {
     flex: 1;
 }
 
-/* estilos generales */
+/* ===== ESTILO DE BOTONES ===== */
 .btn-atras,
 .btn-siguiente,
 .btn-enviar {
@@ -276,7 +278,6 @@ textarea {
     font-family: 'Nunito', sans-serif;
 }
 
-/* atrás */
 .btn-atras {
     background: #d8d1c7;
     color: var(--color-texto-principal);
@@ -286,7 +287,6 @@ textarea {
     background: #c7beb3;
 }
 
-/* siguiente y enviar */
 .btn-siguiente,
 .btn-enviar {
     background: var(--color-primario);
@@ -299,9 +299,8 @@ textarea {
 }
 
 
-/* =========================
-          TABLET
-========================= */
+/* ===== RESPONSIVE ===== */
+/* ===== TABLET ===== */
 
 @media (max-width: 992px) {
 
@@ -358,7 +357,6 @@ textarea {
         width: 100%;
     }
 
-    /* 🔥 separación PERFECTA */
     .cal-weekdays {
         margin-bottom: 4px;
     }
@@ -392,9 +390,7 @@ textarea {
     }
 }
 
-/* =========================
-        MÓVIL GRANDE
-========================= */
+/* ===== MÓVIL (GRANDE) ===== */
 
 @media (max-width: 768px) {
 
@@ -411,7 +407,6 @@ textarea {
         width: 100%;
     }
 
-    /* 🔥 separación natural */
     .cal-weekdays {
         margin-bottom: 4px;
     }
@@ -442,34 +437,31 @@ textarea {
         padding: 4px;
     }
 
-    /* FIX BOTÓN SIGUIENTE CENTRADO */
-.botones-formulario {
+    .botones-formulario {
 
-    width: 100%;
+        width: 100%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn-siguiente,
+    .btn-enviar {
+
+        width: 100%;
+        max-width: 280px;
+
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 
-.btn-siguiente,
-.btn-enviar {
-
-    width: 100%;
-    max-width: 280px;
-
-    margin: 0 auto;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-}
-
-/* =========================
-        MÓVIL PEQUEÑO
-========================= */
+/* ===== MÓVIL (PEQUEÑO) ===== */
 
 @media (max-width: 480px) {
 

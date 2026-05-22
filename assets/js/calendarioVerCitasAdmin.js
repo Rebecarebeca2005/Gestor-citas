@@ -1,9 +1,8 @@
-// ===============================
-//   VARIABLES
-// ===============================
+/* ===== VARIABLES ===== */
 const modalCita = document.getElementById("modalCita");
 const grid = document.getElementById("calGrid");
 
+/* ===== VARIABLES DE FECHA ===== */
 let hoy = new Date();
 let mes = hoy.getMonth();
 let anio = hoy.getFullYear();
@@ -13,149 +12,148 @@ const meses = [
     "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
 ];
 
-// ===============================
-//   RENDERIZAR CALENDARIO
-// ===============================
+/* ===== RENDERIZACIÓN DEL CALENDARIO ===== */
+
+/*
+    Función principal del script, genera
+    dinámicamente todos los días del mes
+    para consultar las citas existentes.
+*/
 function renderCalendarioListar() {
 
-    grid.innerHTML = "";
+    grid.innerHTML = ""; //Limpia cualquier contenido previo
 
     const fechaHoy = new Date();
-    fechaHoy.setHours(0,0,0,0);
+    fechaHoy.setHours(0,0,0,0); //Obtenemos la fecha actual y ponemos la hora 0 para comparar solo días
 
-    const diasMes = new Date(anio, mes + 1, 0).getDate();
+    const diasMes = new Date(anio, mes + 1, 0).getDate(); //Calculamos cuantos días tiene el mes seleccionado
 
-    // ===============================
-    //   PRIMER DÍA DEL MES
-    // ===============================
-    let primerDia = new Date(anio, mes, 1).getDay();
+    /* ===== PRIMER DIA DEL MES ===== */
+    let primerDia = new Date(anio, mes, 1).getDay(); //Se obtiene qué día de la semana corresponde al día 1
 
-    // Convertir domingo (0) en 7
-    primerDia = primerDia === 0 ? 7 : primerDia;
+    primerDia = primerDia === 0 ? 7 : primerDia; //Convertimos domingo (0) a 7
 
-    // ===============================
-    //   HUECOS VACÍOS
-    // ===============================
-    for (let i = 1; i < primerDia; i++) {
+    /* ===== HUECOS VACÍOS ===== */
+    for (let i = 1; i < primerDia; i++) { //Generamos espacios vacíos antes del primer día del mes
 
-        const empty = document.createElement("div");
+        const empty = document.createElement("div"); //Creamos la celda vacía
 
         empty.classList.add("dia-vacio");
 
         grid.appendChild(empty);
     }
 
-    // ===============================
-    //   DÍAS DEL MES
-    // ===============================
-    for (let i = 1; i <= diasMes; i++) {
+    /* ===== DÍAS DEL MES ===== */
+    for (let i = 1; i <= diasMes; i++) { //Recorremos todos los días del mes
 
-        const div = document.createElement("div");
+        const div = document.createElement("div"); //Creamos el contenedor del día
         div.classList.add("dia");
 
-        const numero = document.createElement("span");
+        const numero = document.createElement("span"); //Insertamos el número correspondiente al día
         numero.textContent = i;
         div.appendChild(numero);
 
-        const fecha = `${anio}-${String(mes+1).padStart(2,"0")}-${String(i).padStart(2,"0")}`;
+        const fecha = `${anio}-${String(mes+1).padStart(2,"0")}-${String(i).padStart(2,"0")}`; //Generamos la fecha completa en formato YYYY-MM-DD
         
-        // ===============================
-//   CONTAR CITAS DEL DÍA
-// ===============================
-if (
-    typeof diasConCitas !== "undefined"
-    &&
-    Array.isArray(diasConCitas)
-) {
+         /* ===== CONTADOR DE CITAS POR DÍA ===== */
 
-    const totalCitas =
-        diasConCitas.filter(
-            d => d === fecha
-        ).length;
-
-    if (totalCitas > 0) {
-
-        const contenedorPuntos =
-            document.createElement("div");
-
-        contenedorPuntos.classList.add(
-            "contenedor-puntos"
-        );
-
-        for (
-            let p = 0;
-            p < totalCitas;
-            p++
+        if (
+            typeof diasConCitas !== "undefined"
+            &&
+            Array.isArray(diasConCitas) //Comprobamos que exista un array con días que contienen citas
         ) {
 
-            const punto =
-                document.createElement("div");
+            const totalCitas = //Contamos cuántas citas existen para esa fecha
+                diasConCitas.filter(
+                    d => d === fecha
+                ).length;
 
-            punto.classList.add(
-                "punto-cita"
-            );
+            if (totalCitas > 0) { //Si existen citas...
 
-            contenedorPuntos.appendChild(
-                punto
-            );
+                const contenedorPuntos =
+                    document.createElement("div"); //Creamos el contenedor de puntos
+
+                contenedorPuntos.classList.add(
+                    "contenedor-puntos"
+                );
+
+                for (
+                    let p = 0;
+                    p < totalCitas; //Creamos los indicadores visuales
+                    p++
+                ) {
+
+                    const punto =
+                        document.createElement("div"); //Creamos cada punto
+
+                    punto.classList.add(
+                        "punto-cita"
+                    );
+
+                    contenedorPuntos.appendChild(
+                        punto
+                    );
+                }
+
+                div.appendChild(
+                    contenedorPuntos
+                );
+            }
         }
 
-        div.appendChild(
-            contenedorPuntos
-        );
-    }
-}
-// ===============================
-//   PUNTOS CANCELADAS
-// ===============================
-if (
-    typeof diasCanceladas !== "undefined"
-    &&
-    Array.isArray(diasCanceladas)
-) {
+        /* ===== PUNTOS DE CITAS CANCELADAS ===== */
 
-    const totalCanceladas =
-        diasCanceladas.filter(
-            d => d === fecha
-        ).length;
-
-    if (totalCanceladas > 0) {
-
-        const contenedorCanceladas =
-            document.createElement("div");
-
-        contenedorCanceladas.classList.add(
-            "contenedor-puntos-cancelados"
-        );
-
-        const maxPuntos =
-            Math.min(totalCanceladas, 4);
-
-        for (
-            let p = 0;
-            p < maxPuntos;
-            p++
+        if (
+            typeof diasCanceladas !== "undefined"
+            &&
+            Array.isArray(diasCanceladas) //Comprobamos que exista un array con citas canceladas
         ) {
 
-            const punto =
-                document.createElement("div");
+            const totalCanceladas = //Contamos las cancelaciones de la fecha
+                diasCanceladas.filter(
+                    d => d === fecha
+                ).length;
 
-            punto.classList.add(
-                "punto-cancelado"
-            );
+            if (totalCanceladas > 0) { //Si existen cancelaciones...
 
-            contenedorCanceladas.appendChild(
-                punto
-            );
+                const contenedorCanceladas =
+                    document.createElement("div"); //Creamos el contenedor de puntos cancelados
+
+                contenedorCanceladas.classList.add(
+                    "contenedor-puntos-cancelados"
+                );
+
+                const maxPuntos =
+                    Math.min(totalCanceladas, 4); //Limitamos a un máximo de 4 indicadores
+
+                for (
+                    let p = 0;
+                    p < maxPuntos;
+                    p++
+                ) {
+
+                    const punto =
+                        document.createElement("div"); //Creamos cada punto de cancelación
+
+                    punto.classList.add(
+                        "punto-cancelado"
+                    );
+
+                    contenedorCanceladas.appendChild(
+                        punto
+                    );
+                }
+
+                div.appendChild(
+                    contenedorCanceladas
+                );
+            }
         }
 
-        div.appendChild(
-            contenedorCanceladas
-        );
-    }
-}
         const fechaCelda = new Date(anio, mes, i);
         fechaCelda.setHours(0,0,0,0);
+
+        /* ===== MARCAR DÍA ACTUAL ===== */
 
         if (
             fechaCelda.getTime()
@@ -165,56 +163,65 @@ if (
 
             div.classList.add(
                 "hoy-marcado"
-            );
+            ); //Resaltamos visualmente el día actual
         }
 
-        const esPasado = fechaCelda < fechaHoy;
+        /* ===== DESHABILITAR FECHAS PASADAS ===== */
 
-        if (esPasado) {
-            div.classList.add("dia-deshabilitado");
-            div.style.pointerEvents = "none";
-            div.style.opacity = "0.45";
+        const esPasado = fechaCelda < fechaHoy; //Determina si el día pertenece al pasado
+
+        if (esPasado) { //Si pertenece al pasado...
+
+            div.classList.add("dia-deshabilitado"); //Se deshabilita
+            div.style.pointerEvents = "none"; //No se puede clicar
+            div.style.opacity = "0.45"; //Añadimos opacidad
+
         } else {
-            div.onclick = () => abrirCitasDelDiaListar(fecha);
+
+            div.onclick = () => abrirCitasDelDiaListar(fecha); //Si es válido, permite consultar las citas del día
         }
 
         grid.appendChild(div);
     }
 
-    document.getElementById("mesActual").innerText =
+    document.getElementById("mesActual").innerText = //Actualizamos el encabezado con el mes y año mostrados
         `${meses[mes]} ${anio}`;
 }
 
-// ===============================
-//   ABRIR MODAL CITAS
-// ===============================
+/* ===== ABRIR MODAL CON LAS CITAS DEL DÍA ===== */
+
+/*
+    Esta función obtiene las citas del día seleccionado
+    y las muestra dentro de una ventana modal.
+*/
 function abrirCitasDelDiaListar(fecha) {
 
     fetch(
         "index.php?pagina=citasPorDiaAdminAjax&fecha=" + fecha
-    )
+    ) //Ajax, envía la solicitud al servidor indicando la fecha seleccionada
 
     .then(res => res.json())
 
-    .then(citas => {
+    .then(citas => { //Convertimos la respuesta en objeto JavaScript
 
         const contenedor =
             modalCita.querySelector(".lista-citas");
 
-        contenedor.innerHTML = "";
+        contenedor.innerHTML = ""; //Limpiamos las citas mostradas anteriormente
 
-        if (citas.length === 0) {
+        if (citas.length === 0) { //Si no existen citas...
 
             contenedor.innerHTML =
                 "<p class='sin-citas'>No tienes citas este día.</p>";
 
         } else {
 
-            citas.forEach(c => {
+            citas.forEach(c => { //Si existen, recorremos todas las citas y mostramos sus datos
 
                 contenedor.innerHTML += `
 <li class="item-cita">
 
+    <!-- Acciones disponibles para el administrador -->
     <div class="acciones-cita-admin">
 
         <button 
@@ -233,17 +240,18 @@ function abrirCitasDelDiaListar(fecha) {
 
     </div>
 
+    <!-- Información de la cita -->
     <h3>${c.servicio}</h3>
     
     <p>
-    <strong>Cliente:</strong>
-    ${c.nombre} ${c.apellidos}
-</p>
+        <strong>Cliente:</strong>
+        ${c.nombre} ${c.apellidos}
+    </p>
 
-<p>
-    <strong>Teléfono:</strong>
-    ${c.telefono}
-</p>
+    <p>
+        <strong>Teléfono:</strong>
+        ${c.telefono}
+    </p>
 
     <p>
         <strong>Hora:</strong>
@@ -262,36 +270,33 @@ function abrirCitasDelDiaListar(fecha) {
             });
         }
 
-        modalCita.classList.remove("hidden");
+        modalCita.classList.remove("hidden"); //Mostramos la ventana modal con las citas
     });
 }
 
-// ===============================
-//   CERRAR MODAL
-// ===============================
+/* ===== CERRAMOS MODAL ===== */
 function cerrarCita() {
 
     modalCita.classList.add("hidden");
 }
 
-// ===============================
-//   NAVEGACIÓN
-// ===============================
-document.getElementById("prevMes").onclick = () => {
+/* ===== NAVEGACIÓN ENTRE MESES ===== */
+
+document.getElementById("prevMes").onclick = () => { //Mes anterior
 
     mes = (mes - 1 + 12) % 12;
 
     renderCalendarioListar();
 };
 
-document.getElementById("nextMes").onclick = () => {
+document.getElementById("nextMes").onclick = () => { //Mes siguiente
 
     mes = (mes + 1) % 12;
 
     renderCalendarioListar();
 };
 
-document.getElementById("btnHoy").onclick = () => {
+document.getElementById("btnHoy").onclick = () => { //Mes actual, restablece el calendario a mes y año actual
 
     const f = new Date();
 
@@ -301,18 +306,21 @@ document.getElementById("btnHoy").onclick = () => {
     renderCalendarioListar();
 };
 
-// ===============================
-//   ABRIR MODAL EDITAR
-// ===============================
+/* ===== ABRIR MODAL EDITAR ===== */
+
+/*
+    Obtiene la información completa de la cita
+    seleccionada y carga los datos en el formulario.
+*/
 function abrirModalEditarCita(id_cita) {
 
     fetch(
-    "index.php?pagina=citaDetalleAdminAjax&id=" + id_cita
-)
+        "index.php?pagina=citaDetalleAdminAjax&id=" + id_cita
+    ) //Solicita al servidor los datos completos de la cita
 
     .then(res => res.json())
 
-    .then(cita => {
+    .then(cita => { //Rellenamos automáticamente los campos del formulario
 
         const form =
             document.getElementById(
@@ -330,16 +338,16 @@ function abrirModalEditarCita(id_cita) {
         form.querySelector(
             "textarea[name='descripcion']"
         ).value =
-            cita.descripcion || "";
+            cita.descripcion || ""; //Si no existe descripción se deja vacío
 
-        // =========================
-        // ESTADO
-        // =========================
+        /* ===== ESTADO DE LA CITA ===== */
+
         document.getElementById(
             "estadoAdmin"
-        ).value = cita.estado;
+        ).value = cita.estado; //Asignamos el estado actual
 
-        // bloquear CANCELADA si ACTIVA
+        //Si la cita está activa no permitimos
+        //seleccionar directamente el estado cancelada
         if (cita.estado === "ACTIVA") {
 
             document.querySelector(
@@ -357,20 +365,18 @@ function abrirModalEditarCita(id_cita) {
             cita.fecha,
             cita.id_disponibilidad,
             cita.id_cita
-        );
+        ); //Cargamos las horas disponibles para la cita
 
         document
             .getElementById(
                 "modalEditarAdmin"
             )
             .classList
-            .remove("hidden");
+            .remove("hidden"); //Mostramos la ventana de edición
     });
 }
 
-// ===============================
-//   CERRAR EDITAR
-// ===============================
+/* ===== CERRAMOS MODAL DE EDICIÓN ===== */
 function cerrarEditarAdmin() {
 
     document
@@ -379,9 +385,12 @@ function cerrarEditarAdmin() {
         .add("hidden");
 }
 
-// ===============================
-//   CARGAR HORAS
-// ===============================
+/* ===== CARGAR HORAS DISPONIBLES ===== */
+
+/*
+    Obtiene las horas disponibles para una fecha
+    determinada y las carga en el desplegable.
+*/
 function cargarHorasDisponiblesAdmin(
     fecha,
     seleccionada = null,
@@ -392,7 +401,7 @@ function cargarHorasDisponiblesAdmin(
         "index.php?pagina=horasDisponiblesAjax&fecha="
         + fecha +
         "&id_cita=" + idCita
-    )
+    ) //Solicita al servidor las horas disponibles
 
     .then(res => res.json())
 
@@ -403,9 +412,9 @@ function cargarHorasDisponiblesAdmin(
                 "horaAdmin"
             );
 
-        select.innerHTML = "";
+        select.innerHTML = ""; //Eliminamos las opciones anteriores
 
-        horas.forEach(h => {
+        horas.forEach(h => { //Recorremos todas las horas disponibles
 
             const option =
                 document.createElement("option");
@@ -420,7 +429,7 @@ function cargarHorasDisponiblesAdmin(
                 Number(seleccionada) ===
                 Number(h.id_disponibilidad)
             ) {
-                option.selected = true;
+                option.selected = true; //Marcamos la hora actualmente asignada a la cita
             }
 
             select.appendChild(option);
@@ -428,9 +437,8 @@ function cargarHorasDisponiblesAdmin(
     });
 }
 
-// ===============================
-//   GUARDAR EDICIÓN ADMIN
-// ===============================
+/* ===== GUARDAR CAMBIOS DE LA CITA ===== */
+
 const btnGuardarEdicion =
     document.getElementById(
         "btnGuardarEdicion"
@@ -440,7 +448,7 @@ if (btnGuardarEdicion) {
 
     btnGuardarEdicion.addEventListener(
         "click",
-        async () => {
+        async () => { //Escucha el clic sobre el botón guardar
 
             try {
 
@@ -452,7 +460,7 @@ if (btnGuardarEdicion) {
                 const fechaActual =
                     document.getElementById(
                         "fechaAdmin"
-                    ).value;
+                    ).value; //Obtenemos la fecha actual de la cita
 
                 const response = await fetch(
                     "index.php?pagina=editarCitaAdminAjax",
@@ -463,24 +471,24 @@ if (btnGuardarEdicion) {
                             formEditarAdmin
                         )
                     }
-                );
+                ); //Envía los datos modificados al servidor
 
                 const data =
-                    await response.json();
+                    await response.json(); //Convertimos la respuesta en objeto JavaScript
 
-                if (data.ok) {
+                if (data.ok) { //Si la actualización se realiza correctamente
 
-                    cerrarEditarAdmin();
+                    cerrarEditarAdmin(); //Cerramos la ventana de edición
 
                     showPopup(
                         "Cita actualizada correctamente"
-                    );
+                    ); //Mostramos mensaje de confirmación
 
                     abrirCitasDelDiaListar(
                         fechaActual
-                    );
+                    ); //Recargamos las citas del día para mostrar los cambios
 
-                } else {
+                } else { //Si ocurre algún error durante la actualización
 
                     showPopup(
                         data.msg ||
@@ -488,7 +496,7 @@ if (btnGuardarEdicion) {
                     );
                 }
 
-            } catch(error) {
+            } catch(error) { //Capturamos posibles errores del servidor
 
                 console.error(error);
 
@@ -500,22 +508,26 @@ if (btnGuardarEdicion) {
     );
 }
 
-// ===============================
-//   VARIABLES ELIMINAR
-// ===============================
+/* ===== VARIABLES PARA CANCELAR CITAS ===== */
+
+//Almacenan temporalmente la cita seleccionada
+//para realizar la cancelación
 let citaAEliminar = null;
 let fechaAEliminar = null;
 
-// ===============================
-//   MOSTRAR POPUP ELIMINAR
-// ===============================
+/* ===== MOSTRAR CONFIRMACIÓN DE CANCELACIÓN ===== */
+
+/*
+    Muestra una ventana de confirmación antes
+    de cancelar la cita seleccionada.
+*/
 function mostrarPopupEliminar(
     id_cita,
     fecha,
     estado
 ) {
 
-    if (estado === "CANCELADA") {
+    if (estado === "CANCELADA") { //Impide cancelar una cita que ya está cancelada
 
         showPopup(
             "La cita ya ha sido cancelada"
@@ -524,18 +536,18 @@ function mostrarPopupEliminar(
         return;
     }
 
-    citaAEliminar = id_cita;
-    fechaAEliminar = fecha;
+    citaAEliminar = id_cita; //Guardamos el identificador de la cita
+    fechaAEliminar = fecha; //Guardamos la fecha de la cita
 
     document
         .getElementById("popupEliminar")
         .classList
-        .remove("hidden");
+        .remove("hidden"); //Mostramos la ventana de confirmación
 }
 
-// ===============================
-//   CANCELAR ELIMINAR
-// ===============================
+/* ===== CANCELAR ELIMINACIÓN ===== */
+
+//Oculta la ventana sin realizar ninguna acción
 document
 .getElementById("btnCancelarEliminar")
 .addEventListener("click", () => {
@@ -546,9 +558,12 @@ document
         .add("hidden");
 });
 
-// ===============================
-//   CONFIRMAR ELIMINAR
-// ===============================
+/* ===== CONFIRMAR CANCELACIÓN ===== */
+
+/*
+    Envía la solicitud al servidor para
+    cancelar la cita seleccionada.
+*/
 document
 .getElementById("btnConfirmarEliminar")
 .addEventListener("click", () => {
@@ -566,30 +581,30 @@ document
             body:
                 "id_cita=" + citaAEliminar
         }
-    )
+    ) //Solicita al servidor la cancelación de la cita
 
     .then(res => res.json())
 
     .then(data => {
 
-        if (data.ok) {
+        if (data.ok) { //Si la cita se cancela correctamente
 
             citaAEliminar = null;
 
             document
                 .getElementById("popupEliminar")
                 .classList
-                .add("hidden");
+                .add("hidden"); //Ocultamos la ventana de confirmación
 
             showPopup(
                 "La cita ha sido cancelada"
-            );
+            ); //Mostramos mensaje de confirmación
 
             abrirCitasDelDiaListar(
                 fechaAEliminar
-            );
+            ); //Actualizamos el listado mostrado en pantalla
 
-        } else {
+        } else { //Si ocurre algún error durante la cancelación
 
             showPopup(
                 data.msg ||
@@ -599,9 +614,12 @@ document
     });
 });
 
-// ===============================
-//   POPUP MENSAJES
-// ===============================
+/* ===== MENSAJES EMERGENTES ===== */
+
+/*
+    Muestra mensajes informativos al usuario
+    de forma temporal.
+*/
 function showPopup(msg) {
 
     const popup =
@@ -610,17 +628,20 @@ function showPopup(msg) {
     const text =
         document.getElementById("popup-text");
 
-    text.textContent = msg;
+    text.textContent = msg; //Insertamos el mensaje recibido
 
-    popup.classList.remove("hidden");
+    popup.classList.remove("hidden"); //Mostramos la ventana emergente
 
     setTimeout(() => {
 
         popup.classList.add("hidden");
 
-    }, 3000);
+    }, 3000); //Oculta automáticamente el mensaje tras unos segundos
 }
 
+/* ===== CIERRE MANUAL DEL POPUP ===== */
+
+//Permite cerrar manualmente el mensaje emergente
 document
 .getElementById("popup-close")
 .addEventListener("click", () => {
@@ -631,7 +652,12 @@ document
         .add("hidden");
 });
 
-// ===============================
-//   INIT
-// ===============================
+/* ===== INIT ===== */
+
+/*
+    Su función es generar automáticamente
+    el calendario del mes actual para que
+    el administrador pueda consultar,
+    editar y cancelar citas.
+*/
 renderCalendarioListar();

@@ -1,15 +1,11 @@
-/* =========================
-        ESTADÍSTICAS
-========================= */
-
+/* ===== ESTADÍSTICAS ===== */
 .stats-page {
     max-width: 1300px;
     margin: 40px auto;
     padding: 20px;
 }
 
-/* HEADER */
-
+/* ===== HEADER ===== */
 .stats-header {
     display: flex;
     justify-content: space-between;
@@ -29,8 +25,7 @@
     margin-top: 8px;
 }
 
-/* FILTROS */
-
+/* ===== FILTROS ===== */
 .stats-filters {
     display: flex;
     gap: 10px;
@@ -54,8 +49,7 @@
     color: white;
 }
 
-/* CARDS */
-
+/* ===== CARTAS ===== */
 .stats-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
@@ -93,8 +87,7 @@
     color: var(--color-texto-secundario);
 }
 
-/* GRID */
-
+/* ===== GRID ===== */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
@@ -112,8 +105,7 @@
     grid-column: span 2;
 }
 
-/* TITULOS */
-
+/* ===== TITULOS ===== */
 .stats-box-header {
     margin-bottom: 20px;
 }
@@ -122,8 +114,7 @@
     margin: 0;
 }
 
-/* LISTAS */
-
+/* ===== LISTAS ===== */
 .stats-list {
     list-style: none;
     padding: 0;
@@ -144,8 +135,7 @@
     border-bottom: none;
 }
 
-/* PROGRESS */
-
+/* ===== BARRA DE PROGRESO ===== */
 .progress-group {
     display: flex;
     flex-direction: column;
@@ -181,8 +171,7 @@
     background: #e57373;
 }
 
-/* FAKE CHART */
-
+/* ===== GRÁFICO FALSO ===== */
 .fake-chart {
     display: flex;
     align-items: flex-end;
@@ -254,7 +243,7 @@
     opacity: 0.8;
 }
 
-/* ICONOS / IMÁGENES MÁS PEQUEÑAS */
+/* ===== ICONOS MÁS PEQUEÑOS ===== */
 .stats-icon {
 
     font-size: 1.4rem;
@@ -269,9 +258,8 @@
     object-fit: contain;
 }
 
-/* =========================
-      PANTALLAS GRANDES
-========================= */
+/* ===== RESPONSIVE ===== */
+/* ===== PANTALLAS GRANDES ===== */
 
 @media (min-width: 1400px) {
 
@@ -299,9 +287,7 @@
     }
 }
 
-/* =========================
-          TABLET
-========================= */
+/* ===== TABLETS ===== */
 
 @media (max-width: 992px) {
 
@@ -391,9 +377,7 @@
 }
 }
 
-/* =========================
-        MÓVIL GRANDE
-========================= */
+/* ===== MÓVIL (GRANDE) ===== */
 
 @media (max-width: 768px) {
 
@@ -547,9 +531,7 @@
 }
 }
 
-/* =========================
-        MÓVIL PEQUEÑO
-========================= */
+/* ===== MÓVIL (PEQUEÑO) ===== */
 
 @media (max-width: 480px) {
 

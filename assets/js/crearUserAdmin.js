@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ===============================
-    // VALIDACIONES
-    // ===============================
+    /* ===== VALIDACIONES ===== */
     function validarFormulario() {
 
         let nombre =
@@ -63,9 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return true;
     }
 
-    // ===============================
-    // FORM SUBMIT
-    // ===============================
+    /* ===== FORMULARIO DE SUBMIT ===== */
     const form =
         document.getElementById(
             "formCrearUsuario"
@@ -130,9 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
-    // ===============================
-    // POPUP
-    // ===============================
+    /* ===== POPUP ===== */
     function showPopup(msg) {
 
         const popup =

@@ -1,6 +1,4 @@
-/* =========================
-   VARIABLES
-========================= */
+/* ===== VARIABLES ===== */
 :root {
     --color-fondo: #E8E1D8;
     --color-texto-principal: #1A1A1A;
@@ -12,18 +10,14 @@
     --color-sombra: rgba(0, 0, 0, 0.08);
 }
 
-/* =========================
-   RESET
-========================= */
+/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* =========================
-   TIPOGRAFÍA
-========================= */
+/* ===== TIPOGRAFÍA ===== */
 @font-face {
     font-family: 'Nunito';
     src: url('../fonts/Nunito-Regular.ttf') format('truetype');
@@ -62,7 +56,7 @@ header {
     position: relative;
 }
 
-/* subrayado */
+/* ===== SUBRAYADO ===== */
 .menu a::after {
     content: "";
     position: absolute;
@@ -79,14 +73,12 @@ header {
 }
 
 
-/* =========================
-   SOBRE NOSOTROS
-========================= */
+/* ===== SOBRE NOSOTROS ===== */
 .sobre-main {
     padding-bottom: 60px;
 }
 
-/* HERO */
+/* ===== HERO ===== */
 .sobre-hero {
     max-width: 900px;
     margin: 60px auto 40px;
@@ -107,7 +99,7 @@ header {
     color: var(--color-texto-secundario);
 }
 
-/* BLOQUE TEXTO + IMAGEN */
+/* ===== BLOQUE DE TEXTO E IMAGEN ===== */
 .sobre-bloque {
     max-width: 1200px;
     margin: 40px auto;
@@ -133,20 +125,17 @@ header {
 
 .sobre-img {
     flex: 1;
-    display: flex;
-    justify-content: center;
 }
 
-.sobre-img img {
+.flip-card {
     width: 100%;
-    max-width: 420px;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px var(--color-sombra);
+    max-width: none;
+    height: 320px;
+    perspective: 1000px;
+    cursor: pointer;
 }
 
-/* =========================
-   TARJETAS INFO
-========================= */
+/* ===== TARJETAS DE INFORMACIÓN ===== */
 .sobre-cards {
     max-width: 1200px;
     margin: 60px auto 0;
@@ -180,9 +169,7 @@ header {
     font-size: 0.95rem;
 }
 
-/* =========================
-   FLIP CARD
-========================= */
+/* ===== CARTA QUE SE VOLTEA ===== */
 .flip-card {
     width: 100%;
     max-width: 420px;
@@ -203,25 +190,29 @@ header {
     transform: rotateY(180deg);
 }
 
-/* caras */
+/* ===== LAS CARAS DE LA TARJETA ===== */
 .flip-front,
 .flip-back {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     border-radius: 14px;
     backface-visibility: hidden;
     box-shadow: 0 10px 25px var(--color-sombra);
 }
 
-/* frente */
+/* ===== DELANTE ===== */
 .flip-front img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: inherit;
 }
 
-/* trasera */
+/* ===== DETRÁS ===== */
 .flip-back {
     background: var(--color-tarjeta);
     border: 1px solid var(--color-borde);
@@ -243,9 +234,7 @@ header {
     font-size: 0.95rem;
 }
 
-/* =========================
-   BOTONES
-========================= */
+/* ===== BOTONES ===== */
 .btn-efecto {
     display: inline-block;
     padding: 12px 24px;
@@ -278,30 +267,8 @@ header {
     left: 120%;
 }
 
-/* =========================
-   FOOTER
-========================= */
-.footer {
-    background: #ddd4c8;
-    text-align: center;
-    padding: 28px 16px;
-    color: var(--color-texto-secundario);
-}
-
-.footer a {
-    color: var(--color-primario);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-
-.footer a:hover {
-    text-decoration: none;
-}
-
-/* =========================
-      PANTALLAS GRANDES
-========================= */
+/* ===== RESPONSIVE ===== */
+/* ===== PANTALLAS GRANDES ===== */
 
 @media (min-width: 1400px) {
 
@@ -373,9 +340,7 @@ header {
     }
 }
 
-/* =========================
-          TABLET
-========================= */
+/* ===== TABLETS ===== */
 
 @media (max-width: 992px) {
 
@@ -432,9 +397,7 @@ header {
     }
 }
 
-/* =========================
-        MÓVIL GRANDE
-========================= */
+/* ===== MÓVIL (GRANDE) ===== */
 
 @media (max-width: 768px) {
 
@@ -537,9 +500,7 @@ header {
     }
 }
 
-/* =========================
-        MÓVIL PEQUEÑO
-========================= */
+/* ===== MÓVIL (PEQUEÑO) ===== */
 
 @media (max-width: 480px) {
 

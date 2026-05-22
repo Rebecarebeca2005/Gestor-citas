@@ -12,9 +12,7 @@ class Estadisticas {
         $this->pdo = $db->connect();
     }
 
-    // =========================
-    // FILTRO FECHAS
-    // =========================
+    /* ===== FILTRO X FECHA ===== */
     private function filtroFecha($tipo) {
 
         switch($tipo) {
@@ -55,9 +53,7 @@ class Estadisticas {
         }
     }
 
-    // =========================
-    // TOTAL USUARIOS
-    // =========================
+    /* ===== TOTAL DE USUARIOS ===== */
     public function totalUsuarios() {
 
         $sql = "
@@ -70,9 +66,7 @@ class Estadisticas {
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 
-    // =========================
-    // TOTAL CITAS
-    // =========================
+    /* ===== TOTAL DE CITAS ===== */
     public function totalCitas($tipo) {
 
         $where = $this->filtroFecha($tipo);
@@ -88,9 +82,7 @@ class Estadisticas {
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 
-    // =========================
-    // CITAS ACTIVAS
-    // =========================
+    /* ===== TOTAL DE CITAS ACTIVAS ===== */
     public function citasActivas($tipo) {
 
         $where = $this->filtroFecha($tipo);
@@ -107,9 +99,7 @@ class Estadisticas {
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 
-    // =========================
-    // CITAS CANCELADAS
-    // =========================
+    /* ===== TOTAL DE CITAS CANCELADAS ===== */
     public function citasCanceladas($tipo) {
 
         $where = $this->filtroFecha($tipo);
@@ -126,6 +116,7 @@ class Estadisticas {
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 
+    /* ===== SERVICIOS MÁS RESERVADOS ===== */
     public function serviciosMasReservados($tipo) {
 
     $where = $this->filtroFecha($tipo);
@@ -154,6 +145,7 @@ class Estadisticas {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/* ===== HORAS MÁS RESERVADAS ===== */
 public function horasMasReservadas($tipo) {
 
     $where = $this->filtroFecha($tipo);
@@ -179,6 +171,7 @@ public function horasMasReservadas($tipo) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/* ===== USUARIOS MÁS ACTIVOS ===== */
 public function usuariosMasActivos($tipo) {
 
     $where = $this->filtroFecha($tipo);
@@ -207,9 +200,7 @@ public function usuariosMasActivos($tipo) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// =========================
-// NUEVOS USUARIOS MES
-// =========================
+/* ===== USUARIOS NUEVOS POR MES ===== */
 public function nuevosUsuariosMes() {
 
     $sql = "
@@ -225,9 +216,7 @@ public function nuevosUsuariosMes() {
     return round($total * 0.15);
 }
 
-// =========================
-// CITAS ESTA SEMANA
-// =========================
+/* ===== TOTAL DE CITAS ESTA SEMANA ===== */
 public function citasSemana() {
 
     $sql = "
@@ -246,9 +235,7 @@ public function citasSemana() {
     return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 }
 
-// =========================
-// PORCENTAJE COMPLETADAS
-// =========================
+/* ===== PERCENTAJE DE CITAS COMPLETADAS ===== */
 public function porcentajeActivas() {
 
     $sqlTotal = "
@@ -283,9 +270,7 @@ public function porcentajeActivas() {
     );
 }
 
-// =========================
-// PORCENTAJE CANCELADAS
-// =========================
+/* ===== PORCENTAJE DE CITAS CANCELADAS ===== */
 public function porcentajeCanceladas() {
 
     $sqlTotal = "
@@ -320,6 +305,7 @@ public function porcentajeCanceladas() {
     );
 }
 
+/* ===== CITAS POR MES ===== */
 public function citasPorMes() {
 
     $sql = "
@@ -358,6 +344,7 @@ public function citasPorMes() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/* ===== ACTIVIDAD RECIENTE ===== */
 public function actividadReciente() {
 
     $sql = "

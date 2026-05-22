@@ -50,7 +50,14 @@ body {
     cursor: pointer;
 }
 
-/* ===== SIDEBAR ===== */
+/* ===== SIDEBAR OCULTO ===== */
+
+/* 
+   Menú lateral oculto por defecto.
+   Se posiciona de forma fija para permanecer visible
+   independientemente del desplazamiento de la página.
+*/
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -93,7 +100,7 @@ body {
 }
 
 
-/* ===== SALUDO ===== */
+/* ===== TEXTO SALUDO ===== */
 .saludo h1 {
     font-size: 2rem;
 }
@@ -127,14 +134,23 @@ li {
 
 /* ===== CARRUSEL ===== */
 
-/* CONTENIDO CENTRADO */
+/*
+   Contenedor principal de la sección.
+   Limita el ancho máximo del contenido y lo centra
+   horizontalmente dentro de la página.
+*/
+
 .contenido {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
 }
 
-/* RESUMEN */
+/*
+   Cuadrícula utilizada para mostrar tarjetas resumen
+   de forma adaptable según el tamaño de pantalla.
+*/
+
 .grid-resumen {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -142,20 +158,33 @@ li {
     margin-top: 20px;
 }
 
+/*
+   Tarjetas informativas que muestran datos
+   relevantes dentro del panel.
+*/
+
 .card {
     background: white;
     padding: 20px;
     border-radius: 12px;
-    
 }
 
-/* CARRUSEL */
+/*
+   Contenedor general del carrusel de acciones.
+   Organiza los elementos en columna y los centra.
+*/
+
 .acciones-carousel {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+/*
+   Estructura principal del carrusel.
+   Contiene el menú lateral y el área de contenido.
+*/
 
 .scene {
     width: 100%;
@@ -170,7 +199,13 @@ li {
     box-shadow: 0 4px 12px var(--color-sombra);
 }
 
-/* IZQUIERDA */
+/* ===== MENÚ LATERAL DEL CARRUSEL ===== */
+
+/*
+   Zona izquierda que contiene las distintas opciones
+   de navegación del carrusel.
+*/
+
 .left-zone {
     width: 300px;
     border-right: 1px solid #eee;
@@ -187,6 +222,12 @@ li {
     flex: 1;
     position: static;
 }
+
+/*
+   Los controles de selección permanecen ocultos,
+   utilizándose únicamente para gestionar el estado
+   mediante CSS.
+*/
 
 .item input {
     display: none;
@@ -209,6 +250,8 @@ li {
     color: #C26A4A;
 }
 
+/* ===== CONTENIDO DEL CARRUSEL ===== */
+
 .content {
     position: absolute;
     left: 300px;
@@ -216,7 +259,7 @@ li {
     width: calc(100% - 300px);
     height: 100%;
 
-    display: none; /* ← importante */
+    display: none; 
 
     justify-content: flex-start;
     align-items: center;
@@ -246,6 +289,8 @@ li {
     color: #4B4B4B;
 }
 
+/* ===== BOTONES DE ACCIÓN ===== */
+
 .btn {
     padding: 10px 20px;
     border-radius: 25px;
@@ -263,19 +308,16 @@ li {
     display: inline-block;
 }
 
-/* HOVER */
 .btn:hover {
     background: var(--color-primario-hover);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-/* CLICK */
 .btn:active {
     transform: scale(0.96);
 }
 
-/* OPCIONAL: outline version */
 .btn-outline {
     background: transparent;
     color: var(--color-primario);
@@ -287,7 +329,7 @@ li {
     color: white;
 }
 
-/* BOTÓN CERRAR SIDEBAR */
+/* ===== CERRAR SIDEBAR ===== */
 .close-sidebar {
     position: absolute;
     top: 12px;
@@ -314,9 +356,7 @@ li {
     color: white;
 }
 
-/* =========================
-   FIX FOOTER ABAJO DESKTOP
-========================= */
+/* ===== ARREGLO DEL FOOTER FLOTANDO ===== */
 
 @media (min-width: 992px) {
 
@@ -327,9 +367,7 @@ li {
     }
 }
 
-/* =========================
-        ACTIVIDAD
-========================= */
+/* ===== ACTIVIDAD ADMINISTRADOR ===== */
 
 .actividad-card {
 
@@ -357,7 +395,7 @@ li {
     font-size: 0.95rem;
 }
 
-/* LISTA */
+/* ===== LISTA DE ACTIVIDAD ADMINISTRADOR ===== */
 
 .actividad-lista {
 
@@ -367,37 +405,30 @@ li {
     gap: 14px;
 }
 
-/* ITEM */
+/* ===== CADA ITEM ===== */
 
 .actividad-item {
 
     display: flex;
     align-items: flex-start;
-
     gap: 16px;
-
     background: #faf8f5;
-
     border: 1px solid rgba(0,0,0,0.05);
-
     border-radius: 18px;
-
     padding: 18px 20px;
-
     transition: 0.25s ease;
 }
 
 .actividad-item:hover {
 
     transform: translateY(-2px);
-
     box-shadow:
         0 8px 20px rgba(0,0,0,0.06);
 
     background: white;
 }
 
-/* PUNTO */
+/* ===== EL PUNTO  ===== */
 
 .actividad-dot {
 
@@ -427,7 +458,7 @@ li {
         0 0 10px rgba(239,118,118,0.4);
 }
 
-/* TEXTO */
+/* ===== EL TEXTO ===== */
 
 .actividad-content {
 
@@ -460,7 +491,7 @@ li {
     font-size: 0.82rem;
 }
 
-/* RESPONSIVE */
+/* ===== RESPONSIVE DEL PANEL DE HISTORIAL ===== */
 
 @media (max-width: 700px) {
 
@@ -470,9 +501,8 @@ li {
     }
 }
 
-/* =========================
-      PANTALLAS GRANDES
-========================= */
+/* ===== RESPONSIVE ===== */
+/* ===== PANTALLAS GRANDES ===== */
 
 @media (min-width: 1400px) {
 
@@ -542,9 +572,7 @@ li {
     }
 }
 
-/* =========================
-          TABLET
-========================= */
+/* ===== TABLETS ===== */
 
 @media (max-width: 992px) {
 
@@ -603,9 +631,7 @@ li {
     }
 }
 
-/* =========================
-        MÓVIL GRANDE
-========================= */
+/* ===== MÓVIL (GRANDE) ===== */
 
 @media (max-width: 768px) {
 
@@ -739,21 +765,19 @@ li {
         justify-content: center;
     }
 
-    /* FIX NUEVA CITA MÓVIL */
-.content {
+    .content {
 
-    border-radius: 0 0 14px 14px;
+        border-radius: 0 0 14px 14px;
 
-    background: white;
-}
+        background: white;
+    }
 
-/* mantiene redondeado todo el bloque */
-.scene {
+    .scene {
 
-    border-radius: 14px;
+        border-radius: 14px;
 
-    overflow: hidden;
-}
+        overflow: hidden;
+    }
 
     .content-full {
 
@@ -802,9 +826,7 @@ li {
     }
 }
 
-/* =========================
-        MÓVIL PEQUEÑO
-========================= */
+/* ===== MÓVIL (PEQUEÑO) ===== */
 
 @media (max-width: 480px) {
 

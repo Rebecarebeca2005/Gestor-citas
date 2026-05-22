@@ -1,222 +1,427 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
+    <!-- ===== METADATOS SEO ===== -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gestor de Citas | Organiza tus reservas fácilmente</title>
-    <meta name="description" content="Gestiona tus citas, reservas y horarios de forma rápida y sencilla con nuestro gestor online. Organiza todo en un solo lugar.">
-    <meta name="keywords" content="gestor de citas, reservas online, agenda digital, citas online, organizar citas">
-    <meta name="author" content="Rebeca">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <meta name="robots" content="index, follow">
+    <title>
+        Perfil de Usuario | Gestor de Citas
+    </title>
 
-    <link rel="shortcut icon" href="assets/img/30-dias.png" type="image/x-icon">
+    <meta
+        name="description"
+        content="Consulta tu información personal y gestiona tu cuenta desde tu perfil de usuario.">
 
+    <meta
+        name="keywords"
+        content="perfil usuario, cuenta usuario, gestión perfil, gestor de citas">
+
+    <meta
+        name="author"
+        content="Rebeca">
+
+    <meta
+        name="robots"
+        content="index, follow">
+
+    <meta
+        name="theme-color"
+        content="#C26A4A">
+
+    <!-- ===== FAVICON ===== -->
+    <link
+        rel="shortcut icon"
+        href="assets/img/30-dias.png"
+        type="image/x-icon">
+
+    <!-- ===== HOJAS DE ESTILO ===== -->
     <link rel="stylesheet" href="assets/css/perfil.css">
     <link rel="stylesheet" href="assets/css/centroControl.css">
     <link rel="stylesheet" href="assets/css/carga.css">
     <link rel="stylesheet" href="assets/css/footer.css">
 
+    <!-- ===== JQUERY ===== -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    
 </head>
+
 <body>
-<div id="popup" class="popup hidden">
-    <span id="popup-text"></span>
-    <span id="popup-close">✖</span>
-</div>
-<?php
-$nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
-$correo = $_SESSION['usuario']['email'] ?? 'Email';
-$tlfn = $_SESSION['usuario']['telefono'] ?? 'Teléfono';
-?>
-<?php
-$nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
-?>
 
-<div class="sidebar" id="sidebar">
-<div class="close-sidebar" onclick="toggleMenu()">✖</div>
-    <div class="sidebar-header">
-        <h3>Hola  <?= htmlspecialchars($nombre) ?></h3>
-    </div>
+    <!-- ===== MENSAJES EMERGENTES ===== -->
+    <div id="popup" class="popup hidden">
 
-    <nav class="sidebar-menu">
-        <a href="index.php?pagina=centroControl">Inicio</a>
-        <a href="index.php?pagina=misCitas">Mis citas</a>
-        <a href="index.php?pagina=calendarioAñadir">Nueva cita</a>
-        <a href="index.php?pagina=calendarioModificar">Editar cita</a>
-        <a href="index.php?pagina=calendarioEliminar">Eliminar cita</a>
-        <a href="index.php?pagina=perfil">Perfil</a> 
-        <a href="index.php?pagina=login">Cerrar sesión</a> 
-    </nav>
+        <span id="popup-text"></span>
 
-</div>
-
-<header class="topbar">
-    <img src="assets/img/hamburguesa.png" class="menu-icon" onclick="toggleMenu()">
-    <h2>Perfil del usuario</h2>
-</header>
-
-<main class="contenido">
-
-    <div class="perfil-container">
-
-    <h2>Mi perfil</h2>
-
-    <div class="perfil-card">
-
-        <p><strong>Nombre:</strong> <?= $nombre ?></p>
-         <p><strong>Correo electrónico:</strong> <?= $correo ?></p>
-         <p><strong>Teléfono:</strong> <?= $tlfn ?></p>
-
-        <button id="btnEliminar" class="btn-eliminar">
-            Eliminar cuenta
-        </button>
+        <span id="popup-close">
+            ✖
+        </span>
 
     </div>
 
-</div>
+<?php
 
-</main>
-<div id="popupEliminar" class="hidden">
+$nombre =
+    $_SESSION['usuario']['nombre']
+    ?? 'Usuario';
 
-    <div class="modal-content confirm">
+$correo =
+    $_SESSION['usuario']['email']
+    ?? 'Email';
 
-        <h3>¿Seguro que quieres eliminar tu cuenta?</h3>
-        <p>Se borrarán todos tus datos y citas.</p>
+$tlfn =
+    $_SESSION['usuario']['telefono']
+    ?? 'Teléfono';
 
-        <div class="confirm-buttons">
+?>
 
-            <button class="btn-eliminar" onclick="eliminarPerfil(<?= $_SESSION['usuario']['id_usuario'] ?>)">
-                Sí, eliminar
-            </button>
+    <!-- ===== MENÚ LATERAL ===== -->
+    <div class="sidebar" id="sidebar">
 
-            <button class="btn-cancelar" onclick="cerrarPopup()">
-                Cancelar
-            </button>
+        <div
+            class="close-sidebar"
+            onclick="toggleMenu()">
+
+            ✖
+
+        </div>
+
+        <div class="sidebar-header">
+
+            <h3>
+                Hola
+                <?= htmlspecialchars($nombre) ?>
+            </h3>
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="index.php?pagina=centroControl">
+                Inicio
+            </a>
+
+            <a href="index.php?pagina=misCitas">
+                Mis citas
+            </a>
+
+            <a href="index.php?pagina=calendarioAñadir">
+                Nueva cita
+            </a>
+
+            <a href="index.php?pagina=calendarioModificar">
+                Editar cita
+            </a>
+
+            <a href="index.php?pagina=calendarioEliminar">
+                Eliminar cita
+            </a>
+
+            <a href="index.php?pagina=perfil">
+                Perfil
+            </a>
+
+            <a href="index.php?pagina=login">
+                Cerrar sesión
+            </a>
+
+        </nav>
+
+    </div>
+
+    <!-- ===== CABECERA ===== -->
+    <header class="topbar">
+
+        <img
+            src="assets/img/hamburguesa.png"
+            class="menu-icon"
+            alt="Abrir menú"
+            onclick="toggleMenu()">
+
+        <h2>
+            Perfil del usuario
+        </h2>
+
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="contenido">
+
+        <!-- ===== PERFIL ===== -->
+        <section class="perfil-container">
+
+            <h2>
+                Mi perfil
+            </h2>
+
+            <div class="perfil-card">
+
+                <p>
+
+                    <strong>
+                        Nombre:
+                    </strong>
+
+                    <?= $nombre ?>
+
+                </p>
+
+                <p>
+
+                    <strong>
+                        Correo electrónico:
+                    </strong>
+
+                    <?= $correo ?>
+
+                </p>
+
+                <p>
+
+                    <strong>
+                        Teléfono:
+                    </strong>
+
+                    <?= $tlfn ?>
+
+                </p>
+
+                <button
+                    id="btnEliminar"
+                    class="btn-eliminar">
+
+                    Eliminar cuenta
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ===== CONFIRMAR ELIMINACIÓN ===== -->
+    <div id="popupEliminar" class="hidden">
+
+        <div class="modal-content confirm">
+
+            <h3>
+                ¿Seguro que quieres eliminar tu cuenta?
+            </h3>
+
+            <p>
+                Se borrarán todos tus datos y citas.
+            </p>
+
+            <div class="confirm-buttons">
+
+                <button
+                    class="btn-eliminar"
+                    onclick="eliminarPerfil(<?= $_SESSION['usuario']['id_usuario'] ?>)">
+
+                    Sí, eliminar
+
+                </button>
+
+                <button
+                    class="btn-cancelar"
+                    onclick="cerrarPopup()">
+
+                    Cancelar
+
+                </button>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
-<footer class="footer"> 
-    <p>Gestor de Citas © 2026</p> 
-    <a href="https://github.com/Rebecarebeca2005/Gestor-citas.git" target="_blank">
-        Ver en GitHub
-    </a>
-    <a href="index.php?pagina=privacidad">
-    Política de privacidad
-    </a>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
 
-    <a href="index.php?pagina=cookies">
-        Política de cookies
-    </a>
+        <p>
+            Gestor de Citas © 2026
+        </p>
 
-    <a href="index.php?pagina=legal">
-        Aviso legal
-    </a>
-</footer>
- <div id="loader" class="loader hidden">
-    <div class="spinner"></div>
-    <p>Cargando...</p>
-</div>
+        <a
+            href="https://github.com/Rebecarebeca2005/Gestor-citas.git"
+            target="_blank"
+            rel="noopener noreferrer">
 
-<script src="assets/js/carga.js"></script>
-</body>
-</html>
+            Ver en GitHub
 
-<script>
-function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
-}
+        </a>
 
-const popup = document.getElementById("popupEliminar");
+        <a href="index.php?pagina=privacidad">
 
-document.getElementById("btnEliminar").onclick = () => {
-    popup.classList.remove("hidden");
-};
+            Política de privacidad
 
-function cerrarPopup() {
-    popup.classList.add("hidden");
-}
+        </a>
 
-function deleteCookie(nombre) {
-    document.cookie = nombre + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
-}
+        <a href="index.php?pagina=cookies">
 
-function showPopup(msg) {
+            Política de cookies
 
-    const popup =
-        document.getElementById("popup");
+        </a>
 
-    const text =
-        document.getElementById("popup-text");
+        <a href="index.php?pagina=legal">
 
-    text.textContent = msg;
+            Aviso legal
 
-    popup.classList.remove("hidden");
+        </a>
 
-    setTimeout(() => {
+    </footer>
 
-        popup.classList.add("hidden");
+    <!-- ===== LOADER ===== -->
+    <div id="loader" class="loader hidden">
 
-    }, 2000);
-}
+        <div class="spinner"></div>
 
-function eliminarPerfil(idUsuario) {
+        <p>
+            Cargando...
+        </p>
 
-    fetch("index.php?pagina=eliminarPerfilAjax", {
+    </div>
 
-        method: "POST",
+    <!-- ===== SCRIPT DE CARGA ===== -->
+    <script src="assets/js/carga.js"></script>
 
-        headers: {
-            "Content-Type":
-                "application/x-www-form-urlencoded"
-        },
+    <!-- ===== SCRIPT PERFIL ===== -->
+    <script>
 
-        body: "id=" + idUsuario
-    })
+        function toggleMenu() {
 
-    .then(res => res.json())
+            document
+                .getElementById("sidebar")
+                .classList
+                .toggle("active");
+        }
 
-    .then(data => {
-
-        if (data.ok) {
-
-            // borrar cookie
-            deleteCookie(
-                "cookies_aceptadas"
+        const popup =
+            document.getElementById(
+                "popupEliminar"
             );
 
-            showPopup(
-                "Cuenta eliminada correctamente"
+        document
+            .getElementById(
+                "btnEliminar"
+            )
+            .onclick = () => {
+
+                popup.classList.remove(
+                    "hidden"
+                );
+            };
+
+        function cerrarPopup() {
+
+            popup.classList.add(
+                "hidden"
+            );
+        }
+
+        function deleteCookie(nombre) {
+
+            document.cookie =
+                nombre +
+                "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+        }
+
+        function showPopup(msg) {
+
+            const popup =
+                document.getElementById(
+                    "popup"
+                );
+
+            const text =
+                document.getElementById(
+                    "popup-text"
+                );
+
+            text.textContent = msg;
+
+            popup.classList.remove(
+                "hidden"
             );
 
             setTimeout(() => {
 
-                window.location.href =
-                    "index.php?pagina=login";
+                popup.classList.add(
+                    "hidden"
+                );
 
             }, 2000);
-
-        } else {
-
-            showPopup(
-                "No se ha podido eliminar la cuenta"
-            );
         }
-    })
 
-    .catch(err => {
+        function eliminarPerfil(idUsuario) {
 
-        console.error(err);
+            fetch(
+                "index.php?pagina=eliminarPerfilAjax",
+                {
 
-        showPopup(
-            "Error eliminando cuenta"
-        );
-    });
-}
-</script>
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+                    },
+
+                    body:
+                        "id=" + idUsuario
+                }
+            )
+
+            .then(res => res.json())
+
+            .then(data => {
+
+                if (data.ok) {
+
+                    // Elimina la cookie de aceptación
+                    deleteCookie(
+                        "cookies_aceptadas"
+                    );
+
+                    showPopup(
+                        "Cuenta eliminada correctamente"
+                    );
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "index.php?pagina=login";
+
+                    }, 2000);
+
+                } else {
+
+                    showPopup(
+                        "No se ha podido eliminar la cuenta"
+                    );
+                }
+
+            })
+
+            .catch(err => {
+
+                console.error(err);
+
+                showPopup(
+                    "Error eliminando cuenta"
+                );
+
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

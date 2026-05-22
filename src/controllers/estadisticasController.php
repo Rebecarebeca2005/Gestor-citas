@@ -11,9 +11,7 @@ class EstadisticasController {
         $this->model = new Estadisticas();
     }
 
-    // =========================
-    // KPIs
-    // =========================
+    /* ===== KPIS ===== */
     public function obtenerEstadisticas($tipo) {
 
         return [
@@ -44,27 +42,21 @@ class EstadisticasController {
 ];
     }
 
-    // =========================
-    // SERVICIOS TOP
-    // =========================
+    /* ===== MEJORES SERVICIOS ===== */
     public function serviciosMasReservados($tipo) {
 
         return $this->model
             ->serviciosMasReservados($tipo);
     }
 
-    // =========================
-    // HORAS TOP
-    // =========================
+    /* ===== MEJORES HORAS ===== */
     public function horasMasReservadas($tipo) {
 
         return $this->model
             ->horasMasReservadas($tipo);
     }
 
-    // =========================
-    // USUARIOS TOP
-    // =========================
+    /* ===== MEJORES USUARIOS ===== */
     public function usuariosMasActivos($tipo) {
 
         return $this->model
@@ -76,6 +68,8 @@ class EstadisticasController {
     return $this->model
         ->citasPorMes();
 }
+
+/* ===== ACTIVIDAD RECIENTE ===== */
 
 public function actividadReciente() {
 

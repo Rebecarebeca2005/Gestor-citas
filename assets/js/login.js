@@ -1,6 +1,6 @@
 $(function () {
 
-    /* POPUP */
+    /* ===== POPUP ===== */
     function showPopup(msg) {
         $("#popup-text").text(msg);
         $("#popup").removeClass("hidden");
@@ -14,7 +14,6 @@ $(function () {
         $("#popup").addClass("hidden");
     });
 
-    /* LEER MENSAJES DE LA URL */
     const urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has("success")) {
@@ -25,7 +24,12 @@ $(function () {
         showPopup(urlParams.get("error"));
     }
 
-    // OJO PASSWORD
+   /* ===== EL OJO DE LA CONTRASEÑA ===== */
+
+    /* Este script utiliza jQuery para implementar la funcionalidad de mostrar u ocultar contraseñas. 
+    Al pulsar sobre el icono asociado al campo, cambia dinámicamente el atributo type entre password y text,
+    permitiendo visualizar o esconder la contraseña. Actualiza la imagen del icono para reflejar el estado actual del campo. */
+    
   $(function () {
 
     $(".mostrar-password").on("click", function () {

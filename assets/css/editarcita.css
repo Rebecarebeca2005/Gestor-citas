@@ -1,8 +1,12 @@
+/* ===== MODAL ===== */
 
+/*
+   Ventana modal utilizada para mostrar contenido o solicitar
+   confirmaciones sin abandonar la página actual.
+   Ocupa toda la pantalla y oscurece el fondo para centrar
+   la atención del usuario en el contenido mostrado.
+*/
 
-/* ============================
-   MODAL BASE
-============================ */
 .modal {
     position: fixed;
     top: 0;
@@ -25,9 +29,7 @@
     display: none;
 }
 
-/* ============================
-   CONTENIDO DEL MODAL
-============================ */
+/* ===== CONTENIDO DEL MODAL ===== */
 .modal-content {
     background: #ffffff;
     width: 92%;
@@ -53,10 +55,7 @@
     }
 }
 
-/* ============================
-   BOTÓN CERRAR
-============================ */
-
+/* ===== BOTÓN CERRAR MODAL ===== */
 .cerrar-modal {
     position: absolute;
     top: 5px;
@@ -72,10 +71,8 @@
     color: var(--color-primario);
     transform: scale(1.15);
 }
-/* =========================
-   LISTADO DE CITAS (BONITO)
-========================= */
 
+/* ===== LISTADO DE CITAS ===== */
 .lista-citas {
     list-style: none;
     padding: 0;
@@ -123,9 +120,7 @@
     color: var(--color-primario-hover);
 }
 
-/* ============================
-   FORMULARIO EDICIÓN
-============================ */
+/* ===== FORMULARIO PARA EDITAR UNA CITA ===== */
 #formEditarCita label {
     display: block;
     margin-top: 12px;
@@ -158,9 +153,7 @@
     box-shadow: 0 0 0 3px rgba(194, 106, 74, 0.15);
 }
 
-/* ============================
-   BOTÓN GUARDAR
-============================ */
+/* ===== BOTÓN PARA GUARDAR ===== */
 .btn-guardar {
     margin-top: 18px;
     width: 100%;

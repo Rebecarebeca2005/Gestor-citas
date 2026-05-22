@@ -1,4 +1,12 @@
 /* ===== MODAL ===== */
+
+/*
+   Ventana modal utilizada para mostrar contenido o solicitar
+   confirmaciones sin abandonar la página actual.
+   Ocupa toda la pantalla y oscurece el fondo para centrar
+   la atención del usuario en el contenido mostrado.
+*/
+
 .modal {
     position: fixed;
     inset: 0;
@@ -14,7 +22,7 @@
     display: none !important;
 }
 
-/* CONTENEDOR DEL MODAL */
+/* ===== CONTENEDOR DEL MODAL ===== */
 .modal-content {
     background: var(--color-tarjeta);
     padding: 28px;
@@ -36,13 +44,12 @@
     animation: modalFade 0.25s ease-out;
 }
 
-/* Animación suave */
 @keyframes modalFade {
     from { opacity: 0; transform: translateY(-12px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* BOTÓN CERRAR */
+/* ===== BOTÓN CERRAR DEL MODAL ===== */
 .cerrar-modal {
     position: absolute;
     top: 14px;
@@ -59,10 +66,7 @@
     transform: scale(1.15);
 }
 
-/* =========================
-   LISTADO DE CITAS (BONITO)
-========================= */
-
+/* ===== LISTADO DE CITAS ===== */
 .lista-citas {
     list-style: none;
     padding: 0;
@@ -102,7 +106,7 @@
     color: var(--color-texto-secundario);
 }
 
-/* BOTÓN ELIMINAR */
+/* ===== BOTÓN ELIMINAR ===== */
 .btn-eliminar {
     background: #e74c3c;
     color: white;
@@ -129,10 +133,7 @@
     opacity: 0.8;
 }
 
-/* =========================
-   FORMULARIO (SE MANTIENE)
-========================= */
-
+/* ===== FORMULARIO ===== */
 .pasos {
     list-style: none;
     display: flex;
@@ -195,7 +196,7 @@ textarea:hover {
 }
 
 
-/* BOTÓN CERRAR SIDEBAR */
+/* ===== BOTÓN CERRAR SIDEBAR ===== */
 .close-sidebar {
     position: absolute;
     top: 12px;
@@ -222,7 +223,7 @@ textarea:hover {
     color: white;
 }
 
-/* ACCIONES ADMIN */
+/* ===== ACCIONES DE ADMIN ===== */
 .acciones-cita-admin {
 
     position: absolute;
@@ -238,7 +239,7 @@ textarea:hover {
     gap: 10px;
 }
 
-/* BOTONES */
+/* ===== BOTONES DE ADMIN ===== */
 .btn-icon {
 
     width: 42px;
@@ -260,7 +261,6 @@ textarea:hover {
     padding: 0;
 }
 
-/* HOVER */
 .btn-icon:hover {
 
     background: #efe9e3;
@@ -268,7 +268,7 @@ textarea:hover {
     transform: translateY(-2px);
 }
 
-/* IMÁGENES */
+/* ===== ICONOS ===== */
 .btn-icon img {
 
     width: 18px;
@@ -291,7 +291,7 @@ textarea:hover {
     margin-top: 24px !important;
 }
 
-/* BOTÓN EDITAR TEXTO */
+/* ===== BOTON DE EDITAR TEXTO ===== */
 .btn-icon.editar-texto {
 
     width: auto;
@@ -305,7 +305,7 @@ textarea:hover {
     letter-spacing: .3px;
 }
 
-/* BOTONES BASE */
+/* ===== BOTON BASE ===== */
 #popupEliminar .confirm-buttons button {
 
     all: unset !important;
@@ -336,361 +336,13 @@ textarea:hover {
     transform: translateY(-2px) !important;
 }
 
-
-
 #popupEliminar .btn-cancelar:hover {
 
     transform: translateY(-2px) !important;
 }
 
-/* ===== MODAL ===== */
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(3px);
-    z-index: 99999;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* CONTENEDOR DEL MODAL */
-.modal-content {
-    background: var(--color-tarjeta);
-    padding: 28px;
-    border-radius: 20px;
-
-    width: 520px;
-    max-width: 92%;
-
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-
-    max-height: 88vh;
-    overflow-y: auto;
-
-    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
-    position: relative;
-
-    animation: modalFade 0.25s ease-out;
-}
-
-/* Animación suave */
-@keyframes modalFade {
-    from { opacity: 0; transform: translateY(-12px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* BOTÓN CERRAR */
-.cerrar-modal {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-
-    font-size: 20px;
-    cursor: pointer;
-    color: var(--color-texto-secundario);
-    transition: 0.2s ease;
-}
-
-.cerrar-modal:hover {
-    color: var(--color-primario);
-    transform: scale(1.15);
-}
-
-/* =========================
-   LISTADO DE CITAS (BONITO)
-========================= */
-
-.lista-citas {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.item-cita {
-    background: #ffffff;
-    padding: 18px;
-    border-radius: 16px;
-    position: relative;
-
-    border: 1px solid #ececec;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-
-    transition: 0.2s ease;
-}
-
-.item-cita:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-}
-
-.item-cita h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.25rem;
-    color: var(--color-primario);
-    font-weight: 700;
-}
-
-.item-cita p {
-    margin: 4px 0;
-    font-size: 0.95rem;
-    color: var(--color-texto-secundario);
-}
-
-/* BOTÓN ELIMINAR */
-.btn-eliminar {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 9px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 12px;
-    font-size: 0.9rem;
-    transition: 0.2s ease;
-}
-
-.btn-eliminar:hover {
-    background: #c0392b;
-    transform: translateY(-1px);
-}
-
-/* SIN CITAS */
-.sin-citas {
-    text-align: center;
-    font-size: 1.1rem;
-    color: var(--color-texto-secundario);
-    margin-top: 20px;
-    opacity: 0.8;
-}
-
-/* =========================
-   FORMULARIO (SE MANTIENE)
-========================= */
-
-.pasos {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-
-    padding: 0;
-    margin: 0;
-}
-
-.pasos li {
-    font-size: 13px;
-    color: var(--color-texto-secundario);
-    padding-bottom: 4px;
-}
-
-.pasos li.activo {
-    color: var(--color-primario);
-    border-bottom: 2px solid var(--color-primario);
-}
-
-.formulario {
-    width: 100%;
-}
-
-.formulario .seccion {
-    display: none;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.formulario .seccion.activo {
-    display: flex;
-}
-
-.formulario input,
-.formulario textarea,
-select {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--color-borde);
-    border-radius: 10px;
-    background: #f7f5f2;
-    box-sizing: border-box;
-}
-
-textarea {
-    min-height: 80px;
-    max-height: 150px;
-    resize: vertical;
-}
-
-textarea:focus {
-    border-color: var(--color-primario);
-    box-shadow: 0 0 0 3px rgba(194,106,74,0.15);
-}
-
-textarea:hover {
-    background: #f3efe9;
-}
-
-
-/* BOTÓN CERRAR SIDEBAR */
-.close-sidebar {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-
-    width: 32px;
-    height: 32px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-    cursor: pointer;
-
-    color: var(--color-texto-secundario);
-
-    font-size: 14px;
-    transition: 0.2s;
-}
-
-.close-sidebar:hover {
-    background: var(--color-primario);
-    color: white;
-}
-
-/* ACCIONES ADMIN */
-.acciones-cita-admin {
-
-    position: absolute;
-
-    top: 50%;
-    right: 18px;
-
-    transform: translateY(-50%);
-
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-}
-
-/* BOTONES */
-.btn-icon {
-
-    width: 42px;
-    height: 42px;
-
-    border: none;
-    border-radius: 12px;
-
-    background: #f7f5f2;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-
-    transition: .2s ease;
-
-    padding: 0;
-}
-
-/* HOVER */
-.btn-icon:hover {
-
-    background: #efe9e3;
-
-    transform: translateY(-2px);
-}
-
-/* IMÁGENES */
-.btn-icon img {
-
-    width: 18px;
-    height: 18px;
-
-    object-fit: contain;
-
-    display: block;
-
-    opacity: .85;
-}
-
-#popupEliminar .confirm-buttons {
-
-    display: flex !important;
-    justify-content: center !important;
-
-    gap: 14px !important;
-
-    margin-top: 24px !important;
-}
-
-/* BOTÓN EDITAR TEXTO */
-.btn-icon.editar-texto {
-
-    width: auto;
-    padding: 0 16px;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    color: var(--color-primario);
-
-    letter-spacing: .3px;
-}
-
-/* BOTONES BASE */
-#popupEliminar .confirm-buttons button {
-
-    all: unset !important;
-    box-sizing: border-box !important;
-
-    min-width: 140px !important;
-    height: 46px !important;
-
-    border-radius: 10px !important;
-
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-
-    font-size: 14px !important;
-    font-weight: 600 !important;
-
-    cursor: pointer !important;
-
-    color: aliceblue !important;
-
-    transition: .2s ease !important;
-    background-color: #c26a4a !important;
-}
-
-#popupEliminar .btn-eliminar:hover {
-
-    transform: translateY(-2px) !important;
-}
-
-
-
-#popupEliminar .btn-cancelar:hover {
-
-    transform: translateY(-2px) !important;
-}
-
-/* =========================
-          TABLET
-========================= */
+/* ===== RESPONSIVE ===== */
+/* ===== TABLETS ===== */
 
 @media (max-width: 992px) {
 
@@ -747,7 +399,6 @@ textarea:hover {
         width: 100%;
     }
 
-    /* ARREGLADO */
     .cal-weekdays {
         margin-bottom: 2px;
     }
@@ -757,9 +408,9 @@ textarea:hover {
     min-height: 92px;
 }
 
-.cal-weekdays div {
-    min-height: auto;
-}
+    .cal-weekdays div {
+        min-height: auto;
+    }
 
     .cal-weekdays div {
         display: flex;
@@ -781,9 +432,7 @@ textarea:hover {
     }
 }
 
-/* =========================
-        MÓVIL GRANDE
-========================= */
+/* ===== MÓVIL (GRANDE) ===== */
 
 @media (max-width: 768px) {
 
@@ -800,13 +449,13 @@ textarea:hover {
     width: 100%;
 }
 
-.cal-weekdays {
-    margin-bottom: 6px;
-}
+    .cal-weekdays {
+        margin-bottom: 6px;
+    }
 
-.cal-weekdays div {
-    width: 100%;
-}
+    .cal-weekdays div {
+        width: 100%;
+    }
 
     .cal-weekdays div {
         display: flex;
@@ -827,39 +476,35 @@ textarea:hover {
         padding: 4px;
     }
 
-    /* BOTONES EDITAR / ELIMINAR MÁS PEQUEÑOS EN MÓVIL */
-.acciones-cita-admin {
+    .acciones-cita-admin {
 
-    right: 10px;
-    gap: 6px;
+        right: 10px;
+        gap: 6px;
+    }
+
+    .btn-icon {
+
+        width: 32px;
+        height: 32px;
+
+        border-radius: 10px;
+    }
+
+    .btn-icon img {
+
+        width: 14px;
+        height: 14px;
+    }
+
+    .btn-icon.editar-texto {
+
+        padding: 0 10px;
+
+        font-size: 0.7rem;
+    }
 }
 
-.btn-icon {
-
-    width: 32px;
-    height: 32px;
-
-    border-radius: 10px;
-}
-
-.btn-icon img {
-
-    width: 14px;
-    height: 14px;
-}
-
-/* BOTÓN TEXTO */
-.btn-icon.editar-texto {
-
-    padding: 0 10px;
-
-    font-size: 0.7rem;
-}
-}
-
-/* =========================
-        MÓVIL PEQUEÑO
-========================= */
+/* ===== MOVIL (PEQUEÑO) ===== */
 
 @media (max-width: 480px) {
 
@@ -868,7 +513,6 @@ textarea:hover {
         gap: 4px;
     }
 
-    /* 🔥 ARREGLADO */
     .cal-weekdays {
         margin-bottom: 1px;
     }

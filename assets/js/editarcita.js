@@ -1,6 +1,4 @@
-// ===============================
-//   MODAL CITAS DEL DÍA
-// ===============================
+/* ===== CITAS DEL DIA ===== */
 function abrirCitasDelDia(fecha) {
 
     fetch(
@@ -51,9 +49,7 @@ function abrirCitasDelDia(fecha) {
     });
 }
 
-// ===============================
-//   ABRIR MODAL EDITAR
-// ===============================
+/* ===== ABRIR EL MODAL DE EDITAR CITA ===== */
 function abrirModalEditarCita(id_cita) {
 
     fetch(
@@ -97,6 +93,7 @@ function abrirModalEditarCita(id_cita) {
     });
 }
 
+/* ===== CARGAR HORAS DISPONIBLES ===== */
 function cargarHorasDisponibles(
     fecha,
     seleccionada = null,
@@ -116,10 +113,8 @@ function cargarHorasDisponibles(
         const select =
             document.getElementById("hora");
 
-        // limpiar select
         select.innerHTML = "";
 
-        // opción inicial
         const primera =
             document.createElement("option");
 
@@ -129,16 +124,14 @@ function cargarHorasDisponibles(
 
         select.appendChild(primera);
 
-        // evitar duplicados
-        const horasUnicas = new Set();
+        const horasUnicas = new Set(); //evitamos duplicados
 
         horas.forEach(h => {
 
             const horaTexto =
                 h.hora_inicio.substring(0,5);
 
-            // NO repetir
-            if (horasUnicas.has(horaTexto)) {
+            if (horasUnicas.has(horaTexto)) { //evitamos repeticiones
                 return;
             }
 
@@ -153,9 +146,8 @@ function cargarHorasDisponibles(
             option.textContent =
                 horaTexto;
 
-            // seleccionar actual
             if (
-                Number(seleccionada) ===
+                Number(seleccionada) === //seleccionamos la actual
                 Number(h.id_disponibilidad)
             ) {
                 option.selected = true;
@@ -166,9 +158,7 @@ function cargarHorasDisponibles(
     });
 }
   
-// ===============================
-//   CAMBIO DE FECHA
-// ===============================
+/* ===== CAMBIO DE FECHA ===== */
 document
 .getElementById("fecha")
 .addEventListener("change", function() {
@@ -178,9 +168,7 @@ document
     );
 });
 
-// ===============================
-//   GUARDAR CITA
-// ===============================
+/* ===== GUARDAMOS LA CITA ===== */
 const formEditar =
     document.getElementById("formEditarCita");
 
@@ -199,7 +187,6 @@ formEditar.addEventListener("submit", async (e) => {
             }
         );
 
-        // debug real servidor
         const texto =
             await response.text();
 
@@ -248,9 +235,7 @@ formEditar.addEventListener("submit", async (e) => {
     return false;
 });
 
-// ===============================
-//   CERRAR MODALES
-// ===============================
+/* ===== CERRAMOS LOS MODALES ===== */
 function cerrarCita() {
 
     document
@@ -267,6 +252,7 @@ function cerrarEditar() {
         .add("hidden");
 }
 
+/* ===== POPUP ===== */
 function showPopup(msg) {
 
     const popup = document.getElementById("popup");

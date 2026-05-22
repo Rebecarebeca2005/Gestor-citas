@@ -58,7 +58,7 @@ nav {
     position: relative;
 }
 
-/* subrayado */
+/* ===== SUBRAYADO ===== */
 .menu a::after {
     content: "";
     position: absolute;
@@ -74,10 +74,8 @@ nav {
     width: 100%;
 }
 
-/* =========================
-      PANTALLAS GRANDES
-========================= */
-
+/* ===== RESPONSIVE ===== */
+/* ===== PANTALLAS GRANDES ===== */
 @media (min-width: 1400px) {
 
     nav {
@@ -109,9 +107,7 @@ nav {
     }
 }
 
-/* =========================
-          TABLET
-========================= */
+/* ===== TABLETS ===== */
 
 @media (max-width: 992px) {
 
@@ -146,10 +142,7 @@ nav {
     }
 }
 
-/* =========================
-        MÓVIL GRANDE
-========================= */
-
+/* ===== MÓVIL (GRANDE) ===== */
 @media (max-width: 768px) {
 
     nav {
@@ -198,10 +191,7 @@ nav {
     }
 }
 
-/* =========================
-        MÓVIL PEQUEÑO
-========================= */
-
+/* ===== MÓVIL (PEQUEÑO) ===== */
 @media (max-width: 480px) {
 
     nav {

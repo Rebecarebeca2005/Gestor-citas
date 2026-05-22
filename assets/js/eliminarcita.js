@@ -1,6 +1,4 @@
-// ===============================
-//   VARIABLES
-// ===============================
+/* ===== VARIABLES ===== */
 const modalCita = document.getElementById("modalCita");
 const popupEliminar = document.getElementById("popupEliminar");
 const popup = document.getElementById("popup");
@@ -9,9 +7,7 @@ const popupText = document.getElementById("popup-text");
 let citaAEliminar = null;
 let fechaAEliminar = null;
 
-// ===============================
-//   ABRIR MODAL CON CITAS DEL DÍA
-// ===============================
+/* ===== ABRIR MODAL DE CITAS DEL DIA ===== */
 function abrirCitasDelDia(fecha) {
 
     fetch("index.php?pagina=citasPorDiaAjax&fecha=" + fecha)
@@ -46,9 +42,7 @@ function abrirCitasDelDia(fecha) {
         });
 }
 
-// ===============================
-//   MOSTRAR POPUP DE ELIMINACIÓN
-// ===============================
+/* ===== MOSTRAR POP UP DE ELIMINACION ===== */
 function mostrarPopupEliminar(id_cita, fecha, estado) {
 
     if (estado === "CANCELADA") {
@@ -62,16 +56,12 @@ function mostrarPopupEliminar(id_cita, fecha, estado) {
     popupEliminar.classList.remove("hidden");
 }
 
-// ===============================
-//   CANCELAR POPUP
-// ===============================
+/* ===== CANCELAR CITA ===== */
 document.getElementById("btnCancelarEliminar").onclick = () => {
     popupEliminar.classList.add("hidden");
 };
 
-// ===============================
-//   ELIMINAR CITA AJAX
-// ===============================
+/* =====ELIMINAR CITA AJAX ===== */
 document.getElementById("btnConfirmarEliminar").onclick = () => {
 
     fetch("index.php?pagina=eliminarCitaAjax", {
@@ -108,9 +98,7 @@ document.getElementById("btnConfirmarEliminar").onclick = () => {
 });
 };
 
-// ===============================
-//   CERRAR MODAL
-// ===============================
+/* ===== CERRAR EL MODAL ===== */
 function cerrarCita() {
     modalCita.classList.add("hidden");
 }
@@ -151,6 +139,7 @@ botonesAtras.forEach((btn) => {
     });
 });
 
+/* ===== POPUP ===== */
 function showPopup(msg) {
 
     if (!popup || !popupText) return;

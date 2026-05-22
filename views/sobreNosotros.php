@@ -41,23 +41,21 @@
     <section class="sobre-hero">
         <h1>Sobre <span>Nosotros</span></h1>
         <p>
-            Creamos soluciones digitales modernas, útiles y pensadas para personas reales.
+            Una aplicación web desarrollada como Trabajo de Fin de Grado para facilitar la gestión de citas de forma sencilla, intuitiva y accesible.
         </p>
     </section>
 
     <!-- HISTORIA -->
     <section class="sobre-bloque">
         <div class="sobre-texto">
-            <h2>Nuestra historia</h2>
+            <h2>¿Cómo surgió este proyecto?</h2>
             <p>
-                Este proyecto nació con la idea de simplificar procesos cotidianos
-                mediante herramientas web intuitivas. Desde el principio he
-                apostado por un diseño limpio, buen rendimiento y facilidad de uso.
+                Este gestor de citas ha sido desarrollado como Trabajo de Fin de Grado del ciclo de Desarrollo de Aplicaciones Web. 
+                El objetivo principal ha sido crear una herramienta práctica que permita organizar reservas y citas de manera rápida y eficiente.
             </p>
             <p>
-                Con el tiempo he ido evolucionando, incorporando mejoras y
-                escuchando siempre a nuestros usuarios para ofrecer la mejor
-                experiencia posible.
+                Durante su desarrollo se han aplicado conocimientos de programación, diseño web, 
+                bases de datos y experiencia de usuario, buscando ofrecer una interfaz clara, funcional y fácil de utilizar.
             </p>
         </div>
 
@@ -73,10 +71,10 @@
 
             <!-- CARA TRASERA -->
             <div class="flip-back">
-                <h3>¿Sabías que?</h3>
+                <h3>Sobre el desarrollo</h3>
                 <p>
-                    Nuestro equipo trabaja cada día para mejorar la experiencia
-                    de los usuarios y crear soluciones digitales modernas.
+                    Este proyecto ha sido diseñado y desarrollado íntegramente 
+                    por una única estudiante como parte de su Trabajo de Fin de Grado en Desarrollo de Aplicaciones Web.
                 </p>
             </div>
 
@@ -90,26 +88,24 @@
     <section class="sobre-cards">
 
         <article class="card">
-            <h3>Misión</h3>
+            <h3>Objetivo</h3>
             <p>
-                Ofrecer aplicaciones web rápidas, seguras y fáciles de usar
-                que ayuden a mejorar la organización diaria de nuestros usuarios.
+                Facilitar la gestión de citas mediante una aplicación web intuitiva que permita organizar reservas y horarios de forma eficiente.
             </p>
         </article>
 
         <article class="card">
-            <h3>Visión</h3>
+            <h3>Desarrollo</h3>
             <p>
-                Convertirnos en una referencia en el desarrollo de soluciones
-                digitales modernas centradas en la experiencia de usuario.
+                El proyecto ha sido desarrollado utilizando tecnologías web como HTML, CSS, JavaScript, PHP y MySQL, aplicando buenas prácticas de programación y diseño.
             </p>
         </article>
 
         <article class="card">
-            <h3>Valores</h3>
+            <h3>Aprendizaje</h3>
             <p>
-                Compromiso, innovación, transparencia y mejora continua
-                en cada proyecto que desarrollamos.
+                Este trabajo ha permitido poner en práctica los conocimientos adquiridos durante 
+                el ciclo formativo y afrontar un proyecto completo desde su análisis hasta su despliegue.
             </p>
         </article>
 

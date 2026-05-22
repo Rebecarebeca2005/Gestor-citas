@@ -52,7 +52,7 @@ header {
     position: relative;
 }
 
-/* subrayado */
+/* ===== SUBRAYADO ===== */
 .menu a::after {
     content: "";
     position: absolute;
@@ -68,7 +68,7 @@ header {
     width: 100%;
 }
 
-/* ===== HERO ===== */
+/* ===== HERO (PARTE DE ARRIBA) ===== */
 .hero-contenido {
     max-width: 1000px;
     margin: auto;
@@ -134,7 +134,7 @@ button:hover {
     position: relative;
 }
 
-/* slide */
+/* ===== SLIDE ===== */
 .slide {
     display: none;
     align-items: center;
@@ -146,7 +146,7 @@ button:hover {
     display: flex;
 }
 
-/* TEXTO */
+/* ===== TEXTO ===== */
 .slide-texto {
     flex: 1;
 }
@@ -166,7 +166,7 @@ button:hover {
     margin-bottom: 18px;
 }
 
-/* IMAGEN */
+/* ===== IMAGEN ===== */
 .slide-imagen {
     flex: 1;
     display: flex;
@@ -205,6 +205,8 @@ button:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* ===== FOOTER ===== */
+
 .footer {
 
     position: relative;
@@ -234,8 +236,6 @@ button:hover {
     z-index: 99999;
 }
 
-
-/*  IMPORTANTE: separación de enlaces */
 .footer a {
     display: inline-block;
     margin: 0 12px;
@@ -244,17 +244,16 @@ button:hover {
     font-size: 0.9rem;
 }
 
-/* hover bonito */
 .footer a:hover {
     color: var(--color-primario-hover);
     text-decoration: underline;
 }
 
-/* opcional: separa el texto del copyright */
 .footer p {
     margin-bottom: 6px;
 }
 
+/* ===== DISEÑO DEL AVISO DE COOKIES ===== */
 .cookie-banner {
     position: fixed;
     bottom: 20px;
@@ -284,6 +283,7 @@ button:hover {
     color: var(--color-texto-secundario);
 }
 
+/* ===== POPUPS ===== */
 .popup {
     position: fixed;
     top: 20px;
@@ -329,10 +329,8 @@ button:hover {
     }
 }
 
-/* =========================
-      PANTALLAS GRANDES
-========================= */
-
+/* ===== RESPONSIVE ===== */
+/* ===== PANTALLAS GRANDES ===== */
 @media (min-width: 1400px) {
 
     .navbar {
@@ -426,9 +424,7 @@ button:hover {
     }
 }
 
-/* =========================
-            TABLET
-========================= */
+/* ===== TABLETS ===== */
 
 @media (max-width: 1024px) {
 
@@ -490,9 +486,7 @@ button:hover {
     }
 }
 
-/* =========================
-        MÓVIL GRANDE
-========================= */
+/* ===== MÓVIL (GRANDE) ===== */
 
 @media (max-width: 768px) {
 
@@ -602,9 +596,7 @@ button:hover {
     }
 }
 
-/* =========================
-        MÓVIL PEQUEÑO
-========================= */
+/* ===== MÓVIL (PEQUEÑO) ===== */
 
 @media (max-width: 480px) {
 
