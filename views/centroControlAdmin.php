@@ -102,12 +102,6 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
             alt="Abrir menú"
             onclick="toggleMenu()">
 
-            <!-- ===== VOLVER ATRÁS ===== -->
-
-      <a href="index.php?pagina=perfil" class="topbar-perfil" title="Mi perfil">
-        <img src="assets/img/usuario.png" class="perfil-icon" alt="Perfil">
-    </a>
-
     </header>
 
     <!-- ===== CONTENIDO PRINCIPAL ===== -->
