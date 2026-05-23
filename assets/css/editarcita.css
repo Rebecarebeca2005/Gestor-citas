@@ -124,10 +124,13 @@
 #formEditarCita label {
     display: block;
     margin-top: 12px;
-    font-weight: 600;
-    font-size: 13px;
-    color: #333;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
 }
+
 
 #formEditarCita input,
 #formEditarCita textarea {
@@ -140,6 +143,26 @@
     outline: none;
     transition: .2s ease;
     background: #fafafa;
+}
+
+#formEditarCita select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #d6d6d6;
+    font-size: 14px;
+    outline: none;
+    transition: .2s ease;
+    background: #fafafa;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+}
+
+#formEditarCita select:focus {
+    border-color: #c26a4a;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(194, 106, 74, 0.15);
 }
 
 #formEditarCita textarea {

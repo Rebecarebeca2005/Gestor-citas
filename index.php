@@ -1,4 +1,12 @@
 <?php
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+ini_set('display_errors', 0);  
+error_reporting(E_ALL);
+
+ini_set('log_errors', 1);
 /* ===== CARPETA DE SESIONES ===== */
 $rutaSesiones = __DIR__ . "/sesiones"; //Guardamos en una variable la ruta de la carpeta de sesiones
 
@@ -422,102 +430,72 @@ switch ($pagina) {
 
     case 'editarCitaAdminAjax':
 
-        header('Content-Type: application/json');
+    header('Content-Type: application/json');
 
-        try {
+    try {
 
-            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-
-                echo json_encode([
-                    'ok' => false,
-                    'msg' => 'Método inválido'
-                ]);
-
-                exit;
-            }
-
-            $resultado =
-                $citaController
-                    ->editarCitaAdmin($_POST);
-
-            if ($resultado === "actualizada") {
-
-                echo json_encode([
-                    'ok' => true,
-                    'msg' => 'Cita actualizada correctamente'
-                ]);
-
-            } else if ($resultado === "no_permitido") {
-
-                echo json_encode([
-                    'ok' => false,
-                    'msg' => 'No puedes cancelar una cita activa desde edición'
-                ]);
-
-            } else {
-
-                echo json_encode([
-                    'ok' => false,
-                    'msg' => 'Error actualizando cita'
-                ]);
-            }
-
-        } catch (Throwable $e) {
-
-            echo json_encode([
-                'ok' => false,
-                'msg' => $e->getMessage()
-            ]);
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['ok' => false, 'msg' => 'Método inválido']);
+            exit;
         }
 
-        exit;
+        $resultado = $citaController->editarCitaAdmin($_POST);
 
-        /* ===== AJAX - ELIMINAR CITA ===== */
-
-        case 'eliminarCitaAjax':
-
-            header('Content-Type: application/json');
-
-            if (!isset($_SESSION['usuario_id'])) {
-
-                echo json_encode([
-                    'ok' => false,
-                    'msg' => 'No autenticado'
-                ]);
-
-                exit;
-            }
-
-            $id_cita = $_POST['id_cita'] ?? null;
-
-            if (!$id_cita) {
-
-                echo json_encode([
-                    'ok' => false,
-                    'msg' => 'ID no recibido'
-                ]);
-
-                exit;
-            }
-
-            $ok =
-                $citaController->cancelarCita($id_cita); //Llamamos al controlador
-
-        if ($ok === "ya_cancelada") {
+        // ===== DEPURACIÓN TEMPORAL =====
+        $id_cita = $_POST['id_cita'] ?? null;
+        $cita = $citaController->getCitaByIdAdmin($id_cita);
+        $archivo = __DIR__ . "/storage/notif_{$cita['id_usuario']}.json";
 
         echo json_encode([
-            'ok' => false,
-            'msg' => 'La cita ya ha sido cancelada'
+            'ok' => $resultado === 'actualizada',
+            'msg' => $resultado,
+            'debug_id_usuario' => $cita['id_usuario'] ?? 'NO ENCONTRADO',
+            'debug_archivo' => $archivo,
+            'debug_existe' => file_exists($archivo),
+            'debug_storage_existe' => is_dir(__DIR__ . '/storage'),
+            'debug_storage_escribible' => is_writable(__DIR__ . '/storage'),
         ]);
 
-    } else {
-
-        echo json_encode([
-            'ok' => $ok
-        ]);
+    } catch (Throwable $e) {
+        echo json_encode(['ok' => false, 'msg' => $e->getMessage()]);
     }
 
-            exit;
+    exit;
+
+        /* ===== AJAX - ELIMINAR CITA ===== */
+        case 'eliminarCitaAjax':
+
+    header('Content-Type: application/json');
+
+    if (!isset($_SESSION['usuario'])) {
+        echo json_encode(['ok' => false, 'msg' => 'No autenticado']);
+        exit;
+    }
+
+    $id_cita = $_POST['id_cita'] ?? null;
+
+    if (!$id_cita) {
+        echo json_encode(['ok' => false, 'msg' => 'ID no recibido']);
+        exit;
+    }
+
+    // Si es admin usa cancelarCitaAdmin (que guarda notificación)
+    // Si es usuario normal usa cancelarCita (sin notificación)
+    $rol = strtolower(trim($_SESSION['usuario_rol'] ?? ''));
+
+    if ($rol === 'admin') {
+        $ok = $citaController->cancelarCitaAdmin($id_cita);
+    } else {
+        $ok = $citaController->cancelarCita($id_cita);
+    }
+
+    if ($ok === "ya_cancelada") {
+        echo json_encode(['ok' => false, 'msg' => 'La cita ya ha sido cancelada']);
+    } else {
+        echo json_encode(['ok' => $ok]);
+    }
+
+    exit;
 
     /* ===== AJAX - CITAS X CITA ===== */
 

@@ -64,6 +64,15 @@
             alt="Abrir menú"
             onclick="toggleMenu()">
 
+            <!-- ===== VOLVER ATRÁS ===== -->
+ <nav class="volver-atras">
+        ← Volver atrás
+    </nav>
+
+      <a href="index.php?pagina=perfil" class="topbar-perfil" title="Mi perfil">
+        <img src="assets/img/usuario.png" class="perfil-icon" alt="Perfil">
+    </a>
+
     </header>
 
     <!-- ===== MENÚ LATERAL ===== -->
@@ -135,7 +144,8 @@
                 <form
                     id="formCrearUsuario"
                     method="POST"
-                    class="crear-user-form">
+                    class="crear-user-form"
+                    novalidate>
 
                     <div class="crear-user-field">
 
@@ -146,7 +156,7 @@
                         <input
                             type="text"
                             name="nombre"
-                            required>
+                            >
 
                     </div>
 
@@ -159,7 +169,7 @@
                         <input
                             type="text"
                             name="apellidos"
-                            required>
+                            >
 
                     </div>
 
@@ -172,7 +182,7 @@
                         <input
                             type="email"
                             name="correo"
-                            required>
+                            >
 
                     </div>
 
@@ -185,21 +195,25 @@
                         <input
                             type="text"
                             name="telefono"
-                            required>
+                            >
 
                     </div>
 
                     <div class="crear-user-field">
-
                         <label>
                             Contraseña
                         </label>
-
-                        <input
-                            type="password"
-                            name="password"
-                            required>
-
+                        <div style="position: relative;">
+                            <input
+                                type="password"
+                                name="password"
+                                id="password">
+                            <img
+                                src="assets/img/ojo-abierto.png"
+                                class="mostrar-password"
+                                data-target="password"
+                                style="position:absolute; right:10px; top:50%; transform:translateY(-50%); width:22px; cursor:pointer;">
+                        </div>
                     </div>
 
                         <div class="crear-user-field">
@@ -223,7 +237,8 @@
                     </div>
 
                     <button
-                        type="submit"
+                        type="button"
+                        id="btnCrearUsuario"
                         class="crear-user-btn">
 
                         Crear usuario

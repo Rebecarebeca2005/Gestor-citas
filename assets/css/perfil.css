@@ -1,4 +1,16 @@
-/* ===== AJUSTES VARIOS ===== */
+/* ===== VARIABLES ===== */
+:root {
+    --color-fondo: #E8E1D8;
+    --color-texto-principal: #1A1A1A;
+    --color-texto-secundario: #4B4B4B;
+    --color-primario: #C26A4A;
+    --color-primario-hover: #A95539;
+    --color-tarjeta: #FFFFFF;
+    --color-borde: #D6CEC4;
+    --color-sombra: rgba(0, 0, 0, 0.08);
+}
+
+/* ===== BASE ===== */
 html, body {
     height: 100%;
 }
@@ -26,25 +38,11 @@ main {
     padding: 20px;
 }
 
-p {
-    padding: 0;
-    margin-bottom: 10px;
-    color: var(--color-texto-secundario);
-}
-
-.sidebar.active {
-    left: 0;
-}
+.sidebar.active { left: 0; }
 
 .sidebar-header {
     text-align: center;
     margin-bottom: 30px;
-}
-
-.avatar {
-    width: 70px;
-    border-radius: 50%;
-    margin-bottom: 10px;
 }
 
 .sidebar-menu a {
@@ -61,75 +59,120 @@ p {
     color: var(--color-primario);
 }
 
-
+/* ===== PERFIL ===== */
 .perfil-container {
-    max-width: 600px;
-    margin: 60px auto;
-    padding: 20px;
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
-.perfil-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+/* ===== CABECERA CON AVATAR ===== */
+.perfil-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-borde);
 }
 
+.perfil-avatar-placeholder {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--color-primario);
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil-header h1 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--color-texto-principal);
+    margin: 0;
+}
+
+.perfil-rol {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
+    margin: 0;
+}
+
+/* ===== TARJETA DE DATOS ===== */
 .perfil-card {
     background: var(--color-tarjeta);
-    padding: 28px;
     border-radius: 16px;
-    box-shadow: 0 10px 25px var(--color-sombra);
-    text-align: center;
+    border: 1px solid var(--color-borde);
+    overflow: hidden;
 }
 
-/* ===== BOTONES ===== */
-button,
-.btn-eliminar,
-.btn-cancelar {
-    padding: 12px 24px;
-    margin-top: 15px;
+.perfil-dato {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--color-borde);
+    gap: 16px;
+}
 
-    border-radius: 999px;
-    border: 1px solid var(--color-primario);
+.perfil-dato:last-child {
+    border-bottom: none;
+}
 
-    font-weight: 600;
-    cursor: pointer;
+.perfil-label {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
+    white-space: nowrap;
+}
 
-    transition: all 0.25s ease;
+.perfil-valor {
+    font-size: 0.95rem;
+    color: var(--color-texto-principal);
+    text-align: right;
+}
+
+/* ===== ACCIONES ===== */
+.perfil-acciones {
+    display: flex;
+    justify-content: center;
 }
 
 .btn-eliminar {
-    background: var(--color-primario);
-    color: white;
+    padding: 10px 24px;
+    border-radius: 999px;
+    border: 1px solid var(--color-primario);
+    background: transparent;
+    color: var(--color-primario);
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
 }
 
 .btn-eliminar:hover {
-    background: var(--color-primario-hover);
-    transform: translateY(-2px);
-}
-
-
-.btn-cancelar {
-    background: transparent;
-    color: var(--color-primario);
-}
-
-.btn-cancelar:hover {
-    background: var(--color-primario-hover);
+    background: var(--color-primario);
     color: white;
     transform: translateY(-2px);
 }
 
-/* ===== POPUP PERFIL ELIMINAR  ===== */
+/* ===== POPUP ELIMINAR ===== */
 #popupEliminar {
     position: fixed;
     inset: 0;
-
     background: rgba(0,0,0,0.45);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     z-index: 999999;
 }
 
@@ -139,50 +182,80 @@ button,
 
 #popupEliminar .modal-content.confirm {
     background: var(--color-tarjeta);
-
     padding: 28px;
     border-radius: 16px;
-
     width: 380px;
     max-width: 90%;
-
     text-align: center;
-
     box-shadow: 0 10px 25px var(--color-sombra);
-
     animation: fadeIn 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#popupEliminar h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-texto-principal);
+}
+
+#popupEliminar p {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.btn-cancelar {
+    padding: 10px 24px;
+    border-radius: 999px;
+    border: 1px solid var(--color-borde);
+    background: transparent;
+    color: var(--color-texto-secundario);
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-cancelar:hover {
+    border-color: var(--color-primario);
+    color: var(--color-primario);
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    from { opacity: 0; transform: translateY(10px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* ===== FOOTER ===== */
 .footer {
-
     position: relative;
-
     width: 100%;
-
     margin-top: auto;
-
     padding: 18px 14px;
-
     background: #ddd4c8;
-
     border-top: 1px solid var(--color-borde);
-
     text-align: center;
-
     color: var(--color-texto-secundario);
-
-    z-index: 1;
-
     flex-shrink: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+
+    .perfil-dato {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .perfil-valor {
+        text-align: left;
+    }
 }

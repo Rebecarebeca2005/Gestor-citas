@@ -1,0 +1,1 @@
+usuario|a:7:{s:10:"id_usuario";i:57;s:6:"nombre";s:6:"amador";s:9:"apellidos";s:5:"rivas";s:5:"email";s:17:"amador@prueba.com";s:8:"telefono";s:9:"699516364";s:8:"password";s:60:"$2y$10$uRLEG6qTMotBEyYFX2SGPOGAm4OXAxRz00OkZKKRx1yJQVtaUWEkO";s:3:"rol";s:7:"CLIENTE";}usuario_id|i:57;usuario_nombre|s:6:"amador";usuario_email|s:17:"amador@prueba.com";usuario_rol|s:7:"CLIENTE";

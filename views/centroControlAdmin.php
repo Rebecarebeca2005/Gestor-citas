@@ -94,7 +94,7 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
     </div>
 
     <!-- ===== CABECERA ===== -->
-    <header class="topbar">
+     <header class="topbar">
 
         <img
             src="assets/img/hamburguesa.png"
@@ -102,9 +102,11 @@ $nombre = $_SESSION['usuario']['nombre'] ?? 'Admin';
             alt="Abrir menú"
             onclick="toggleMenu()">
 
-        <h2>
-            Panel de administración
-        </h2>
+            <!-- ===== VOLVER ATRÁS ===== -->
+
+      <a href="index.php?pagina=perfil" class="topbar-perfil" title="Mi perfil">
+        <img src="assets/img/usuario.png" class="perfil-icon" alt="Perfil">
+    </a>
 
     </header>
 

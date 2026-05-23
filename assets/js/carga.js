@@ -118,5 +118,13 @@ $(function () {
         setCookie("cookies_aceptadas", "si", 365);
         banner.addClass("hidden");
     });
+    
+    window.addEventListener("pageshow", function(event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+});
+
+
 
 });

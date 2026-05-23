@@ -8,6 +8,21 @@ class CitaController {
         $this->model = new Cita(); //obtenemos el modelo de cita para usar sus variables
     }
 
+    /* ===== GUARDAR NOTIFICACIÓN EN FICHERO ===== */
+    private function guardarNotificacion($id_usuario, $mensaje) {
+    $archivo = __DIR__ . "/../../storage/notif_{$id_usuario}.json";
+    
+    $existentes = [];
+    if (file_exists($archivo)) {
+        $existentes = json_decode(file_get_contents($archivo), true) ?? [];
+    }
+    $existentes[] = [
+        'mensaje' => $mensaje,
+        'fecha'   => date('d/m/Y H:i')
+    ];
+    file_put_contents($archivo, json_encode($existentes));
+}
+    
     public function datosFormulario() {
         return [
             'servicios' => $this->model->getServicios() //modal de citas
@@ -144,15 +159,45 @@ class CitaController {
 
     /* ===== EDITAR CITA ADMINISTRADOR ===== */
     public function editarCitaAdmin($data) {
+    // Obtener datos ANTES de editar
+    $cita = $this->model->getByIdAdmin($data['id_cita']);
 
-        return $this->model->editarCitaAdmin( //al modal
+    $resultado = $this->model->editarCitaAdmin(
+        $data['id_cita'] ?? null,
+        $data['fecha'] ?? null,
+        $data['id_disponibilidad'] ?? null,
+        $data['estado'] ?? 'ACTIVA'
+    );
 
-            $data['id_cita'] ?? null,
-            $data['fecha'] ?? null,
-            $data['id_disponibilidad'] ?? null,
-            $data['estado'] ?? 'ACTIVA'
+    if ($resultado === 'actualizada') {
+        if ($cita && isset($cita['id_usuario'])) {
+            $this->guardarNotificacion(
+                $cita['id_usuario'],
+                "El administrador ha modificado tu cita del {$cita['fecha']}."
+            );
+        }
+    }
+
+    return $resultado;
+    }
+
+
+    /* ===== CANCELAR CITA ADMINISTRADOR ===== */
+    public function cancelarCitaAdmin($id_cita) {
+    // Obtener datos antes de cancelar
+    $cita = $this->model->getByIdAdmin($id_cita);
+
+    $resultado = $this->model->cancelarCita($id_cita);
+
+    if ($resultado && $cita && isset($cita['id_usuario'])) {
+        $this->guardarNotificacion(
+            $cita['id_usuario'],
+            "El administrador ha cancelado tu cita del {$cita['fecha']}."
         );
     }
+
+    return $resultado;
+}
 
     /* ===== OBTENER CITA POR ID DE ADMIN ===== */
     public function getCitaByIdAdmin($id) {

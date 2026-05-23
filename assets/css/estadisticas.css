@@ -17,12 +17,18 @@
 
 .stats-header h1 {
     margin: 0;
-    font-size: 2.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
 }
 
 .stats-header p {
     color: var(--color-texto-secundario);
-    margin-top: 8px;
+    margin-top: 4px;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
 }
 
 /* ===== FILTROS ===== */
@@ -112,6 +118,26 @@
 
 .stats-box-header h3 {
     margin: 0;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
+    font-weight: 500;
+}
+
+.stats-card p {
+    margin: 0;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
+    font-weight: 500;
+}
+
+.stats-card small {
+    color: var(--color-texto-secundario);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
 }
 
 /* ===== LISTAS ===== */

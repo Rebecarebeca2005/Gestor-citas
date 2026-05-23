@@ -45,7 +45,7 @@ class AuthController {
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { //Comprobamos que el email tenga un formato OK
-        header("Location: ?pagina=login&error=Email no válido"); //Si no...
+        header("Location: ?pagina=login&error=Correo electrónico incorrecto&email=" . urlencode($email));; //Si no...
         exit;
     }
 
@@ -72,7 +72,7 @@ class AuthController {
         exit;
     }
     
-    header("Location: ?pagina=login&error=Credenciales incorrectas"); //Si no existe el user, correo mal, pass mal...
+    header("Location: ?pagina=login&error=Credenciales incorrectas&email=" . urlencode($email));; //Si no existe el user, correo mal, pass mal...
     exit;
 }
 

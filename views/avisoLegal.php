@@ -38,10 +38,12 @@
 
 <body>
 
-    <!-- ===== NAVEGACIÓN ===== -->
-    <nav class="volver-atras">
-        ← Volver atrás
-    </nav>
+     <header class="topbar">
+    <div class="volver-atras">← Volver atrás</div>
+    <a href="index.php?pagina=perfil" class="topbar-perfil" title="Mi perfil">
+        <img src="assets/img/usuario.png" class="perfil-icon" alt="Perfil">
+    </a>
+</header>
 
     <!-- ===== CONTENIDO PRINCIPAL ===== -->
     <main>

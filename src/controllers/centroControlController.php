@@ -28,6 +28,8 @@ class CentroControlController {
             'mes'     => $this->model->getCitasMes($id_usuario)
         ];
 
+        $citas = $this->model->getByUsuario($id_usuario);
+
         // esto lo mandamos a la vista
         require __DIR__ . '../../../views/centroControl.php';
     }

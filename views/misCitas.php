@@ -78,6 +78,15 @@
             alt="Abrir menú"
             onclick="toggleMenu()">
 
+            <!-- ===== VOLVER ATRÁS ===== -->
+ <nav class="volver-atras">
+        ← Volver atrás
+    </nav>
+
+      <a href="index.php?pagina=perfil" class="topbar-perfil" title="Mi perfil">
+        <img src="assets/img/usuario.png" class="perfil-icon" alt="Perfil">
+    </a>
+
     </header>
 
     <!-- ===== MENÚ LATERAL ===== -->

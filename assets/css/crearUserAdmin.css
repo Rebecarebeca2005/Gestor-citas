@@ -32,22 +32,19 @@
 }
 
 .crear-user-header h1 {
-
     margin: 0 0 10px 0;
-
-    font-size: 2rem;
-    font-weight: 800;
-
-    color: var(--color-texto-principal);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
 }
 
 .crear-user-header p {
-
     margin: 0;
-
     color: var(--color-texto-secundario);
-
-    font-size: 1rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
 }
 
 /* ===== FORMULARIO ===== */
@@ -69,49 +66,51 @@
 }
 
 .crear-user-field label {
-
-    font-weight: 700;
-
-    font-size: 0.95rem;
-
-    color: var(--color-texto-principal);
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
 }
 
-/* ===== INPUTS DEL FORMULARIO ===== */
 .crear-user-field input,
 .crear-user-field select {
-
     width: 100%;
-
-    padding: 16px 18px;
-
-    border-radius: 16px;
-
-    border: 1px solid #ddd;
-
-    background: #fff;
-
-    font-size: 1rem;
-
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s,
-        transform 0.2s;
-
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--color-borde);
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
+    font-family: 'Nunito';
 }
 
 .crear-user-field input:focus,
 .crear-user-field select:focus {
-
     border-color: var(--color-primario);
-
-    box-shadow:
-        0 0 0 5px rgba(194,106,74,0.12);
-
-    transform: translateY(-1px);
+    box-shadow: 0 0 0 3px rgba(194,106,74,0.1);
+    background: white;
 }
 
+.crear-user-btn {
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+    background: var(--color-primario);
+    color: white;
+    padding: 14px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    font-family: 'Nunito';
+}
+
+.crear-user-btn:hover {
+    background: var(--color-primario-hover);
+    transform: translateY(-2px);
+}
 /* ===== SELECTS ===== */
 .crear-user-field select {
 

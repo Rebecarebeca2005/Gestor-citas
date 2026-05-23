@@ -440,15 +440,6 @@ class Cita {
             return false;
         }
 
-        // NO permitir ACTIVA / CANCELADA
-        if (
-            $citaActual['estado'] === 'ACTIVA'
-            &&
-            $estado === 'CANCELADA'
-        ) {
-            return "no_permitido";
-        }
-
         // obtener nueva disponibilidad
         $stmt = $this->pdo->prepare("
             SELECT hora_inicio
@@ -564,6 +555,7 @@ class Cita {
 
         $sql = "SELECT 
                     c.id_cita,
+                    c.id_usuario,
                     c.fecha,
                     c.estado,
                     c.id_disponibilidad,
@@ -575,15 +567,13 @@ class Cita {
                     ON c.id_disponibilidad = d.id_disponibilidad
                 INNER JOIN servicios s 
                     ON c.id_servicio = s.id_servicio
-                WHERE c.id_cita = :id"; //obtener la cita por id
+                WHERE c.id_cita = :id";
 
         $stmt = $this->pdo->prepare($sql);
-
-        $stmt->execute([
-            ':id' => $id
-        ]);
+        $stmt->execute([':id' => $id]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
         
     }

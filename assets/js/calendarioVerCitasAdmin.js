@@ -19,6 +19,7 @@ const meses = [
     dinámicamente todos los días del mes
     para consultar las citas existentes.
 */
+
 function renderCalendarioListar() {
 
     grid.innerHTML = ""; //Limpia cualquier contenido previo
@@ -345,21 +346,6 @@ function abrirModalEditarCita(id_cita) {
         document.getElementById(
             "estadoAdmin"
         ).value = cita.estado; //Asignamos el estado actual
-
-        //Si la cita está activa no permitimos
-        //seleccionar directamente el estado cancelada
-        if (cita.estado === "ACTIVA") {
-
-            document.querySelector(
-                '#estadoAdmin option[value="CANCELADA"]'
-            ).disabled = true;
-
-        } else {
-
-            document.querySelector(
-                '#estadoAdmin option[value="CANCELADA"]'
-            ).disabled = false;
-        }
 
         cargarHorasDisponiblesAdmin(
             cita.fecha,

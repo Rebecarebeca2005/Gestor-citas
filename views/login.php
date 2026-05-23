@@ -126,7 +126,8 @@
                                 type="email"
                                 name="email"
                                 placeholder="Correo electrónico"
-                                required>
+                                required
+                                value="<?= htmlspecialchars($_GET['email'] ?? '') ?>">
 
                             <div class="contenedor-password">
 

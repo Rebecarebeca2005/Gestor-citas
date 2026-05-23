@@ -16,21 +16,35 @@ const formCita = document.getElementById("formCita");
     usuario selecciona una fecha en el calendario
 */
 
+/* ===== MODAL PARA ABRIR LA CITA ===== */
 function abrirCita(fecha) {
 
     if (!modalCita) return;
 
-/* 
-    Elimina la clase hidden, haciendo 
-    visible la ventana modal
-*/
+    // Primero comprobamos si hay huecos disponibles
+    fetch(
+        "index.php?pagina=calendarioAñadir&ajax=disponibilidad&fecha=" + fecha
+    )
+    .then(res => res.json())
+    .then(data => {
 
-    modalCita.classList.remove("hidden");
+        if (data.length === 0) {
+            // Sin huecos: mostramos popup y no abrimos el modal
+            showPopup("Este día no tiene huecos libres");
+            return;
+        }
 
-    const inputFecha = document.querySelector("#formCita input[name='fecha']"); //Busca el campo de fecha del formulario
-    if (inputFecha) inputFecha.value = fecha; //Asigna automáticamente la fecha elegida por el usuario
+        // Con huecos: abrimos el modal normalmente
+        modalCita.classList.remove("hidden");
 
-    cargarDisponibilidad(fecha); //Llamo a esta función para que obtenga los horarios disponbiles para esa fecha
+        const inputFecha = document.querySelector("#formCita input[name='fecha']");
+        if (inputFecha) inputFecha.value = fecha;
+
+        cargarDisponibilidad(fecha);
+    })
+    .catch(() => {
+        showPopup("Error al comprobar disponibilidad");
+    });
 }
 
 /* ===== CERRAR EL MODAL ===== */
@@ -131,10 +145,7 @@ function cargarDisponibilidad(fecha) {
             option.value =
                 d.id_disponibilidad; //...guarda el identificación interno
 
-            option.textContent =
-                `${d.hora_inicio.substring(0,5)}
-                - 
-                ${d.hora_fin.substring(0,5)}`; //Muestra el intervalo horario en este formato
+            option.textContent = `${d.hora_inicio.substring(0,5)} - ${d.hora_fin.substring(0,5)}`;
 
             select.appendChild(option); //le añadimos el "hijo" al selector
         });

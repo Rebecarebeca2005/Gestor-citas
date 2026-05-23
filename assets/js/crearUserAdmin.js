@@ -62,69 +62,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ===== FORMULARIO DE SUBMIT ===== */
-    const form =
-        document.getElementById(
-            "formCrearUsuario"
+ const form = document.getElementById("formCrearUsuario");
+
+document.getElementById("btnCrearUsuario").addEventListener("click", async () => {
+
+    const validacion = validarFormulario();
+
+    if (validacion !== true) {
+        showPopup(validacion);
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "index.php?pagina=crearUsuarioAjax",
+            {
+                method: "POST",
+                body: new FormData(form)
+            }
         );
 
-    form.addEventListener(
-        "submit",
-        async (e) => {
+        const data = await response.json();
 
-            e.preventDefault();
-
-            const validacion =
-                validarFormulario();
-
-            if (validacion !== true) {
-
-                showPopup(validacion);
-
-                return;
-            }
-
-            try {
-
-                const response = await fetch(
-                    "index.php?pagina=crearUsuarioAjax",
-                    {
-                        method: "POST",
-                        body: new FormData(form)
-                    }
-                );
-
-                const text =
-                await response.text();
-
-            console.log(text);
-
-            const data =
-                JSON.parse(text);
-
-                if (data.ok) {
-
-                    showPopup(
-                        "Usuario creado correctamente"
-                    );
-
-                } else {
-
-                    showPopup(
-                        data.msg ||
-                        "Error creando usuario"
-                    );
-                }
-
-            } catch(error) {
-
-                console.error(error);
-
-                showPopup(
-                    "Error del servidor"
-                );
-            }
+        if (data.ok) {
+            showPopup("Usuario creado correctamente");
+            form.reset();
+        } else {
+            showPopup(data.msg || "Error creando usuario");
         }
-    );
+
+    } catch (error) {
+        console.error(error);
+        showPopup("Error del servidor");
+    }
+
+});
+
 
     /* ===== POPUP ===== */
     function showPopup(msg) {
@@ -145,5 +119,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }, 3000);
     }
+
+    /* ===== OJO CONTRASEÑA ===== */
+document.querySelectorAll(".mostrar-password").forEach(function(icono) {
+
+    icono.addEventListener("click", function() {
+
+        const id = this.getAttribute("data-target");
+        const input = document.getElementById(id);
+
+        if (!input) return;
+
+        const isPassword = input.getAttribute("type") === "password";
+
+        input.setAttribute("type", isPassword ? "text" : "password");
+
+        this.setAttribute("src",
+            isPassword
+                ? "assets/img/esconder.png"
+                : "assets/img/ojo-abierto.png"
+        );
+    });
+});
+
 
 });
